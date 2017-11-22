@@ -2,13 +2,14 @@
 %\VignetteIndexEntry{Manual for the phenoTest library}
 %\VignettePackage{phenoTest,GSEABase}
 
-
+\usepackage{biblatex}
 \usepackage{amsmath}    % need for subequations
 \usepackage{amssymb}    %useful mathematical symbols
 \usepackage{bm}         %needed for bold greek letters and math symbols
 \usepackage{graphicx}   % need for PS figures
 \usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
 \usepackage{natbib}    %number and author-year style referencing
+
 
 \begin{document}
 
@@ -26,7 +27,7 @@
 
 We developed a new user-independent analytical framework, called \textit{Two-Tier Mapper (TTMap)}. This tool is separated into two parts. 
 
-TTMap consists of two separated and independent parts : 1. Hyperrectangle Deviation assessment (HDA) and 2. Global-to-Local Mapper (GtLMap), where the first step establishes properties of the control group and removes outliers in order to calculate the deviation of each vector in the test group from the corrected control group. The second step uses the traditional Mapper algorithm \cite{Mapper} with a two-tier cover and a special distance. 
+TTMap consists of two separated and independent parts : 1. Hyperrectangle Deviation assessment (HDA) and 2. Global-to-Local Mapper (GtLMap), where the first step establishes properties of the control group and removes outliers in order to calculate the deviation of each vector in the test group from the corrected control group. The second step uses the traditional Mapper algorithm \cite{Extracting} with a two-tier cover and a special distance. 
 
 This topological tool detects both global and local differences in the patterns of deviations and thereby captures the structure of the test group. The samples are clustered according to the shape of their deviation (do they both deviate positively, negatively or are they as the control). To still keep on the information about the amount of deviation, one separates the data into 4 clusters according to a function measuring the amount of deviation. These represent then the second tier. 
 Each cluster is colored by the extent of the deviation. A list of the differentially expressed genes is also provided 
@@ -103,7 +104,8 @@ This outputs:
 \item A file with the number of outliers per sample (Dataname followed by the number of the batch followed by na\_numbers\_per\_col.txt)
 \item A file with the number of outliers per row (Dataname followed by the number of the batch followed by na\_numbers\_per\_col.txt)
 \item A picture of the distribution of the mean against variance for each gene, before (Dataname followed by \_mean\_vs\_variance.pdf) and
-\item after correction of outliers (Dataname followed by \_mean\_vs\_variance\_after\_correction.pdf).
+\item after correction of outliers (Dataname followed by \\
+\_mean\_vs\_variance\_after\_correction.pdf).
 \end{itemize}
 The corrected control matrix is output in the next step.
 A possible output after this first step is shown in figure \ref{fig_mean_vs_var}.
@@ -118,7 +120,7 @@ A possible output after this first step is shown in figure \ref{fig_mean_vs_var}
 
 \section{TTMap\_part2}
 
-The second part of the HDA step consists of calculating deviation components. This is enables the calculation in the third function of the shape of deviation. One parameter k is determining if all the vectors of the control group should be kept or if only the the top k-dimensional principal component approximation of the control matrix should be kept using the singular value decomposition (as in \cite{Monica}. The default is to keep all the vectors.
+The second part of the HDA step consists of calculating deviation components. This is enables the calculation in the third function of the shape of deviation. One parameter k is determining if all the vectors of the control group should be kept or if only the the top k-dimensional principal component approximation of the control matrix should be kept using the singular value decomposition (as in \cite{Monica}). The default is to keep all the vectors.
 
 \begin{scriptsize}
 <<part2>>=
@@ -131,41 +133,44 @@ head(TTMAP_part2$Dc.Dmat)
 The outputs of this step are the following. 
 \begin{itemize}
 \item The corrected control matrix, calculated at the first step is given in \textit{Hi.NormalModel.pcl}, with a possible trimming of columns if $k$ is different than the number of columns in the corrected matrix.
-\item The deviation component of each test sample is written in \textit{Hello.Tdis.pcl}. An example of the deviation component is found in the previous script by writing \textit{head(TTMAP_part2\$Dc.Dmat)}
+\item The deviation component of each test sample is written in \textit{Hello.Tdis.pcl}. An example of the deviation component is found in the previous script by writing \textit{head(TTMAP\_part2\$Dc.Dmat)}
 \item The normal component of each test sample is written in \textit{Hello.Tnorm.pcl}.
 \end{itemize}
 The two values of this function are the deviation component matrix and the overall deviation (calculated by summing in absolute values the deviation components).
 \section{TTMap\_part3}
 
-The third part corresponds to the Global-to-local Mapper part. One starts with an annotation file of our samples, in order to annotate the obtained clusters. In this example here we just copied several times the column names. This annotation file needs to have as rownames the columns of the test samples followed by ".Dis". We then calculate the distance matrix between the samples using the \textit{generate\_mismatch\_distance} function, which uses a cutoff parameter $\alpha$ in order to decide what is a considered as noise. Any other distance matrix can be computed here and used for the next step. Then, we calculate and output the clusters using \textit{ttmap\_part3}, which needs as inputs the values of \textit{ttmap\_part1, ttmap\_part2.} The default parameter uses all the genes to calculate the overall deviation, but if a subset should be selected (only one pathway for example), it can be imputed here. TTMap_part3 then calculates using \textit{calcul\_e} a parameter of closeness using the data, in order to know what distance is "close" enough to clusters samples together. The parameter n determines which column of metadata should be chosen for the output files.  Two more parameters of convenience, if ad is set to something different than 0 (the default) then the clusters on the output picture will not be annotated and if bd is different than 0 (default), the output will be without outliers of the test data set. After the picture has been adjusted to what one wants to see one can save it using the \textit{rgl.postscript} function.
+The third part corresponds to the Global-to-local Mapper part. One starts with an annotation file of our samples, in order to annotate the obtained clusters. In this example here we just copied several times the column names. This annotation file needs to have as rownames the columns of the test samples followed by ".Dis". We then calculate the distance matrix between the samples using the \textit{generate\_mismatch\_distance} function, which uses a cutoff parameter $\alpha$ in order to decide what is a considered as noise. Any other distance matrix can be computed here and used for the next step. Then, we calculate and output the clusters using \textit{ttmap\_part3}, which needs as inputs the values of \textit{ttmap\_part1, ttmap\_part2.} The default parameter uses all the genes to calculate the overall deviation, but if a subset should be selected (only one pathway for example), it can be imputed here. TTMap\_part3 then calculates using \textit{calcul\_e} a parameter of closeness using the data, in order to know what distance is "close" enough to clusters samples together. The parameter n determines which column of metadata should be chosen for the output files.  Two more parameters of convenience, if ad is set to something different than 0 (the default) then the clusters on the output picture will not be annotated and if bd is different than 0 (default), the output will be without outliers of the test data set. After the picture has been adjusted to what one wants to see one can save it using the \textit{rgl.postscript} function.
 
 \begin{scriptsize}
 <<part3>>=
 library(rgl)
 ALPHA <- 1
-annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep="."),paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
+annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep=".")
+,paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
  annot <- cbind(annot,annot)
  rownames(annot)<-annot[,1]
 
-dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part2,select=rownames(TTMAP_part2$Dc.Dmat),alpha = ALPHA)
- de1 <- TTMap::ttmap_part3(TTMAP_part2,TTMAP_part2$m,select=rownames(TTMAP_part2$Dc.Dmat),annot,e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), filename="TEST",n=1,dd=dd5_sgn_only)
+dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part2,
+select=rownames(TTMAP_part2$Dc.Dmat),alpha = ALPHA)
+ de1 <- TTMap::ttmap_part3(TTMAP_part2,TTMAP_part2$m,select=rownames(TTMAP_part2$Dc.Dmat),
+ annot,e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), filename="TEST",
+ n=1,dd=dd5_sgn_only)
 rgl.postscript("test.pdf","pdf")
 @
 \end{scriptsize}
 
 \section{TTMap\_part4}
-This last function analyses the different clusters for significant features. It outputs a file per level (one for overall, called all, one for the lower quartile, called low, one for the second quartile, called mid1, the third, mid2, and the higher quartile, called high). In each of them one file per cluster is given, with the list of significant genes linked to the cluster. In our example, the differentially expressed genes were called diff 1:100, whence the accuracy of the method can quickly be checked. Relaxed is a parameter permitting to select as a match one sample that would be 0 for the deviation component, while the others deviate.
+This last function analyses the different clusters for significant features. It outputs a file per level (one for overall, called all, one for the lower quartile, called low, one for the second quartile, called mid1, the third, mid2, and the higher quartile, called high). In each of them one file per cluster is given, with the list of significant genes linked to the cluster. In our example, the differentially expressed genes were called diff 1:100, whence the accuracy of the method can quickly be checked. Relaxed is a parameter permitting to select as a match one sample that would be 0 for the deviation component, while the others deviate in the same shape.
 
 
 
 \begin{scriptsize}
 <<part4>>=
-TTMap:::ttmap_part4(de1, TTMAP_part2, TTMAP_part1prime, annot, n = 2, a = ALPHA, filename = "TEST2", annot = TTMAP_part1prime$tag.pcl, col = "NAME", path = getwd(), Relaxed = 0)
+TTMap:::ttmap_part4(de1, TTMAP_part2, TTMAP_part1prime, annot, n = 2, a = ALPHA,
+ filename = "TEST2", annot = TTMAP_part1prime$tag.pcl, col = "NAME",
+  path = getwd(), Relaxed = 0)
 @
 \end{scriptsize}
-
-
-
 
 %Notice that using a Wilcoxon test is conceptually very similar to the average gene set fold change
 %presented in figure \ref{fig:barplotSignatures}.
@@ -175,8 +180,10 @@ TTMap:::ttmap_part4(de1, TTMAP_part2, TTMAP_part1prime, annot, n = 2, a = ALPHA,
 %believe \texttt{gseaSignatures} is usefull in that it targets the correct null hypothesis that gene
 %set is as enriched as a randomly selected gene set, opposed to testing that there are no enriched
 %genes in the set as is done in GSEA.
-
-%\bibliographystyle{plainnat}
-%\bibliography{references}
+\section{Conclusion}
+Two-Tier Mapper (TTMap) is a topology-based clustering tool, which is user-friendly and reliable. The algorithm first provides an overall clustering, in an unbiased manner, since all the parameters are defined in a data-driven manner or by reliable default parameters. his method enables a refined view on the composition of the clusters by delineating
+ how clusters differ locally and how the local clusters relate to the global structure of the dataset. The output is a visual interpretation of the data given by a colored graph that is easy to interpret, which describes the shape of the data according to the chosen distance. \\
+ \bibliographystyle{unsrtnat}
+\bibliography{biblio.bib}
 %
 \end{document}

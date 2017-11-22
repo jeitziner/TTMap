@@ -2,13 +2,14 @@
 %\VignetteIndexEntry{Manual for the phenoTest library}
 %\VignettePackage{phenoTest,GSEABase}
 
-
+\usepackage{biblatex}
 \usepackage{amsmath}    % need for subequations
 \usepackage{amssymb}    %useful mathematical symbols
 \usepackage{bm}         %needed for bold greek letters and math symbols
 \usepackage{graphicx}   % need for PS figures
 \usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
 \usepackage{natbib}    %number and author-year style referencing
+
 
 \usepackage{Sweave}
 \begin{document}
@@ -27,7 +28,7 @@
 
 We developed a new user-independent analytical framework, called \textit{Two-Tier Mapper (TTMap)}. This tool is separated into two parts. 
 
-TTMap consists of two separated and independent parts : 1. Hyperrectangle Deviation assessment (HDA) and 2. Global-to-Local Mapper (GtLMap), where the first step establishes properties of the control group and removes outliers in order to calculate the deviation of each vector in the test group from the corrected control group. The second step uses the traditional Mapper algorithm \cite{Mapper} with a two-tier cover and a special distance. 
+TTMap consists of two separated and independent parts : 1. Hyperrectangle Deviation assessment (HDA) and 2. Global-to-Local Mapper (GtLMap), where the first step establishes properties of the control group and removes outliers in order to calculate the deviation of each vector in the test group from the corrected control group. The second step uses the traditional Mapper algorithm \cite{Extracting} with a two-tier cover and a special distance. 
 
 This topological tool detects both global and local differences in the patterns of deviations and thereby captures the structure of the test group. The samples are clustered according to the shape of their deviation (do they both deviate positively, negatively or are they as the control). To still keep on the information about the amount of deviation, one separates the data into 4 clusters according to a function measuring the amount of deviation. These represent then the second tier. 
 Each cluster is colored by the extent of the deviation. A list of the differentially expressed genes is also provided 
@@ -111,7 +112,8 @@ This outputs:
 \item A file with the number of outliers per sample (Dataname followed by the number of the batch followed by na\_numbers\_per\_col.txt)
 \item A file with the number of outliers per row (Dataname followed by the number of the batch followed by na\_numbers\_per\_col.txt)
 \item A picture of the distribution of the mean against variance for each gene, before (Dataname followed by \_mean\_vs\_variance.pdf) and
-\item after correction of outliers (Dataname followed by \_mean\_vs\_variance\_after\_correction.pdf).
+\item after correction of outliers (Dataname followed by \\
+\_mean\_vs\_variance\_after\_correction.pdf).
 \end{itemize}
 The corrected control matrix is output in the next step.
 A possible output after this first step is shown in figure \ref{fig_mean_vs_var}.
@@ -126,7 +128,7 @@ A possible output after this first step is shown in figure \ref{fig_mean_vs_var}
 
 \section{TTMap\_part2}
 
-The second part of the HDA step consists of calculating deviation components. This is enables the calculation in the third function of the shape of deviation. One parameter k is determining if all the vectors of the control group should be kept or if only the the top k-dimensional principal component approximation of the control matrix should be kept using the singular value decomposition (as in \cite{Monica}. The default is to keep all the vectors.
+The second part of the HDA step consists of calculating deviation components. This is enables the calculation in the third function of the shape of deviation. One parameter k is determining if all the vectors of the control group should be kept or if only the the top k-dimensional principal component approximation of the control matrix should be kept using the singular value decomposition (as in \cite{Monica}). The default is to keep all the vectors.
 
 \begin{scriptsize}
 \begin{Schunk}
@@ -161,46 +163,31 @@ norm6  0.0000000 0.0000000  0.00000000  0.000000  0.00000000       0
 The outputs of this step are the following. 
 \begin{itemize}
 \item The corrected control matrix, calculated at the first step is given in \textit{Hi.NormalModel.pcl}, with a possible trimming of columns if $k$ is different than the number of columns in the corrected matrix.
-\item The deviation component of each test sample is written in \textit{Hello.Tdis.pcl}. An example of the deviation component is found in the previous script by writing \textit{head(TTMAP_part2\$Dc.Dmat)}
+\item The deviation component of each test sample is written in \textit{Hello.Tdis.pcl}. An example of the deviation component is found in the previous script by writing \textit{head(TTMAP\_part2\$Dc.Dmat)}
 \item The normal component of each test sample is written in \textit{Hello.Tnorm.pcl}.
 \end{itemize}
 The two values of this function are the deviation component matrix and the overall deviation (calculated by summing in absolute values the deviation components).
 \section{TTMap\_part3}
 
-The third part corresponds to the Global-to-local Mapper part. One starts with an annotation file of our samples, in order to annotate the obtained clusters. In this example here we just copied several times the column names. This annotation file needs to have as rownames the columns of the test samples followed by ".Dis". We then calculate the distance matrix between the samples using the \textit{generate\_mismatch\_distance} function, which uses a cutoff parameter $\alpha$ in order to decide what is a considered as noise. Any other distance matrix can be computed here and used for the next step. Then, we calculate and output the clusters using \textit{ttmap\_part3}, which needs as inputs the values of \textit{ttmap\_part1, ttmap\_part2.} The default parameter uses all the genes to calculate the overall deviation, but if a subset should be selected (only one pathway for example), it can be imputed here. TTMap_part3 then calculates using \textit{calcul\_e} a parameter of closeness using the data, in order to know what distance is "close" enough to clusters samples together. The parameter n determines which column of metadata should be chosen for the output files.  Two more parameters of convenience, if ad is set to something different than 0 (the default) then the clusters on the output picture will not be annotated and if bd is different than 0 (default), the output will be without outliers of the test data set. After the picture has been adjusted to what one wants to see one can save it using the \textit{rgl.postscript} function.
+The third part corresponds to the Global-to-local Mapper part. One starts with an annotation file of our samples, in order to annotate the obtained clusters. In this example here we just copied several times the column names. This annotation file needs to have as rownames the columns of the test samples followed by ".Dis". We then calculate the distance matrix between the samples using the \textit{generate\_mismatch\_distance} function, which uses a cutoff parameter $\alpha$ in order to decide what is a considered as noise. Any other distance matrix can be computed here and used for the next step. Then, we calculate and output the clusters using \textit{ttmap\_part3}, which needs as inputs the values of \textit{ttmap\_part1, ttmap\_part2.} The default parameter uses all the genes to calculate the overall deviation, but if a subset should be selected (only one pathway for example), it can be imputed here. TTMap\_part3 then calculates using \textit{calcul\_e} a parameter of closeness using the data, in order to know what distance is "close" enough to clusters samples together. The parameter n determines which column of metadata should be chosen for the output files.  Two more parameters of convenience, if ad is set to something different than 0 (the default) then the clusters on the output picture will not be annotated and if bd is different than 0 (default), the output will be without outliers of the test data set. After the picture has been adjusted to what one wants to see one can save it using the \textit{rgl.postscript} function.
 
 \begin{scriptsize}
 \begin{Schunk}
 \begin{Sinput}
 > library(rgl)
 > ALPHA <- 1
-> annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep="."),paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
+> annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep=".")
++ ,paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
 >  annot <- cbind(annot,annot)
 >  rownames(annot)<-annot[,1]
-> dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part2,select=rownames(TTMAP_part2$Dc.Dmat),alpha = ALPHA)
->  de1 <- TTMap::ttmap_part3(TTMAP_part2,TTMAP_part2$m,select=rownames(TTMAP_part2$Dc.Dmat),annot,e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), filename="TEST",n=1,dd=dd5_sgn_only)
+> dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part2,
++ select=rownames(TTMAP_part2$Dc.Dmat),alpha = ALPHA)
+>  de1 <- TTMap::ttmap_part3(TTMAP_part2,TTMAP_part2$m,select=rownames(TTMAP_part2$Dc.Dmat),
++  annot,e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), filename="TEST",
++  n=1,dd=dd5_sgn_only)
 \end{Sinput}
 \begin{Soutput}
 [1] 10000
-       norm1        norm2        norm3        norm4        norm5        norm6 
-7.034105e-06 4.836165e-12 1.024042e-09 6.749577e-08 4.622052e-14 2.897064e-06 
-[1] 4.834517
-[1] "coucou"
-[1] "0.0391050519118232:1e-04"
-[1] "0.0964797118783403:2e-04"
-[1] "0.0964797118783403:2e-04"
-[1] "1:0.0101"
-[1] "1:0.01"
-[1] "1:0.01"
-[1] "1:0.0104"
-[1] "1:0.0101"
-[1] "1:0.0098"
-[1] "0.350753159900109:4e-04"
-[1] "1:0.0099"
-[1] "1:0.0098"
-[1] "1:0.0101"
-[1] "0.0391050519118232:1e-04"
-[1] "0.19973141077333:3e-04"
 [1] "e_map= 4e-04"
 [1] "e_map= 4e-04"
 [1] "e_map= 4e-04"
@@ -219,457 +206,20 @@ The third part corresponds to the Global-to-local Mapper part. One starts with a
 \end{scriptsize}
 
 \section{TTMap\_part4}
-This last function analyses the different clusters for significant features. It outputs a file per level (one for overall, called all, one for the lower quartile, called low, one for the second quartile, called mid1, the third, mid2, and the higher quartile, called high). In each of them one file per cluster is given, with the list of significant genes linked to the cluster. In our example, the differentially expressed genes were called diff 1:100, whence the accuracy of the method can quickly be checked. Relaxed is a parameter permitting to select as a match one sample that would be 0 for the deviation component, while the others deviate.
+This last function analyses the different clusters for significant features. It outputs a file per level (one for overall, called all, one for the lower quartile, called low, one for the second quartile, called mid1, the third, mid2, and the higher quartile, called high). In each of them one file per cluster is given, with the list of significant genes linked to the cluster. In our example, the differentially expressed genes were called diff 1:100, whence the accuracy of the method can quickly be checked. Relaxed is a parameter permitting to select as a match one sample that would be 0 for the deviation component, while the others deviate in the same shape.
 
 
 
 \begin{scriptsize}
 \begin{Schunk}
 \begin{Sinput}
-> TTMap:::ttmap_part4(de1, TTMAP_part2, TTMAP_part1prime, annot, n = 2, a = ALPHA, filename = "TEST2", annot = TTMAP_part1prime$tag.pcl, col = "NAME", path = getwd(), Relaxed = 0)
+> TTMap:::ttmap_part4(de1, TTMAP_part2, TTMAP_part1prime, annot, n = 2, a = ALPHA,
++  filename = "TEST2", annot = TTMAP_part1prime$tag.pcl, col = "NAME",
++   path = getwd(), Relaxed = 0)
 \end{Sinput}
-\begin{Soutput}
-            [,1]
-diff3  -1.716508
-diff5  -1.423398
-diff8  -1.798135
-diff10 -1.220030
-diff11 -1.263687
-diff12 -1.663409
-       [,1]     [,2]               
-diff3  "diff3"  "-1.71650836662187"
-diff5  "diff5"  "-1.42339772701599"
-diff8  "diff8"  "-1.79813490249846"
-diff10 "diff10" "-1.22002983533383"
-diff11 "diff11" "-1.26368744716498"
-diff12 "diff12" "-1.66340872770607"
-             [,1]
-norm3302 1.031810
-norm4659 1.027210
-diff1    1.772229
-diff2    1.237586
-diff3    1.638131
-diff4    1.344975
-         [,1]       [,2]              
-norm3302 "norm3302" "1.0318104363959" 
-norm4659 "norm4659" "1.02721041305251"
-diff1    "diff1"    "1.77222885905873"
-diff2    "diff2"    "1.23758588950026"
-diff3    "diff3"    "1.63813149827498"
-diff4    "diff4"    "1.34497531755836"
-                V1
-norm3566 -1.000295
-norm6592 -1.014647
-diff1     1.361391
-diff2     1.727683
-diff3     1.872485
-diff4     1.765962
-[1] norm3566 norm6592 diff1    diff2    diff3    diff4   
-10000 Levels: diff1 diff10 diff100 diff11 diff12 diff13 diff14 diff15 diff16 diff17 diff18 diff19 diff2 diff20 diff21 ... norm999
-\end{Soutput}
 \end{Schunk}
 \end{scriptsize}
-%
-%\section{Individual gene(s) association with phenotype(s)}
-%\label{sec:Preprocess}
-%
-%\subsection{Creating an \texttt{epheno}}
-%
-%The \texttt{epheno} object will contain the univariate association between a list of phenotype 
-%variables and the gene expression from the given \texttt{ExpressionSet}. 
-%We will use the \texttt{ExpressionPhenoTest} function to create the \texttt{epheno} object.
-%We will have to tell this function which phenotype variables we want to test and the type of
-%these variables (if they are \emph{ordinal}, \emph{continuous}, \emph{categorical} or \emph{survival}
-%variables). 
-%For this purpose we will create a variable called (for instance) \texttt{vars2test}. 
-%This variable has to be of class \texttt{list} with components \emph{continuous}, \emph{categorical}, 
-%\emph{ordinal} and \emph{survival} indicating which phenotype variables should be tested. \emph{continuous},
-%\emph{categorical} and \emph{ordinal} must be character vectors, \emph{survival} a matrix with columns
-%named \emph{time} and \emph{event}. 
-%The names must match names in \texttt{names(pData(eset))} (being
-%\texttt{eset} the \texttt{ExpressionSet} of the cohort we are
-%interested in). 
-%
-%\begin{scriptsize}
-%<<setVars2test>>=
-%head(pData(eset))
-%survival <- matrix(c("Relapse","Months2Relapse"),ncol=2,byrow=TRUE)
-%colnames(survival) <- c('event','time')
-%vars2test <- list(survival=survival,categorical='lymph.node.status',continuous='Tumor.size')
-%vars2test
-%@ 
-%\end{scriptsize}
-%  
-%Now we have everything we need to create the \texttt{epheno} object:
-%
-%\begin{scriptsize}
-%<<runExpressionPhenoTest>>=
-%epheno <- ExpressionPhenoTest(eset,vars2test,p.adjust.method='none')
-%epheno
-%@ 
-%\end{scriptsize}
-%  
-%P values can also be adjusted afterwards:
-%
-%\begin{scriptsize}
-%<<pValueAdjust>>=
-%p.adjust.method(epheno)
-%epheno <- pAdjust(epheno,method='BH')
-%p.adjust.method(epheno)
-%@ 
-%\end{scriptsize}
-%  
-%The \texttt{epheno} object extends the \texttt{ExpressionSet} object and therefore methods that are
-%available for \texttt{ExpressionSet}s are also available for \texttt{epheno}s.
-%
-%The effect of both \emph{continuous}, \emph{categorical} and \emph{ordinal} phenotype variables on gene
-%expression levels are tested via \texttt{lmFit} from package \texttt{limma} (\cite{smyth:2005}). For
-%\emph{ordinal} variables a single coefficient is used to test its effect on gene expression (trend
-%test), which is then used to obtain a P-value. Gene expression effects on \emph{survival} are tested
-%via Cox proportional hazards model (\cite{cox:1972}), as implemented in function \texttt{coxph} from
-%package \texttt{survival}.
-%
-%If we want we can compute posterior probabilities instead of pvalues
-%we can set the argument \texttt{approach}='bayesian'. 
-%The default value is 'frequentist'.
-%
-%\texttt{ExpressionPhenoTest} implements parallel computing via the function \texttt{mclapply} from
-%the package \texttt{multicore}. Currently \texttt{multicore} only operates on Unix systems. If you
-%are a windows user you should set \texttt{mc.cores}=1 (the default).
-%
-%\subsection{Useful methods for the \texttt{epheno} object}
-%
-%Some of the methods for the epheno objects are shown here.
-%
-%The object can be subseted by phenotype names:
-%
-%\begin{scriptsize}
-%<<ephenoSubsetByName>>=
-%phenoNames(epheno)
-%epheno[,'Tumor.size']
-%epheno[,2]
-%@ 
-%\end{scriptsize}
-%  
-%or by class (class can be ordinal, continuous, categorical or survival):
-%
-%\begin{scriptsize}
-%<<ephenoSubsetByClass>>=
-%phenoClass(epheno)
-%epheno[,phenoClass(epheno)=='survival']
-%@ 
-%\end{scriptsize}
-%  
-%\texttt{epheno} objects contain information summarizing the association between genes and
-%phenotypes. \texttt{getMeans} can be used to obtain the average expression for each group in
-%categorical and ordinal variables, as well as for categorized version of the continuous variables.
-%
-%\begin{scriptsize}
-%<<ephenoGetMeans>>=
-%head(getMeans(epheno))
-%@ 
-%\end{scriptsize}
-%
-%Here we see that tumor size has been categorized into 3 groups. The
-%number of categories can be changed with the argument
-%\texttt{continuousCategories} in the call to
-%\texttt{ExpressionPhenoTest}. 
-%
-%\texttt{epheno} objects also contain fold changes and hazard ratios (for survival variables). These
-%can be accessed with \texttt{getSummaryDif}, \texttt{getFc} and \texttt{getHr}.
-%
-%\begin{scriptsize}
-%<<ephenoGetSummaries>>=
-%head(getSummaryDif(epheno))
-%head(getFc(epheno))
-%head(getHr(epheno))
-%@ 
-%\end{scriptsize}
-%
-%\texttt{ExpressionPhenoTest} also computes P-values. \texttt{eBayes} from \texttt{limma} package is
-%used for continuous, categorical and ordinal phenotypes. A Cox proportional hazards likelihood-ratio
-%test is used for survival phenotypes. P-values can be accessed with \texttt{getSignif}. Notice that a
-%single P-value is reported for each phenotype variable. For categorical variables these corresponds
-%to the overall null hypothesis that there are no differences between groups.
-%
-%\begin{scriptsize}
-%<<ephenoGetSignif>>=
-%head(getSignif(epheno))
-%@ 
-%\end{scriptsize}
-%
-%We can also ask for the variables we sent to the \texttt{ExpressionPhenoTest} function:
-%
-%\begin{scriptsize}
-%<<ephenoGetVars2test>>=
-%getVars2test(epheno)
-%@ 
-%\end{scriptsize}
-%
-%\subsection{Export an \texttt{epheno}}
-%
-%Functions \texttt{export2csv} and \texttt{epheno2html} can be used to export to a comma separated value
-%(csv) or an html file. The html file will have useful links to online databases that will provide information
-%about each known gene. For more information about how to use these functions and examples read their help manuals.
-%
-%\section{Gene set(s) association with phenotype(s)}
-%
-%Gene sets can be stored in a list object. Each element of the list will contain one gene set.
-%The names of the list will be the names of the gene sets. Here we select genes at random to build our
-%gene sets:
-%
-%\begin{scriptsize}
-%<<getSignatures>>=
-%set.seed(777)
-%sign1 <- sample(featureNames(eset))[1:20]
-%sign2 <- sample(featureNames(eset))[1:50]
-%mySignature <- list(sign1,sign2)
-%names(mySignature) <- c('My first signature','Another signature')
-%mySignature
-%@ 
-%\end{scriptsize}
-%
-%Gene sets can also be stored in gene set collection objects. From here
-%on all functions have methods for gene sets stored as \texttt{list}s,
-%\texttt{GeneSet}s or \texttt{GeneSetCollection}s. You can use the one
-%you feel more confortable with. We will work with
-%\texttt{GeneSetCollection}:
-%
-%\begin{scriptsize}
-%<<makeGeneSets>>=
-%library(GSEABase)
-%myGeneSetA <- GeneSet(geneIds=sign1, setName='My first signature')
-%myGeneSetB <- GeneSet(geneIds=sign2, setName='Another signature')
-%mySignature <- GeneSetCollection(myGeneSetA,myGeneSetB)
-%mySignature
-%@ 
-%\end{scriptsize}
-%
-%\subsection{Plots that use \texttt{epheno} as input}
-%
-%\texttt{barplotSignifSignatures} will plot the percentage of
-%up regulated and down regulated genes that are statistically
-%significant in each signature. In our random selection of genes we did
-%not find any statistically significant genes. Therefore, and just to
-%show the plot we set the alpha value 0.99. The plot can be seen in
-%Figure \ref{fig:barplotSignifSignatures}.  
-%
-%\begin{scriptsize}
-%\setkeys{Gin}{width=0.6\textwidth}
-%<<label=barplotSignifSignatures,include=FALSE>>=
-%barplotSignifSignatures(epheno[,'lymph.node.status'],mySignature,alpha=0.99, ylim=c(0, 1))
-%@                                                                                                                                               
-%\begin{figure}
-%\begin{center}
-%<<label=barplotSignifSignatures,fig=TRUE,echo=FALSE>>=
-%<<barplotSignifSignatures>>
-%@                                                                                                                                               
-%\end{center}
-%\caption{\texttt{barplotSignifSignatures}: Number of diferentially
-%  expressed genes in each gene set that are statistically
-%  significant. P-values test for differences in each signature between
-%  the number of up and down regulated genes.}
-%\label{fig:barplotSignifSignatures}
-%\end{figure}
-%\end{scriptsize}
-%
-%By default \texttt{barplotSignifSignatures} performs a binomial test
-%(\texttt{binom.test} from package \texttt{stats}) for each signature
-%to test if the proportions of up regulated and down regulated genes
-%are different.
-%For example, Figure \ref{fig:barplotSignifSignatures} indicates that in the
-%first signature the proportion of up regulated genes is higher than
-%the proportion of down regulated genes. The second signature shows no
-%significant statistical differences.
-%
-%Sometimes we want to compare the proportions of up and down regulated
-%genes in our signature with the proportions of up and down regulated
-%of all genes in the genome. In this case we may provide a reference
-%signature via the argument \texttt{referenceSignature}. When providing the
-%\texttt{referenceSignature} argument a chi-square test comparing the
-%proportion of up and down regulated genes in each signature with the 
-%proportion in the reference set will be computed.
-%
-%When a reference gene set is provided and parameter
-%\texttt{testUpDown} is \texttt{TRUE} (by default it is \texttt{FALSE})
-%the proportion of up regulated genes is compared with those of the
-%reference gene set. The same is done for down regulated genes.
-%
-%\texttt{barplotSignatures} plots the average log2 fold change or
-%hazard ratio of each phenotype for each gene set. Figure
-%\ref{fig:barplotSignatures} shows an example of it.
-%
-%\begin{scriptsize}
-%\setkeys{Gin}{width=0.6\textwidth} 
-%<<label=barplotSignatures,include=FALSE>>=
-%barplotSignatures(epheno[,'Tumor.size'],mySignature, ylim=c(0,1))
-%@ 
-%\begin{figure}
-%\begin{center}
-%<<label=barplotSignatures,fig=TRUE,echo=FALSE>>=
-%<<barplotSignatures>>
-%@                                                                                                                                                     
-%\end{center}
-%\caption{\texttt{barplotSignatures}: Averge fold change or hazard ratio.}
-%\label{fig:barplotSignatures}
-%\end{figure}
-%\end{scriptsize}
-%
-%We can also cluster our samples in two clusters based on the expression levels of one gene set of genes and
-%then test the effect of cluster on phenotypes. For \emph{ordinal} and
-%\emph{continuous} variables a Kruskal-Wallis Rank Sum test is used, for \emph{categorical} variables
-%a chi-square test is used and for \emph{survival} variables a Cox proportional hazards likelihood-ratio
-%test is used. The \texttt{heatmapPhenoTest} function can be used to this end. Its results can be seen
-%in Figure \ref{fig:heatmap} and \ref{fig:kaplan}. 
-%
-%\begin{scriptsize}
-%\setkeys{Gin}{width=0.6\textwidth} 
-%<<label=heatmapPhenoTestHeat,include=FALSE>>=
-%pvals <- heatmapPhenoTest(eset,mySignature[[1]],vars2test=vars2test[1],heat.kaplan='heat')
-%@ 
-%
-%\begin{scriptsize}
-%<<heatmapPhenoTestHeatPvals>>=
-%pvals
-%@ 
-%\end{scriptsize}
-%
-%\begin{figure}
-%\begin{center}
-%<<label=heatmapPhenoTestHeat,fig=TRUE,echo=FALSE>>=
-%<<heatmapPhenoTestHeat>>
-%@                                                                                                                                                     
-%\end{center}
-%\caption{Heatmap produced with \texttt{heatmapPhenoTest} function. All
-%  variables in \texttt{vars2test} that are of class \emph{logical}
-%  will be plotted under the heatmap.} 
-%\label{fig:heatmap}
-%\end{figure}
-%\end{scriptsize}
-%
-%\begin{scriptsize}
-%\setkeys{Gin}{width=0.6\textwidth} 
-%<<label=heatmapPhenoTestKaplan,include=FALSE>>=
-%pvals <- heatmapPhenoTest(eset,mySignature[[1]],vars2test=vars2test[1],heat.kaplan='kaplan')
-%@ 
-%
-%\begin{scriptsize}
-%<<heatmapPhenoTestKaplanPvals>>=
-%pvals
-%@ 
-%\end{scriptsize}
-%
-%\begin{figure}
-%\begin{center}
-%<<label=heatmapPhenoTest2,fig=TRUE,echo=FALSE>>=
-%<<heatmapPhenoTestKaplan>>
-%@                                                                                                                                                     
-%\end{center}
-%\caption{Kaplan-Meier produced with \texttt{heatmapPhenoTest} function.}
-%\label{fig:kaplan}
-%\end{figure}
-%\end{scriptsize}
-%
-%\subsection{GSEA (Gene Set Enrichment Analysis)}
-%
-%A popular way to test association between gene sets' gene expression and phenotype is GSEA (\cite{subramanian:2005}).
-%The main idea is to test the association between the gene set \emph{as a whole} and a phenotype.
-%
-%Although GSEA and several extensions are already available in other \emph{Biconductor} packages,
-%here we implement a slightly different extension. Most GSEA-like approaches assess statistical
-%significance by permuting the values of the phenotype of interest. From a statisticall point of view
-%this tests the null hypothesis that no genes are associated with phenotype. However in many
-%applications one is actually interested in testing if the proportion of genes associated with
-%phenotype in the gene set is greater than that outside of the gene set. As a simple example, imagine
-%a cancer study where 25\% of the genes are differentially expressed. In this setup a randomly chosen
-%gene set will have around 25\% of differentially expressed genes, and classical GSEA-like approaches
-%will tend to flag the gene set as statistically significant. In contrast, our implementation will
-%tend to select only gene sets with more than 25\% of differentially expressed genes.
-%
-%We will use the \texttt{gsea} method to compute \emph{enrichment
-%scores} (see \cite{subramanian:2005} for details about the enrichment
-%scores) and \emph{simulated enrichment scores} (by permuting the
-%selection of genes).
-%The \emph{simulated enrichment scores} are used
-%to compute P-values and FDR. 
-%We can summarize the results obtained using the \texttt{summary} method. 
-%The following chunk of code is an illustrative example of it:  
-%
-%\begin{scriptsize}
-%<<gsea>>=
-%my.gsea <- gsea(x=epheno,gsets=mySignature,B=1000,p.adjust='BH')
-%my.gsea
-%summary(my.gsea)
-%@ 
-%\end{scriptsize}
-%
-%We receive one message for each phenotype we are testing.
-%
-%We can produce plots as follows:
-%
-%\begin{scriptsize}
-%<<gseaPlot>>=
-%plot(my.gsea)
-%@ 
-%\end{scriptsize}
-%
-%This will produce two plots (one for \emph{enrichment score} and another for \emph{normalised enrichment
-%score}) for every phenotype and gene set (in our case 12 plots). Following code shows an example on
-%plotting only \emph{enrichment score} for variable \emph{Relapse} on the first gene set of genes. Plot
-%can be seen in Figure \ref{fig:plotGsea}.
-%
-%\begin{scriptsize}
-%<<label=plotGseaPrepare,include=FALSE>>=
-%my.gsea <- gsea(x=epheno[,'Relapse'],gsets=mySignature[1],B=100,p.adjust='BH')
-%summary(my.gsea)
-%@ 
-%<<label=plotGseaEs,include=FALSE>>=
-%plot(my.gsea,es.nes='es',selGsets='My first signature')  
-%@ 
-%\begin{figure}
-%\begin{center}
-%<<label=plotGsea,fig=TRUE,echo=FALSE>>=
-%<<plotGseaEs>>
-%@                                                                                                                                                     
-%\end{center}
-%\caption{GSEA plot.}
-%\label{fig:plotGsea}
-%\end{figure}
-%\end{scriptsize}
-%
-%\texttt{gsea} can be used not only with \texttt{epheno} objects but also with objects of class \texttt{numeric}
-%or \texttt{matrix}. For more information read the \texttt{gsea} function help.
-%
-%Following similar ideas to \cite{virtaneva:2001} we also implemented a
-%Wilcoxon test. This can be used instead of the permutation test which
-%can be slow if we use a lot of permutations and we can not use the
-%\texttt{multicore} package. The plot we will obtain will also be
-%different. Instead of plotting the \emph{enrichment scores} we will
-%plot the density function and the mean log2 fold change or hazard
-%ratio of the genes that belong to our gene set. This will allow us to
-%compare how similar/different from 0 the mean of our gene set is. The
-%plot using Wilcoxon test can be seen in Figure
-%\ref{fig:plotGseaWilcox}.  
-%
-%\begin{scriptsize}
-%<<plotGseaWilcoxPrepare>>=
-%my.gsea <- gsea(x=epheno[,'Relapse'],gsets=mySignature,B=100,test='wilcox',p.adjust='BH')
-%summary(my.gsea)
-%@
-%<<label=plotGseaWilcox,include=FALSE>>=
-%plot(my.gsea,selGsets='My first signature')
-%@ 
-%\begin{figure}
-%\begin{center}
-%<<label=plotGseaWilcox,fig=TRUE,echo=FALSE>>=
-%<<plotGseaWilcox>>
-%@                                                                                                                                                     
-%\end{center}
-%\caption{GSEA plot using Wilcoxon test.}
-%\label{fig:plotGseaWilcox}
-%\end{figure}
-%\end{scriptsize}
-%
+
 %Notice that using a Wilcoxon test is conceptually very similar to the average gene set fold change
 %presented in figure \ref{fig:barplotSignatures}.
 %
@@ -678,8 +228,10 @@ diff4     1.765962
 %believe \texttt{gseaSignatures} is usefull in that it targets the correct null hypothesis that gene
 %set is as enriched as a randomly selected gene set, opposed to testing that there are no enriched
 %genes in the set as is done in GSEA.
-
-%\bibliographystyle{plainnat}
-%\bibliography{references}
+\section{Conclusion}
+Two-Tier Mapper (TTMap) is a topology-based clustering tool, which is user-friendly and reliable. The algorithm first provides an overall clustering, in an unbiased manner, since all the parameters are defined in a data-driven manner or by reliable default parameters. his method enables a refined view on the composition of the clusters by delineating
+ how clusters differ locally and how the local clusters relate to the global structure of the dataset. The output is a visual interpretation of the data given by a colored graph that is easy to interpret, which describes the shape of the data according to the chosen distance. \\
+ \bibliographystyle{unsrtnat}
+\bibliography{biblio.bib}
 %
 \end{document}
