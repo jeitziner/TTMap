@@ -1,0 +1,22 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Lum et~al.(2013)Lum, Singh, Lehman, Ishkanov, Vejdemo-Johansson,
+  Alagappan, Carlsson, and Carlsson]{Extracting}
+P.~Lum, G.~Singh, A.~Lehman, T.~Ishkanov, M.~Vejdemo-Johansson, M.~Alagappan,
+  J.~Carlsson, and G.~Carlsson.
+\newblock {Extracting insights from the shape of complex data using topology}.
+\newblock \emph{Scientific Reports}, 3, 2013.
+
+\bibitem[Nicolau et~al.(2011)Nicolau, Levine, and Carlsson]{Monica}
+Monica Nicolau, Arnold Levine, and Gunnar Carlsson.
+\newblock {Topology based data analysis identifies a subgroup of breast cancers
+  with a unique mutational profile and excellent survival}.
+\newblock \emph{Proceedings of the National Academy of Science}, 108\penalty0
+  (17):\penalty0 7265--7270, 2011.
+
+\end{thebibliography}
