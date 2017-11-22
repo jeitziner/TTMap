@@ -13,27 +13,25 @@ junk_low <- list(x=0)
 	for(i in 1: length(ttmap_part3$low_map)){
 		A <-ttmap_part4_inter(ttmap_part3$low_map[[i]],ttmap_part2,alpha=a)
 				A<- as.matrix(A)	
-				print(head(A))	
+				#print(head(A))	
 		A <-cbind(as.character(annot[rownames(A),col]),A)
-print(head(A))
-write.table(A,file=paste(paste("low_with_0",filename,sep="/"),paste(c[ttmap_part3$low_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
+#print(head(A))
+write.table(A,file=paste(paste("low",filename,sep="/"),paste(c[ttmap_part3$low_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
 }
 	
 	for(i in 1: length(ttmap_part3$mid1_map)){
 		A <-ttmap_part4_inter(ttmap_part3$mid1_map[[i]],ttmap_part2,alpha=a)
 						A<- as.matrix(A)
 						A <- as.data.frame(A)
-						print(head(A))
-						print(head(annot[rownames(A),col]))
-		A <-cbind(annot[rownames(A),col],A)
-write.table(A,file=paste(paste("mid1_with_0",filename,sep="/"),paste(c[ttmap_part3$mid1_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
+								A <-cbind(annot[rownames(A),col],A)
+write.table(A,file=paste(paste("mid1",filename,sep="/"),paste(c[ttmap_part3$mid1_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
 	}
 for(i in 1: length(ttmap_part3$mid2_map)){
 		A <-ttmap_part4_inter(ttmap_part3$mid2_map[[i]],ttmap_part2,alpha=a)
 		A<- as.matrix(A)
 		A <- as.data.frame(A)
 		A <-cbind(annot[rownames(A),col],A)
-write.table(A,file=paste(paste("mid2_with_0",filename,sep="/"),paste(c[ttmap_part3$mid2_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
+write.table(A,file=paste(paste("mid2",filename,sep="/"),paste(c[ttmap_part3$mid2_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
 	}	
 
 	for(i in 1: length(ttmap_part3$high_map)){
@@ -41,7 +39,7 @@ write.table(A,file=paste(paste("mid2_with_0",filename,sep="/"),paste(c[ttmap_par
 		A<- as.matrix(A)
 		A <- as.data.frame(A)
 		A <-cbind(annot[rownames(A),col],A)
-write.table(A,file=paste(paste("high_with_0",filename,sep="/"),paste(c[ttmap_part3$high_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
+write.table(A,file=paste(paste("high",filename,sep="/"),paste(c[ttmap_part3$high_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
 	}
 
 for(i in 1: length(ttmap_part3$all)){
@@ -50,6 +48,6 @@ for(i in 1: length(ttmap_part3$all)){
 		A <- as.data.frame(A)
 		if(dim(A)[2]==1){ colnames(A)<-ttmap_part3$all[[i]]}
 		A <-cbind(annot[rownames(A),col],A)
-write.table(A,file=paste(paste("all_with_0",filename,sep="/"),paste(c[ttmap_part3$all[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
+write.table(A,file=paste(paste("all",filename,sep="/"),paste(c[ttmap_part3$all[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
 	}
 }

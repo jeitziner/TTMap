@@ -61,7 +61,7 @@ sl <- lapply(1:length(as.vector(dd5[upper.tri(dd5)])),function(i){
 	 s<-ppois(ele*length(m_f),sum(a3), lower.tail = TRUE, log.p = FALSE)
 	
 	 #s<-ppois(ele*length(m_f),sum(a3))
-	print(paste(s,ele,sep=":"))
+	#print(paste(s,ele,sep=":"))
 	ifelse(s < pvalcutoff, ele,0)
 
 	})
@@ -76,7 +76,7 @@ sl <- lapply(1:length(as.vector(dd5[upper.tri(dd5)])),function(i){
 	 s<-ppois(ele*length(m_f),sum(a3), lower.tail = TRUE, log.p = FALSE)
 	
 	 #s<-ppois(ele*length(m_f),sum(a3))
-	print(paste(s,ele,sep=":"))
+	#print(paste(s,ele,sep=":"))
 	ifelse(s < 1-.Machine$double.neg.eps, ele,0)
 
 	})
