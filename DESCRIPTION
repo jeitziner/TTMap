@@ -1,13 +1,12 @@
 Package: TTMap
 Type: Package
 Title: Two-Tier Mapper: a clustering tool based on topological data analysis 
-Version: 0.99.8
+Version: 0.99.9
 Date: 2017-07-12
 Author: Rachel Jeitziner
 Maintainer: Rachel Jeitziner <rachel.jeitziner@epfl.ch>
 Description: TTMap is a clustering method that groups together samples with the same deviation in comparison to a control group. It is specially useful when the data is small. It is parameter free.
 License: GPL-2
 Depends: R (>= 3.5), rgl (>= 0.95.1456), colorRamps
-Imports: grDevices,graphics,stats,utils
 biocViews: Software, Microarray, DifferentialExpression, MultipleComparison,
         Clustering, Classification
