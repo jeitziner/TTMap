@@ -14,3 +14,8 @@ export(calcul_e)
 export(calcul_e_single)
 export(make_matrices)
 import(rgl,colorRamps)
+importFrom("grDevices", "col2rgb", "dev.off", "pdf", "rgb")
+  importFrom("graphics", "abline", "hist", "legend", "plot")
+  importFrom("stats", "as.dist", "cor", "cor.test", "dist", "median",
+             "pnorm", "ppois", "quantile", "sd", "var")
+  importFrom("utils", "combn", "head", "read.table", "write.table")
