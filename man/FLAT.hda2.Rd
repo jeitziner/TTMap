@@ -58,4 +58,3 @@ Rachel Jeitziner}
 ttmap_part1}
 \examples{
 ##see ttmap_part4}
-

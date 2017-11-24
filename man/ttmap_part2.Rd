@@ -110,7 +110,7 @@ col_ctrl = colnames(norm1),col_test = colnames(dis),
 NAME=rownames(norm1),CLID=rownames(norm1))
 TTMAP_part1prime <-TTMap::ttmap_part1(normal.pcl = junk$CTRL,
 tumor.pcl = junk$TEST, normalname = "Hi", dataname = "Hello",
- org.directory = getwd(),e=E,P=Pw,B=Bw);
+org.directory = getwd(),e=E,P=Pw,B=Bw);
 Kprime <- Aa;
 TTMAP_part2 <- TTMap::ttmap_part2(x = TTMAP_part1prime,
 k = Kprime,dataname = "Hello", normalname = "Hi");

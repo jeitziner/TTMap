@@ -51,7 +51,8 @@ cutoff to be considered different than noise inherited by a
 Is giving per cluster the features that vary in the same direction
 }
 \value{
-generates a file per cluster of significant features with an annotation
+generates a file per cluster of significant features with an 
+annotation
 }
 \author{
 Rachel Jeitziner}
@@ -114,16 +115,16 @@ TTMAP_part2 <- TTMap::ttmap_part2(x = TTMAP_part1prime,
 k = Kprime,dataname = "Hello", normalname = "Hi");
 annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep="."),
 paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
- annot <- cbind(annot,annot)
- rownames(annot)<-annot[,1]
+annot <- cbind(annot,annot)
+rownames(annot)<-annot[,1]
 dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part2,
 select=rownames(TTMAP_part2$Dc.Dmat),alpha = ALPHA)
- de1 <- TTMap::ttmap_part3(TTMAP_part2,TTMAP_part2$m,
- select=rownames(TTMAP_part2$Dc.Dmat),annot,
- e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), 
- filename="TEST",n=1,dd=dd5_sgn_only)
+de1 <- TTMap::ttmap_part3(TTMAP_part2,TTMAP_part2$m,
+select=rownames(TTMAP_part2$Dc.Dmat),annot,
+e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), 
+filename="TEST",n=1,dd=dd5_sgn_only)
 TTMap:::ttmap_part4(de1, TTMAP_part2, TTMAP_part1prime, annot,
- n = 2, a = 1, filename = "TEST2",
+n = 2, a = 1, filename = "TEST2",
 annot = TTMAP_part1prime$tag.pcl, col = "NAME", 
- path = getwd(), Relaxed = 1)
+path = getwd(), Relaxed = 1)
 }

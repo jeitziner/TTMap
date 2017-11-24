@@ -24,15 +24,12 @@ disease group}
 \item{S}{
 subset of columns to be considered}
 }
-
 \value{
 \item{al}{number representing the cutoff to choose for the 
 relatedness with dd5}
 }
-
 \author{
 Rachel Jeitziner}
-
 \seealso{
 ttmap_part1,ttmap_part2,ttmap_part3,ttmap_part4,generate_mismatch_distance}
 \examples{
@@ -89,16 +86,16 @@ col_ctrl = colnames(norm1),col_test = colnames(dis),
 NAME=rownames(norm1),CLID=rownames(norm1))
 TTMAP_part1prime <-TTMap::ttmap_part1(normal.pcl = junk$CTRL,
 tumor.pcl = junk$TEST, normalname = "Hi", dataname = "Hello",
- org.directory = getwd(),e=E,P=Pw,B=Bw);
+org.directory = getwd(),e=E,P=Pw,B=Bw);
 Kprime <- Aa;
 TTMAP_part2 <- TTMap::ttmap_part2(x = TTMAP_part1prime,
 k = Kprime,dataname = "Hello", normalname = "Hi");
 annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep="."),
 paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
- annot <- cbind(annot,annot)
- rownames(annot)<-annot[,1]
+annot <- cbind(annot,annot)
+rownames(annot)<-annot[,1]
 dd5_sgn_only <-
 TTMap:::generate_mismatch_distance(TTMAP_part2,
 select=rownames(TTMAP_part2$Dc.Dmat),alpha = ALPHA)
- e <- TTMap:::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1)
+e <- TTMap:::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1)
 }

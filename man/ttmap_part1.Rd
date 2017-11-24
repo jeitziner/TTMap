@@ -15,7 +15,6 @@ org.directory = "", A = 1, e = 0, meth = 0, P = 1.1, B = 0)
 meshRows.norm.hda(df1, df2)
 meshRows.hda(df1, df2)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{normal.pcl}{
 the control matrix with annotation as obtained by $CTRL from 

@@ -23,7 +23,6 @@ generate_correlation(ttmap_part2, select)
 generate_euclidean(ttmap_part2, select)
 generate_mismatch_distance(ttmap_part2, select, alpha = 1)
 generate_p_val_correlation(ttmap_part2, select)
-
 }
 \arguments{
 \item{ttmap_part2}{
@@ -47,10 +46,8 @@ being chosen.
 \value{
 Distance matrix
 }
-
 \author{
 Rachel Jeitziner}
-
 \seealso{
 ttmap_part3}
 \examples{
