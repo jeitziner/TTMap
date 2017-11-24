@@ -1,6 +1,6 @@
 generate_euclidean <-
 function(ttmap_part2,select){
-	dd <- dist(t(ttmap_part2$Dc.Dmat[select,]),method="euclidean")
+dd <- dist(t(ttmap_part2$Dc.Dmat[select,]),method="euclidean")
 dd <- as.matrix(dd)
 if(sum(is.na(dd))!=0){
 	for(i in 1:dim(dd)[1]){
@@ -8,7 +8,5 @@ if(sum(is.na(dd))!=0){
 		if(is.na(dd[i,j])==TRUE) dd[i,j]<-0
 	}}
 }
-print(dd)
 return(dd)	
-
 }
