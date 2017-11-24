@@ -3,7 +3,8 @@ function(p_high,p,l,d_high,d_mid2,d_mid1,d_low,m){
 b <-max(as.matrix(unlist(p$s)))
 a <- floor((b-1)/4)
 spheres3d(max(m+max(p_high$f),max(p$f))+
-p_high$s[[length(p_high$s)]]+b+10,d_high,l,radius=1,color="black")
+p_high$s[[length(p_high$s)]]+b+10,d_high,l,
+radius=1,color="black")
 text3d(max(m+max(p_high$f),max(p$f))+
 p_high$s[[length(p_high$s)]]+2*b+50,d_high,l,"= 1")
 if(d_high-d_mid2> (1+1+a)){

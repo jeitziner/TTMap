@@ -1,6 +1,7 @@
 ttmap_part4_inter2 <-
 function(q,ttmap_part2,alpha=0){
-A<-ttmap_part2$Dc.Dmat[,colnames(ttmap_part2$Dc.Dmat) %in% q]
+A<-ttmap_part2$Dc.Dmat[,
+colnames(ttmap_part2$Dc.Dmat) %in% q]
 if(length(q)>1){A <- as.matrix(A)
 w<-apply(abs(A),1,max)
 w2 <- apply(A,1,max)
@@ -14,7 +15,7 @@ w2 <- sign(w)}
 select2 <- names(w2[w2[]>0]) 
 #we just don't want those which are different
 select<-names(w[w[]>alpha]) 
-# we will only consider those which are different than alpha
+#we will only consider those which are different than alpha
 s <- intersect(select,select2)
 if(length(s)==1){
 A<- as.matrix(t(A[s,]))

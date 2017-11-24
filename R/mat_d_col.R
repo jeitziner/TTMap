@@ -9,5 +9,4 @@ w <- grep(1,mat[j,])
 mat[i,w]<-rep(1,length(w))
 mat[j,]<-rep(0,dim(mat)[1])
 }}}
-return(mat)	
-}
+return(mat)}

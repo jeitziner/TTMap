@@ -1,6 +1,7 @@
 ttmap_part1 <-
 function(normal.pcl ,tumor.pcl, 
-normalname, dataname, org.directory = "" ,A=1,e=0,meth=0,P=1.1,B=0)
+normalname, dataname, org.directory = "",
+A=1,e=0,meth=0,P=1.1,B=0)
 {
 METHO <- ifelse(A==0,0,1)
 if(length(B)==1){
@@ -18,7 +19,7 @@ norm.tum.list <- meshRows.norm.hda(df1 = normal.pcl,
 df2 = tumor.pcl);
 Normal.pcl <- norm.tum.list[[1]];
 Disease.pcl <- norm.tum.list[[2]];
-###just in case there is not the same lines in tumour and normal
+###just in case there is not the same lines in files
 if(nrow(tumor.pcl)!=nrow(normal.pcl)){
 write.pcl(Normal.pcl,paste(org.directory,normalname,
 ".normMesh",sep = ""));
@@ -48,12 +49,10 @@ ymin <- min(V)
 ymax <- max(V)
 if(all(is.na(V))==TRUE){
 print("Unique vector, no variance")
-if(is.na(max(Normal.mat))==TRUE || max(Normal.mat)== (-Inf) ){
-e <- 10000000
-}
+if(is.na(max(Normal.mat))==TRUE || max(Normal.mat)== (-Inf)){
+e <- 10000000}
 else{
-e <- max(Normal.mat)+1}
-} 
+e <- max(Normal.mat)+1}} 
 else{
 pdf(paste(dataname,"mean_vs_variance.pdf",sep="_"),
 paper="a4",height=8,width=11)
@@ -61,7 +60,8 @@ plot(E,V,main=paste("Mean/variance/plot",
 paste("batch",i,sep=""),sep=""), 
 xlab="Mean",ylab="Variance")
 abline(h = quantile(V,0.90), col = "red")
-legend("topleft", paste("Red line=",quantile(V,0.90)), bty="n")
+legend("topleft", paste("Red line=",
+quantile(V,0.90)), bty="n")
 dev.off()
 if(e==0){
 e <- sqrt(quantile(V,0.90))/sqrt(dim(Normal.mat)[2])
@@ -82,7 +82,8 @@ plot(E,V,main=paste("Mean/variance plot",
 paste("batch",i,sep=""),sep=""), 
 xlab="Mean",ylab="Variance",ylim=c(0,ymax))
 abline(h = quantile(V,0.90), col = "red")
-legend("topleft", paste("Red line=",quantile(V,0.90)), bty="n")
+legend("topleft", 
+paste("Red line=",quantile(V,0.90)), bty="n")
 dev.off()
 u <- cbind(flat.Nmat$na_numbers,
 Normal.pcl[rownames(flat.Nmat$na_numbers),"NAME"])
@@ -108,11 +109,9 @@ flat.Nmat$mat <- flat
 if(length(unique(B))!=0){
 denom <- colnames(flat.Nmat$mat)
 flat.Nmat$mat <- t(apply(flat,1,as.numeric))
-colnames(flat.Nmat$mat) <- denom
-}
+colnames(flat.Nmat$mat) <- denom}
 junk <- list(e= e, tag.pcl = tag.pcl,
 Normal.mat = Normal.pcl[-1,-c(1:3)],
 Disease.mat = Disease.pcl[-1,-c(1:3)],
 flat.Nmat = flat.Nmat,record = record,B=B,U1=U,U2=U2);
-return(junk)
-}
+return(junk)}

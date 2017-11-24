@@ -26,7 +26,8 @@ mid2 <-m1[m1[]>=q5 & m1[]<q75]
 high <-m1[m1[]>=q75]
 f<-e
 if(length(low)==0){low_map <- as.matrix(0)}
-else{low_map <- mapper1(as.matrix(dd[names(low),names(low)]),e=f)}
+else{low_map <- mapper1(as.matrix(
+dd[names(low),names(low)]),e=f)}
 if(length(mid1)==0){mid1_map <- as.matrix(0)}
 else{mid1_map <- mapper1(as.matrix(dd[names(mid1),
 names(mid1)]),e=f)}
@@ -37,16 +38,14 @@ if(length(high)==0){high_map <- as.matrix(0)}
 else{high_map<- mapper1(as.matrix(dd[names(high),
 names(high)]),e=f)}
 if(length(all)==0){all <- as.matrix(0)}
-else{all <-mapper1(as.matrix(dd),e=f)}
-    
+else{all <-mapper1(as.matrix(dd),e=f)} 
 if(bd!=0){
 low_map <- cutoff_low(low_map,para = piq, text ="low")
 mid1_map <- cutoff_low(mid1_map,para = piq, text ="mid1")
 mid2_map <- cutoff_low(mid2_map,para = piq, text ="mid2")
 high_map <- cutoff_low(high_map,para = piq, text ="high")
 all <- cutoff_low(all,para = piq, text ="all")
-}
-    
+}   
 if(dim(all)[1]==1){if(all!=0){
 q_all <- names(all)
 q_all<- as.list(q_all)
@@ -179,12 +178,14 @@ spheres3d(p_low$f[i],du,
 0,radius=p_low$s[i],color=rgb((p_low$r)$col[[i]][1],
 (p_low$r)$col[[i]][2],(p_low$r)$col[[i]][3],alpha=1))
 text3d(p_low$f[i],
-du + max(as.matrix(unlist(size_low))) +5,0,length(size_all) + i)
+du + max(as.matrix(unlist(size_low))) +5,0,
+length(size_all) + i)
 if(ad==0){text3d(p_low$f[i],
 (du - max(as.matrix(unlist(size_low))) -5),0,
 paste(unique(p_low$q1_all_a[[i]]),collapse=""))}
 })
-create_links(q=p$q1_all,q1=p_low$q1_all,f=p$f,f1=p_low$f,m,du,0)
+create_links(q=p$q1_all,q1=p_low$q1_all,f=p$f,
+f1=p_low$f,m,du,0)
 du <- du + max(as.matrix(unlist(size_low))) +minespace
 }
     
@@ -241,8 +242,7 @@ paste(unique(p_mid2$q1_all_a[[i]]),collapse=""))}
 create_links(p$q1_all,p_mid2$q1_all,p$f,p_mid2$f,m,du,l)
 du <- du +minespace+ max(as.matrix(unlist(size_mid2)))
 }
-m <- max(p_mid2$f) +m
-    
+m <- max(p_mid2$f) +m   
 if(dim(high_map)[1]==1 && high_map==0){
 d_high <- du
 p_high <- list()
@@ -283,8 +283,7 @@ max(p$f))+40,u,l,round(qmax/length(select),2))
 else{
 text3d(-40,u,l, round(qmin,2))
 text3d(max(m+max(p_high$f),max(p$f))+40,u,l,round(qmax,2))
-}
-    	
+}    	
 #### descriptions files
 e <- list()
 if(length(p$q1_all)!=0){for(i in 1: length(size_all)){
@@ -335,8 +334,7 @@ paste(ddd[p_mid2$q1_all[[i]][j],ni],")"),sep="(")
 }
 }
 e[[i+d]]<-paste(i+d, e_1, sep = ":" )
-}}
-    
+}} 
 d <- length(size_all)+length(size_low)+
 length(size_mid1)+length(size_mid2)
 if(length(p_high$q1_all)!=0){for(i in 1: length(size_high)){

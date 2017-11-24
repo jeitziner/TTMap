@@ -41,7 +41,8 @@ write.pcl(Dc.Dpcl,paste(dataname,"Tdis",sep = "."));
 Nc.Dpcl <- mat2pcl(mat = Nc.Dmat,tag = tag.pcl);
 write.pcl(Nc.Dpcl,paste(dataname,"Tnorm",sep = "."));
 Normal.model <- mat2pcl(mat = Normal.model,tag = tag.pcl);
-write.pcl(Normal.model,paste(normalname,"NormalModel",sep = ".")); 
+write.pcl(Normal.model,
+paste(normalname,"NormalModel",sep = ".")); 
 sumabs <- function(vec){y<- abs(vec); z<-sum(y);return(z)}
 m <- apply(Dc.Dpcl[,-(1:3)],2,sumabs)
 junk <- list(Dc.Dmat = Dc.Dmat,m=m);

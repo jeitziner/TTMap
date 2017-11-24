@@ -6,7 +6,5 @@ i <- 0
 while(sum(m)>dim(m)[1] & i< dim(m)[1]){
 i <- i+1
 m <- mat_d(m)
-m<- mat_d_col(m)
-}
-return(m)	
-}
+m<- mat_d_col(m)}
+return(m)}
