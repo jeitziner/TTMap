@@ -16,27 +16,27 @@ ttmap_part4_inter2(q, ttmap_part2, alpha = 0)
 ttmap_part4_inter(q, ttmap_part2, alpha = 0)
 }
 \arguments{
-  \item{ttmap_part3}{
+\item{ttmap_part3}{
 output of ttmap_part3}
-  \item{ttmap_part2}{
+\item{ttmap_part2}{
 output of ttmap_part2}
 \item{ttmap_part1}{
 output of ttmap_part1}
-  \item{c}{annotation file of the samples
+\item{c}{annotation file of the samples
 }
-  \item{n}{
+\item{n}{
 column to give the name to the cluster}
-  \item{a}{cutoff to be considered different than noise
- }
-  \item{filename}{
+\item{a}{cutoff to be considered different than noise
+}
+\item{filename}{
 Name of the files}
-  \item{annot}{
+\item{annot}{
 annotation file}
-  \item{col}{
+\item{col}{
 which column should be considered to annotate the features}
-  \item{path}{
+\item{path}{
 where to put the output files}
-  \item{Relaxed}{
+\item{Relaxed}{
 If Relaxed then one allows sample to be as the control and for all 
 the others in one cluster to be going in the same direction (more 
 than alpha) otherwise all the features must be deviating to be 

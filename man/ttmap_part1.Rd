@@ -17,37 +17,37 @@ meshRows.hda(df1, df2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{normal.pcl}{
+\item{normal.pcl}{
 the control matrix with annotation as obtained by $CTRL from 
 make_matrices }
-  \item{tumor.pcl}{
+\item{tumor.pcl}{
 the disease/test data matrix with annotation as obtained by $TEST 
 from make_matrices} 
-  \item{normalname}{
+\item{normalname}{
 A name for the corrected control files}
-  \item{dataname}{
+\item{dataname}{
 the name of the project}
-  \item{org.directory}{
+\item{org.directory}{
 where the outputs should be saved}
-  \item{A}{
+\item{A}{
 integer if A=0 then the difference to the median is calculated 
 otherwise the difference to the mean.
 }
-  \item{e}{
+\item{e}{
 integer giving how far to the median an outlier is at least}
-  \item{meth}{
+\item{meth}{
 value or method that defines how to replace outliers, default is 
 set to replace by the median
 }
-  \item{P}{
+\item{P}{
 if more than P percent of features are outliers the feature is 
 removed, by default all are kept}
-  \item{B}{
+\item{B}{
 Batch vector a vector for normal and test samples with a same 
 number corresponding to a same batch}
-  \item{df1}{
+\item{df1}{
 matrix 1}
- \item{df2}{
+\item{df2}{
 matrix 2}
 }
 \details{
@@ -89,10 +89,8 @@ Disease.mat and Normal.mat}
 \item{U1}{The different batches in Normal.mat}
 \item{U2}{The different batches in Disease.mat}
 }
-
 \author{
 Rachel Jeitziner}
-
 \seealso{
 ttmap_part2,ttmap_part3,ttmap_part4}
 \examples{

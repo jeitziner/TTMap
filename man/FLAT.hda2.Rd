@@ -20,9 +20,9 @@ f1prime3(xprime, mprime, eprime = 1)
 \arguments{ 
 \item{xprime}{
 the column of the control matrix tested against the others }
- \item{mprime}{
+\item{mprime}{
 the other columns of the control matrix}
-  \item{eprime}{
+\item{eprime}{
 cutoff parameter for outlier defined by el}
 \item{ma}{
 control matrix with NAs where there are outliers}
@@ -31,15 +31,15 @@ vector of values per row to replace the NAs or a method as defined
 by metho}
 \item{mat}{
 control matrix}
- \item{el}{
+\item{el}{
 cutoff parameter for outlier}
- \item{metho}{
+\item{metho}{
 Either 0 or a function that will describe how to replace the NAs in 
 the corrected control matrix}
 \item{p}{
 If more than p percent of the expression for one gene per row are 
 outliers this gene is removed}
-  \item{method_mean_or_median}{
+\item{method_mean_or_median}{
 How to define an outlier, determined by either being far to the mean 
 (anything else than 0) or to the median (0, default)}
 }
@@ -52,7 +52,6 @@ possible and this function finds out where it is not.
 \item{mat}{matrix}
 \item{m}{number of genes removed per sample}
 }
-
 \author{
 Rachel Jeitziner}
 \seealso{

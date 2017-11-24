@@ -17,26 +17,24 @@ normal.hda2(Dmat, Nmodel, new.cnames = "Norm")
 deviation.hda2(Dmat, Nc.Dmat, new.cnames = "Dis")
 }
 \arguments{
-  \item{x}{
+\item{x}{
 output object given back by ttmap_part1, list}
-  \item{k}{
+\item{k}{
 A factor if not all the lines in the control group should be kept}
-  \item{dataname}{
+\item{dataname}{
 the name of the project}
-  \item{normalname}{
+\item{normalname}{
 A name for the corrected control files}
 \item{Org.directory}{
 where the outputs should be saved}
-
-  \item{Dmat}{
+\item{Dmat}{
 Test samples in a matrix}
-  \item{Nmodel}{
+\item{Nmodel}{
 Normal samples in a matrix}
 \item{Nc.Dmat}{
 Output of normal.hda2}
-  \item{new.cnames}{
+\item{new.cnames}{
 New names to give to the matrix created}
-
 }
 \details{
 The function performs the second part of Hyperrectangle deviation 
@@ -55,7 +53,6 @@ deviation components of all the samples in the test group}
 \item{m}{the values of the filter function per sample in the test 
 group}
 }
-
 \author{
 Rachel Jeitziner}
 \seealso{

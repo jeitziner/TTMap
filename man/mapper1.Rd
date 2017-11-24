@@ -3,7 +3,6 @@
 \alias{mat_d}
 \alias{mat_d_col}
 \alias{mat_1_0}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Matrix that will help build the Mapper}
 \description{
@@ -15,10 +14,9 @@ mat_1_0(mat, e)
 mat_d(mat)
 mat_d_col(mat)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
- \item{mat}{Matrix}
-  \item{e}{cutoff}
+\item{mat}{Matrix}
+\item{e}{cutoff}
 }
 \details{
 These functions are necessary to calculate the Mapper using single 
@@ -27,7 +25,6 @@ linkage algorithme and a two-tier cover.
 \value{
 \item{m}{Matrix} 
 }
-
 \author{
 Rachel Jeitziner}
 \seealso{

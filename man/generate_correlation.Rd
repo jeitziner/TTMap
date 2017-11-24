@@ -5,7 +5,6 @@
 \alias{generate_p_val_correlation}
 \alias{generate_single_cell_complete_mismatch}
 \alias{generate_single_cell_mismatch_with_parameter}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Generates different distance matrices
 }
@@ -19,7 +18,7 @@ euclidean distance.
 generate_single_cell_complete_mismatch(ttmap_part2, 
 select, alpha = 1)
 generate_single_cell_mismatch_with_parameter(ttmap_part2,
- select, alpha = 1)
+select, alpha = 1)
 generate_correlation(ttmap_part2, select)
 generate_euclidean(ttmap_part2, select)
 generate_mismatch_distance(ttmap_part2, select, alpha = 1)
@@ -27,9 +26,9 @@ generate_p_val_correlation(ttmap_part2, select)
 
 }
 \arguments{
- \item{ttmap_part2}{
+\item{ttmap_part2}{
 an object given back by ttmap_part2}
-  \item{select}{
+\item{select}{
 A sublist of rownames of ttmap_part2$Dc.Dmat
 }
 \item{alpha}{

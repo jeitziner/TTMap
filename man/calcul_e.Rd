@@ -12,16 +12,16 @@ calcul_e_single(dd5, pvalcutoff = 0.95, tt1, alpha = 1, S =
 colnames(tt1$Normal.mat))
 }
 \arguments{
-  \item{dd5}{
+\item{dd5}{
 distance matrix as created by generate_mismatch_distance}
-  \item{pvalcutoff}{
+\item{pvalcutoff}{
 cutoff of 0.05 percent (default) or less}
-  \item{tt1}{
+\item{tt1}{
 output of ttmap_part1}
-  \item{alpha}{
+\item{alpha}{
 a cutoff value for the FC between the group of control and the 
 disease group}
-  \item{S}{
+\item{S}{
 subset of columns to be considered}
 }
 

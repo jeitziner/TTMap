@@ -11,9 +11,7 @@ files and annotating matrices (mat2pcl)}
 mat2pcl(mat, tag)
 write.pcl(df, dataname, fileaddress = "")
 read.pcl(filename, na.type = "", Nrows = -1, Comment.char = "", ...)
-}
-%- maybe also 'usage' for other objects documented here.
-\arguments{
+}\arguments{
 \item{df}{
 PCL object to be saved
 }
