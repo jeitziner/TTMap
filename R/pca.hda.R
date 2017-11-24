@@ -16,4 +16,4 @@ D.mat <- td(pn(vec = mat.svd$d))
 matt <- U.mat %*% D.mat %*% t(V.mat)
 attributes(matt) <- attributes(mat)
 return(matt)
-  }
+}

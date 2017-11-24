@@ -34,7 +34,8 @@ s <- max(unlist(sl))
 if(s<=0){
 sl <- lapply(1:length(as.vector(dd5[upper.tri(dd5)])),function(i){ 
 ele <- as.vector(dd5[upper.tri(dd5)])[i]
-#s <- pnorm(ele*length(m_f), mean = sum(a3,na.rm=TRUE), sd = sqrt(sum(a3*(1-a3),na.rm=TRUE)), lower.tail = TRUE)
+#s <- pnorm(ele*length(m_f), mean = sum(a3,na.rm=TRUE), 
+#sd = sqrt(sum(a3*(1-a3),na.rm=TRUE)), lower.tail = TRUE)
 s<-ppois(ele*length(m_f),sum(a3), lower.tail = TRUE, log.p = FALSE)
 ifelse(s < 1-.Machine$double.neg.eps, ele,0)})
 s <- max(unlist(sl))}

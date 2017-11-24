@@ -1,5 +1,6 @@
 calcul_e_single<-
-function(dd5,pvalcutoff=0.95,tt1,alpha = 1,S=colnames(tt1$Normal.mat)){
+function(dd5,pvalcutoff=0.95,tt1,alpha = 1,
+S=colnames(tt1$Normal.mat)){
 er <-tt1$Normal.mat[,colnames(tt1$Normal.mat)%in%S]
 er[er==0]<-NA
 w <- apply(er,1,mean,na.rm=TRUE)
@@ -14,14 +15,18 @@ p2<-lapply(1:length(m_f), function(i){
 pnorm(m_f[i],w[i],w2[i],lower.tail=TRUE)
 })
 p2 <- unlist(p2)
-p2p<-lapply(1:length(m_f), function(i){pnorm(m_f[i]-alpha,w[i],w2[i],lower.tail=TRUE)})
+p2p<-lapply(1:length(m_f), function(i){
+pnorm(m_f[i]-alpha,w[i],w2[i],lower.tail=TRUE)})
 p2p <- unlist(p2p)
-p3<-lapply(1:length(m_f), function(i){ pnorm(m2_f[i],w[i],w2[i],lower.tail=TRUE)})
-p4<-lapply(1:length(m_f), function(i){ pnorm(m_f[i],w[i],w2[i],lower.tail=TRUE)})
+p3<-lapply(1:length(m_f), function(i){ 
+pnorm(m2_f[i],w[i],w2[i],lower.tail=TRUE)})
+p4<-lapply(1:length(m_f), function(i){ 
+pnorm(m_f[i],w[i],w2[i],lower.tail=TRUE)})
 p3 <- unlist(p3)
 p4 <- unlist(p4)
 p3<- p3-p4
-p1<-lapply(1:length(m_f), function(i){ pnorm(m2_f[i],w[i],w2[i],lower.tail=FALSE)})
+p1<-lapply(1:length(m_f), function(i){ 
+pnorm(m2_f[i],w[i],w2[i],lower.tail=FALSE)})
 p1p<-lapply(1:length(m_f), function(i){
 pnorm(m2_f[i]+alpha,w[i],w2[i],lower.tail=FALSE)})
 p1 <- unlist(p1)
@@ -38,7 +43,7 @@ s <- max(unlist(sl))
 if(s<=0){
 sl <- lapply(1:length(as.vector(dd5[upper.tri(dd5)])),function(i){ 
 ele <- as.vector(dd5[upper.tri(dd5)])[i]
-s<-ppois(ele*length(m_f),sum(a3), lower.tail = TRUE, log.p = FALSE)
+s<-ppois(ele*length(m_f),sum(a3),lower.tail = TRUE, log.p = FALSE)
 ifelse(s < 1-.Machine$double.neg.eps, ele,0)
 })
 s <- max(unlist(sl))}

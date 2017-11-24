@@ -1,6 +1,7 @@
 ttmap_part3 <-
-function(ttmap_part2,m1,select=row.names(ttmap_part2$Dc.Dmat),ddd,e,filename="TEST",n=3,
-ad=0,bd=0,piq=1,
+function(ttmap_part2,m1,
+select=row.names(ttmap_part2$Dc.Dmat),ddd,e,
+filename="TEST",n=3,ad=0,bd=0,piq=1,
 dd=generate_mismatch_distance(ttmap_part2=ttmap_part2,
 select=select),
 mean_value_m1 ="N",ni=2){
@@ -27,17 +28,17 @@ high <-m1[m1[]>=q75]
 
 f<-e
 
-if(length(low)==0){low_map <- as.matrix(0)}else{low_map <- mapper1(as.matrix(dd[names(low),names(low)]),e=f)}
-
-#print(quantile(dd,c(0.02,0.05,0.1,0.5)))
-
-
+if(length(low)==0){low_map <- as.matrix(0)}
+else{low_map <- mapper1(as.matrix(dd[names(low),names(low)]),e=f)}
 if(length(mid1)==0){mid1_map <- as.matrix(0)}
-else{mid1_map <- mapper1(as.matrix(dd[names(mid1),names(mid1)]),e=f)}
+else{mid1_map <- mapper1(as.matrix(dd[names(mid1),
+names(mid1)]),e=f)}
 if(length(mid2)==0){mid2_map <- as.matrix(0)}
-else{mid2_map <- mapper1(as.matrix(dd[names(mid2),names(mid2)]),e=f)}
+else{mid2_map <- mapper1(as.matrix(dd[names(mid2),
+names(mid2)]),e=f)}
 if(length(high)==0){high_map <- as.matrix(0)}
-else{high_map<- mapper1(as.matrix(dd[names(high),names(high)]),e=f)}
+else{high_map<- mapper1(as.matrix(dd[names(high),
+names(high)]),e=f)}
 if(length(all)==0){all <- as.matrix(0)}
 else{all <-mapper1(as.matrix(dd),e=f)}
 
@@ -60,7 +61,7 @@ else{
 q_all <- apply(all,1,grep,pattern=1)
 q_all<- as.list(q_all)
 q_all<-lapply(1:length(q_all),function(i){
-	 colnames(as.matrix(dd))[q_all[[i]]]
+colnames(as.matrix(dd))[q_all[[i]]]
 })
 }
 q1_all<- q_all[lapply(q_all,length)>0]
@@ -78,7 +79,8 @@ else{
 q_mid1 <- apply(mid1_map,1,grep,pattern=1)
 q_mid1 <- as.list(q_mid1)
 q_mid1<-lapply(1:length(q_mid1), function(i){
-colnames(as.matrix(dd)[names(mid1),names(mid1)])[as.vector(q_mid1[[i]])]
+colnames(as.matrix(dd)[names(mid1),names(mid1)])[
+as.vector(q_mid1[[i]])]
 }
 )}
 q1_mid1<- q_mid1[lapply(q_mid1,length)>0]
@@ -95,7 +97,8 @@ else{
 q_mid2 <- apply(mid2_map,1,grep,pattern=1)
 q_mid2 <- as.list(q_mid2)
 q_mid2 <- lapply(1:length(q_mid2), function(i){
-colnames(as.matrix(dd)[names(mid2),names(mid2)])[as.vector(q_mid2[[i]])]
+colnames(as.matrix(dd)[names(mid2),names(mid2)])[
+as.vector(q_mid2[[i]])]
 })
 }
 q1_mid2<- q_mid2[lapply(q_mid2,length)>0]
@@ -156,13 +159,13 @@ color=rgb((p$r)$col[[i]][1],(p$r)$col[[i]][2],
 (p$r)$col[[i]][3],alpha=1))
 text3d(p$f[i],max(as.matrix(unlist(p$s))) + 5,0,i)
 if(ad==0){text3d(p$f[i],
-	-max(as.matrix(unlist(p$s))) - 5,0,
-	paste(unique(p$q1_all_a[[i]]),collapse=""))}
+-max(as.matrix(unlist(p$s))) - 5,0,
+paste(unique(p$q1_all_a[[i]]),collapse=""))}
 })
 
 m <-0
 if(dim(low_map)[1]==1 && low_map==0){
-	du<-max(as.matrix(unlist(size_all))) + minespace
+du<-max(as.matrix(unlist(size_all))) + minespace
 d_low <- du
 du <- du +minespace
 
@@ -180,8 +183,8 @@ spheres3d(p_low$f[i],du,
 text3d(p_low$f[i],
 du + max(as.matrix(unlist(size_low))) +5,0,length(size_all) + i)
 if(ad==0){text3d(p_low$f[i],
-	(du - max(as.matrix(unlist(size_low))) -5),0,
-	paste(unique(p_low$q1_all_a[[i]]),collapse=""))}
+(du - max(as.matrix(unlist(size_low))) -5),0,
+paste(unique(p_low$q1_all_a[[i]]),collapse=""))}
 })
 create_links(q=p$q1_all,q1=p_low$q1_all,f=p$f,f1=p_low$f,m,du,0)
 du <- du + max(as.matrix(unlist(size_low))) +minespace
@@ -206,8 +209,8 @@ radius=p_mid1$s[i],color=rgb((p_mid1$r)$col[[i]][1],
 text3d(m+p_mid1$f[i],du+max(as.matrix(unlist(size_mid1)))+5,l,
 length(size_all) + length(size_low) +i)
 if(ad==0){text3d(m+p_mid1$f[i],
-	(du - max(as.matrix(unlist(size_mid1))) -5),l,
-	paste(unique(p_mid1$q1_all_a[[i]]),collapse=""))}
+(du - max(as.matrix(unlist(size_mid1))) -5),l,
+paste(unique(p_mid1$q1_all_a[[i]]),collapse=""))}
 })
 create_links(p$q1_all,p_mid1$q1_all,p$f,p_mid1$f,m,du,l)
 du <- du+max(as.matrix(unlist(size_mid1)))+minespace
@@ -231,10 +234,11 @@ spheres3d(m+p_mid2$f[i],
 du,l,radius=p_mid2$s[i],color=rgb((p_mid2$r)$col[[i]][1],
 (p_mid2$r)$col[[i]][2],(p_mid2$r)$col[[i]][3],alpha=1))
 text3d(m+p_mid2$f[i],
-du+max(as.matrix(unlist(size_mid2)))+ 5,l,length(size_all) + length(size_low) +length(size_mid1) + i)
+du+max(as.matrix(unlist(size_mid2)))+ 5,
+l,length(size_all) + length(size_low) +length(size_mid1) + i)
 if(ad==0){text3d(m+p_mid2$f[i],
-	(du - max(as.matrix(unlist(size_mid2))) -5),l,
-	paste(unique(p_mid2$q1_all_a[[i]]),collapse=""))}
+(du - max(as.matrix(unlist(size_mid2))) -5),l,
+paste(unique(p_mid2$q1_all_a[[i]]),collapse=""))}
 })
 create_links(p$q1_all,p_mid2$q1_all,p$f,p_mid2$f,m,du,l)
 du <- du +minespace+ max(as.matrix(unlist(size_mid2)))
@@ -258,14 +262,12 @@ radius=p_high$s[i],color=rgb((p_high$r)$col[[i]][1],
 text3d(m+p_high$f[i],
 du+max(as.matrix(unlist(size_high)))+ 5,l,length(size_all) + length(size_low) +length(size_mid1) +length(size_mid2) +i)
 if(ad==0){text3d(m+p_high$f[i],
-	(du - max(as.matrix(unlist(size_high))) -5),l,
-	paste(unique(p_high$q1_all_a[[i]]),collapse=""))}
+(du - max(as.matrix(unlist(size_high))) -5),l,
+paste(unique(p_high$q1_all_a[[i]]),collapse=""))}
 })
 create_links(p$q1_all,p_high$q1_all,p$f,p_high$f,m,du,l)
 }
-
 annot_right(p_high,p,l,d_high,d_mid2,d_mid1,d_low,m)
-
 u <- min(-minespace,-max(as.matrix(unlist(size_all)))-10)
 lans <- lapply(1:100,function(i){
 segments3d(c((((i-1)/100)*(max(m+max(p_high$f),

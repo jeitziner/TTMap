@@ -1,5 +1,7 @@
 ttmap_part4 <-
-function(ttmap_part3,ttmap_part2,ttmap_part1,c,n=2,a=0,filename="TEST2",annot=ttmap_part1$tag.pcl,col = "NAME",path=getwd(),Relaxed = 1) {
+function(ttmap_part3,ttmap_part2,
+ttmap_part1,c,n=2,a=0,filename="TEST2",
+annot=ttmap_part1$tag.pcl,col = "NAME",path=getwd(),Relaxed = 1) {
 setwd(path)
 dir.create(paste(getwd(),"all",sep="/"))
 dir.create(paste(getwd(),"mid1",sep="/"))
@@ -33,7 +35,8 @@ A<- as.matrix(A)
 A <- as.data.frame(A)
 A <-cbind(annot[rownames(A),col],A)
 write.table(A,file=paste(paste("mid2",filename,sep="/"),
-paste(c[ttmap_part3$mid2_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,sep="\t",row.names=TRUE,
+paste(c[ttmap_part3$mid2_map[[i]][1],n],"txt",sep="."),
+sep="_"),quote=FALSE,sep="\t",row.names=TRUE,
 col.names=NA)
 }	
 for(i in 1: length(ttmap_part3$high_map)){
@@ -42,7 +45,8 @@ A<- as.matrix(A)
 A <- as.data.frame(A)
 A <-cbind(annot[rownames(A),col],A)
 write.table(A,file=paste(paste("high",filename,sep="/"),
-paste(c[ttmap_part3$high_map[[i]][1],n],"txt",sep="."),sep="_"),quote=FALSE,
+paste(c[ttmap_part3$high_map[[i]][1],n],"txt",sep="."),
+sep="_"),quote=FALSE,
 sep="\t",row.names=TRUE,col.names=NA)
 }
 

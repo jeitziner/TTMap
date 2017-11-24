@@ -13,8 +13,10 @@ A <- as.matrix(A)
 rownames(A)<-rownames(ttmap_part2$Dc.Dmat)
 w <- abs(A[A!=0,])
 w2 <- sign(w)}
-select2 <- names(w2[w2[]==1]) #we just don't want those which are different
-select<-names(w[w[]>alpha]) # we will only consider those which are different than a certain threshold
+select2 <- names(w2[w2[]==1]) 
+#we just don't want those which are different
+select<-names(w[w[]>alpha])
+# we will only consider those which are different than alpha
 s <- intersect(select,select2)
 if(length(s)==1){
 A<- as.matrix(A[s,])
