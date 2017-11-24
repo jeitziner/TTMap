@@ -1,4 +1,5 @@
-make_matrices <- function(mat,col_ctrl,col_test,NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0 ){
+make_matrices <- function(mat,col_ctrl,
+col_test,NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0 ){
 junk <- list()
 junk$CTRL <- as.data.frame(mat[,col_ctrl])
 junk$CTRL <- cbind(CLID,NAME,GWEIGHT,junk$CTRL)

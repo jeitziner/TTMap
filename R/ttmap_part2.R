@@ -5,7 +5,6 @@ u <- meshRows.hda(x$tag.pcl, x$flat.Nmat$mat)
 tag.pcl <- u[[1]]
 tag.pcl <- as.data.frame(rbind(1,tag.pcl)); 
 rownames(tag.pcl)[[1]] <- "EWEIGHT"
-
 s<- meshRows.hda(x$Normal.mat,x$flat.Nmat$mat)
 t <- meshRows.hda(s[[1]], x$Disease.mat)
 Normal.mat <- s[[1]];
@@ -34,7 +33,6 @@ rownames(Nc.Dmat)<-rownames(Normal.mat)
 Dc.Dmat<-
 deviation.hda2(Dmat = Disease.mat,Nc.Dmat,
 new.cnames=paste(unlist(U2),"Dis",sep="."));
-
 rownames(Dc.Dmat)<-rownames(Normal.mat)
 ####  store all these: 
 setwd(Org.directory)

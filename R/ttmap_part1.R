@@ -6,7 +6,6 @@ METHO <- ifelse(A==0,0,1)
 if(length(B)==1){
 B<-c(rep(0,(dim(normal.pcl)[2]+dim(tumor.pcl)[2]-6)))
 }
-	
 names(B)<- c(colnames(normal.pcl)[-c(1,2,3)],
 colnames(tumor.pcl)[-c(1,2,3)])
 ####  Select genes so both pcl files have the same genes. 
@@ -29,7 +28,6 @@ write.pcl(Disease.pcl,paste(org.directory,dataname,
 record$ngenes.common <- nrow(Normal.pcl) - 1;
 rm(norm.tum.list);
 tag.pcl <- Disease.pcl[(1:3)];
-
 U <- lapply(1: length(unique(B)),function(i){
 intersect(names(B[B[]==(i-1)]),colnames(Normal.pcl))
 })
@@ -75,7 +73,8 @@ head(flat.Nmat$mat)
 E<- unlist(lapply(1:dim(flat.Nmat$mat)[1],function(i){
 mean(flat.Nmat$mat[i,][flat.Nmat$mat[i,]>0])}))
 E[is.na(E)==TRUE]<-0
-V<- unlist(lapply(1:dim(flat.Nmat$mat)[1],function(i){var(flat.Nmat$mat[i,][flat.Nmat$mat[i,]>0])}))
+V<- unlist(lapply(1:dim(flat.Nmat$mat)[1],
+function(i){var(flat.Nmat$mat[i,][flat.Nmat$mat[i,]>0])}))
 V[is.na(V)==TRUE]<-0
 pdf(paste(dataname,"mean_vs_variance_after_correction.pdf",
 sep="_"),paper="a4",height=8,width=11)

@@ -12,7 +12,6 @@ if(dim(as.matrix(Nmodel))[2]==1){
 N <- cbind(as.data.frame(Nmodel),as.data.frame(Nmodel))
 rownames(N)<-names(Nmodel)
 }
-
 else{
 Nmodel[Nmodel ==0] <- NA
 min <- apply(Nmodel,1,min,na.rm=TRUE)
