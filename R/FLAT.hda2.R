@@ -5,7 +5,7 @@ d <- list(m=0,n=0,mat = mat,na_numbers=0)
 }
 else{
 bigindx <- rbind(1: ncol(mat));  colnames(bigindx) <- colnames(mat);
-matt <- apply(bigindx,2,function(j){	
+matt <- apply(bigindx,2,function(j){
 if(method_mean_or_median==1){f1prime(mat[,j],mat[,-(j)],eprime=el)}
 else{f1prime3(mat[,j],mat[,-(j)],eprime=el)}})
 rownames(matt)<-rownames(mat)

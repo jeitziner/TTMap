@@ -20,6 +20,6 @@ if(length(s)==1){
 A<- as.matrix(t(A[s,]))
 rownames(A)<-s
 }
-else{ A <- A[s,]}
+else{A <- A[s,]}
 return(A)
 }
