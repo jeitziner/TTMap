@@ -103,7 +103,7 @@ return(flat.Nmat$mat)
 all.tbl <- table(unlist(lapply(mylist,rownames)))
 sel <- names(all.tbl[all.tbl == length(mylist)])
 flat <- do.call(cbind,lapply(mylist,function(x) x[sel,]))
- colnames(flat)<- colnames(Normal.pcl[,unlist(U)])
+colnames(flat)<- colnames(Normal.pcl[,unlist(U)])
 flat.Nmat <- list()
 flat.Nmat$mat <- flat
 if(length(unique(B))!=0){

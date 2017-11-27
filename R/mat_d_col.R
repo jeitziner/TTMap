@@ -1,6 +1,6 @@
 mat_d_col <-
 function(mat) {
-for(i in 1:dim(mat)[1]){ 
+for(i in 1:dim(mat)[1]){
 s <- grep(1,mat[,i])
 for(j in s){
 if(j == i) mat <- mat

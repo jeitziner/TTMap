@@ -16,7 +16,7 @@ junk_low <- list(x=0)
 for(i in 1: length(ttmap_part3$low_map)){
 A <-ttmap_part4_inter(ttmap_part3$low_map[[i]],
 ttmap_part2,alpha=a)
-A<- as.matrix(A)	
+A<- as.matrix(A)
 A <-cbind(as.character(annot[rownames(A),col]),A)
 write.table(A,file=paste(paste("low",
 filename,sep="/"),
@@ -45,8 +45,7 @@ A <-cbind(annot[rownames(A),col],A)
 write.table(A,file=paste(paste("mid2",filename,sep="/"),
 paste(c[ttmap_part3$mid2_map[[i]][1],n],"txt",sep="."),
 sep="_"),quote=FALSE,sep="\t",row.names=TRUE,
-col.names=NA)
-}	
+col.names=NA)}
 for(i in 1: length(ttmap_part3$high_map)){
 A <-ttmap_part4_inter(ttmap_part3$high_map[[i]],
 ttmap_part2,alpha=a)
@@ -56,8 +55,7 @@ A <-cbind(annot[rownames(A),col],A)
 write.table(A,file=paste(paste("high",filename,sep="/"),
 paste(c[ttmap_part3$high_map[[i]][1],n],"txt",sep="."),
 sep="_"),quote=FALSE,
-sep="\t",row.names=TRUE,col.names=NA)
-}
+sep="\t",row.names=TRUE,col.names=NA)}
 for(i in 1: length(ttmap_part3$all)){
 A <-ttmap_part4_inter(ttmap_part3$all[[i]],
 ttmap_part2,alpha=a)
@@ -68,6 +66,4 @@ A <-cbind(annot[rownames(A),col],A)
 write.table(A,file=paste(paste("all",filename,sep="/"),
 paste(c[ttmap_part3$all[[i]][1],n],
 "txt",sep="."),sep="_"),
-quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)
-}
-}
+quote=FALSE,sep="\t",row.names=TRUE,col.names=NA)}}

@@ -11,7 +11,7 @@ minespace <- 50
 beg <- ls()
 annot <- function(q,n=n) {
 q <- lapply(1:length(q),function(i){
-ddd[q[[i]],n]	
+ddd[q[[i]],n]
 })
 return(q)
 }
@@ -38,7 +38,7 @@ if(length(high)==0){high_map <- as.matrix(0)}
 else{high_map<- mapper1(as.matrix(dd[names(high),
 names(high)]),e=f)}
 if(length(all)==0){all <- as.matrix(0)}
-else{all <-mapper1(as.matrix(dd),e=f)} 
+else{all <-mapper1(as.matrix(dd),e=f)}
 if(bd!=0){
 low_map <- cutoff_low(low_map,para = piq, text ="low")
 mid1_map <- cutoff_low(mid1_map,para = piq, text ="mid1")
@@ -50,8 +50,7 @@ if(dim(all)[1]==1){if(all!=0){
 q_all <- names(all)
 q_all<- as.list(q_all)
 names(q_all)<-names(all)
-}
-    
+}    
 else{q_all <- c()}}
 else{
 q_all <- apply(all,1,grep,pattern=1)
@@ -61,14 +60,12 @@ colnames(as.matrix(dd))[q_all[[i]]]
 })
 }
 q1_all<- q_all[lapply(q_all,length)>0]
-size_all<- lapply(q1_all,length)
-    
+size_all<- lapply(q1_all,length)   
 if(dim(mid1_map)[1]==1){if(mid1_map!=0){
 q_mid1 <- names(mid1)
 q_mid1 <- as.list(q_mid1)
 names(q_mid1)<-names(mid1)
-}
-    
+} 
 else{
 q_mid1 <- c()}}
 else{
@@ -81,13 +78,11 @@ as.vector(q_mid1[[i]])]
 )}
 q1_mid1<- q_mid1[lapply(q_mid1,length)>0]
 size_mid1<- lapply(q1_mid1,length)
-    
 if(dim(mid2_map)[1]==1){if(mid2_map!=0){
 q_mid2 <- names(mid2)
 q_mid2 <- as.list(q_mid2)
 names(q_mid2)<-names(mid2)
 }
-    
 else{q_mid2 <- c()}}
 else{
 q_mid2 <- apply(mid2_map,1,grep,pattern=1)
@@ -99,25 +94,22 @@ as.vector(q_mid2[[i]])]
 }
 q1_mid2<- q_mid2[lapply(q_mid2,length)>0]
 size_mid2<- lapply(q1_mid2,length)
-    
 if(dim(low_map)[1]==1){if(low_map!=0){
 q_low <- names(low)
 q_low <- as.list(q_low)
 names(q_low)<-names(low)
 }
-    
 else{q_low <- c()}}
 else{
 q_low <- apply(low_map,1,grep,pattern=1)
 q_low <- as.list(q_low)
 q_low <- lapply(1:length(q_low), function(i){
- colnames(as.matrix(dd)[names(low),names(low)])[
- as.vector(q_low[[i]])]
+colnames(as.matrix(dd)[names(low),names(low)])[
+as.vector(q_low[[i]])]
 })
 }
 q1_low<- q_low[lapply(q_low,length)>0]
 size_low<- lapply(q1_low,length)
-    
 if(dim(high_map)[1]==1){if(high_map!=0){
 q_high <- names(high)
 q_high <- as.list(q_high)
@@ -133,8 +125,8 @@ as.vector(q_high[[i]])]
 })
 }
 q1_high<- q_high[lapply(q_high,length)>0]
-size_high<- lapply(q1_high,length)   
-open3d()   
+size_high<- lapply(q1_high,length)
+open3d()
 squize <- function(q1_all,m1,size_all,n=n){
 r_all <-create_colors(q1_all,m1,size_all)
 sort_r <- sort(r_all$average,index.return = TRUE)
@@ -143,10 +135,10 @@ f_all<-create_places(size_all)
 r_all$col <- r_all$col[sort_r$ix]
 q1_all <- q1_all[sort_r$ix]
 print(q1_all[[1]])
-q1_all_a <- annot(q1_all,n=n)	
+q1_all_a <- annot(q1_all,n=n)
 junk <- list(r = r_all,s = size_all,
 f = f_all,q1_all = q1_all,q1_all_a = q1_all_a)
-return(junk)	
+return(junk)
 }
 p <- squize(q1_all,m1,size_all,n=n)
 lans<-lapply( 1:length(size_all),function(i){
@@ -158,13 +150,11 @@ if(ad==0){text3d(p$f[i],
 -max(as.matrix(unlist(p$s))) - 5,0,
 paste(unique(p$q1_all_a[[i]]),collapse=""))}
 })
-    
 m <-0
 if(dim(low_map)[1]==1 && low_map==0){
 du<-max(as.matrix(unlist(size_all))) + minespace
 d_low <- du
 du <- du +minespace
-    
 size_low <- c()
 p_low <- list()
 p_low$f <- 0}
@@ -188,7 +178,6 @@ create_links(q=p$q1_all,q1=p_low$q1_all,f=p$f,
 f1=p_low$f,m,du,0)
 du <- du + max(as.matrix(unlist(size_low))) +minespace
 }
-    
 if(dim(mid1_map)[1]==1 && mid1_map==0){
 d_mid1 <- du
 du <- du +minespace
@@ -215,7 +204,6 @@ create_links(p$q1_all,p_mid1$q1_all,p$f,p_mid1$f,m,du,l)
 du <- du+max(as.matrix(unlist(size_mid1)))+minespace
 }
 m <- max(p_mid1$f)+m
-    
 if(dim(mid2_map)[1]==1 && mid2_map==0){
 d_mid2 <- du
 du <- du +minespace
@@ -226,7 +214,6 @@ else{
 du <- du+max(as.matrix(unlist(size_mid2)))
 d_mid2 <- du
 p_mid2 <- squize(q1_mid2,m1,size_mid2,n=n)
-    
 l <- 20
 lans <- lapply(1:length(size_mid2),function(i){
 spheres3d(m+p_mid2$f[i],
@@ -258,8 +245,10 @@ spheres3d(m+p_high$f[i],du,l,
 radius=p_high$s[i],color=rgb((p_high$r)$col[[i]][1],
 (p_high$r)$col[[i]][2],(p_high$r)$col[[i]][3],alpha=1))
 text3d(m+p_high$f[i],
-du+max(as.matrix(unlist(size_high)))+ 5,l,length(size_all) + 
-length(size_low) +length(size_mid1) +length(size_mid2) +i)
+du+max(as.matrix(unlist(size_high)))+ 5,l,
+length(size_all) + 
+length(size_low) +length(size_mid1) +
+length(size_mid2) +i)
 if(ad==0){text3d(m+p_high$f[i],
 (du - max(as.matrix(unlist(size_high))) -5),l,
 paste(unique(p_high$q1_all_a[[i]]),collapse=""))}
@@ -271,9 +260,9 @@ u <- min(-minespace,-max(as.matrix(unlist(size_all)))-10)
 lans <- lapply(1:100,function(i){
 segments3d(c((((i-1)/100)*(max(m+max(p_high$f),
 max(p$f)))),((i/100)*(max(m+max(p_high$f),
-max(p$f))))),c(u,u),c(l,l),col=matlab.like2(100)[i], lwd = 20)
+max(p$f))))),c(u,u),c(l,l),
+col=matlab.like2(100)[i], lwd = 20)
 })
-    
 text3d(-1-100,u,l,"Mean Deviation")
 if(mean_value_m1 == "N"){
 text3d(-40,u,l, round(qmin/length(select),2))
@@ -283,7 +272,7 @@ max(p$f))+40,u,l,round(qmax/length(select),2))
 else{
 text3d(-40,u,l, round(qmin,2))
 text3d(max(m+max(p_high$f),max(p$f))+40,u,l,round(qmax,2))
-}    	
+}
 #### descriptions files
 e <- list()
 if(length(p$q1_all)!=0){for(i in 1: length(size_all)){
@@ -311,7 +300,8 @@ e[[i+d]]<- paste(i+d, e_1, sep = ":" )
 }
 }   
 d <- length(size_all)+length(size_low)
-if(length(p_mid1$q1_all)!=0){for(i in 1: length(size_mid1)){
+if(length(p_mid1$q1_all)!=0){
+for(i in 1: length(size_mid1)){
 e_1 <- paste(p_mid1$q1_all[[i]][1],
 paste(ddd[p_mid1$q1_all[[i]][1],ni],")"),sep="(")
 if(length(p_mid1$q1_all[[i]])>1){
@@ -324,7 +314,8 @@ e[[i+d]]<- paste(i+d, e_1, sep = ":" )
 }
 }  
 d <- length(size_all)+length(size_low)+length(size_mid1)
-if(length(p_mid2$q1_all)!=0){for(i in 1: length(size_mid2)){
+if(length(p_mid2$q1_all)!=0){
+for(i in 1: length(size_mid2)){
 e_1 <- paste(p_mid2$q1_all[[i]][1],
 paste(ddd[p_mid2$q1_all[[i]][1],ni],")"),sep="(")
 if(length(p_mid2$q1_all[[i]])>1){
@@ -334,10 +325,11 @@ paste(ddd[p_mid2$q1_all[[i]][j],ni],")"),sep="(")
 }
 }
 e[[i+d]]<-paste(i+d, e_1, sep = ":" )
-}} 
+}}
 d <- length(size_all)+length(size_low)+
 length(size_mid1)+length(size_mid2)
-if(length(p_high$q1_all)!=0){for(i in 1: length(size_high)){
+if(length(p_high$q1_all)!=0){
+for(i in 1: length(size_high)){
 e_1 <- paste(p_high$q1_all[[i]][1],
 paste(ddd[p_high$q1_all[[i]][1],ni],")"),sep="(")
 if(length(p_high$q1_all[[i]])>1){
@@ -348,12 +340,15 @@ paste(ddd[p_high$q1_all[[i]][j],ni],")"),sep="(")
 }
 e[[i+d]]<-paste(i+d, e_1, sep = ":" )
 }}
-write.table(e,file=paste(filename,"description.txt",sep="_"),
-quote=FALSE,sep="\n",row.names=FALSE,col.names=FALSE)
-junk <- list(low_map=p_low$q1_all,mid1_map=p_mid1$q1_all,
-mid2_map=p_mid2$q1_all,high_map=p_high$q1_all,all=p$q1_all)
+write.table(e,file=paste(filename,
+"description.txt",sep="_"),
+quote=FALSE,sep="\n",row.names=FALSE,
+col.names=FALSE)
+junk <- list(low_map=p_low$q1_all,
+mid1_map=p_mid1$q1_all,
+mid2_map=p_mid2$q1_all,high_map=p_high$q1_all,
+all=p$q1_all)
 vari <- setdiff(ls(),list(beg)[[1]])
 vari <- setdiff(list(vari)[[1]],"junk")
 rm(list=vari)
-return(junk)	
-}
+return(junk)}

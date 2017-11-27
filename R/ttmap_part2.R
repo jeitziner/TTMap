@@ -27,7 +27,7 @@ Nmodel = Normal.model[,U1[[i]]],
 new.cnames=paste(U2[[i]],"Norm",sep=".")); 
 })
 ###
- #Dc.Dmat <- do.call(cbind,Dc.Dmat)
+#Dc.Dmat <- do.call(cbind,Dc.Dmat)
 Nc.Dmat <- do.call(cbind,Nc.Dmat)
 rownames(Nc.Dmat)<-rownames(Normal.mat)
 Dc.Dmat<-

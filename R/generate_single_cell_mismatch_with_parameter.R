@@ -10,8 +10,8 @@ W2 <- abs(D2[,ind[1,x]])
 W3 <-  abs(D2[,ind[2,x]])
 names(W2)<-rownames(D2)
 names(W3)<-rownames(D2)
-select2 <- names(W2[W2>alpha])	
-select3 <- names(W3[W3>alpha])	
+select2 <- names(W2[W2>alpha])
+select3 <- names(W3[W3>alpha])
 select2 <- union(select2,select3)
 W <-Da[,ind[1,x]]*Da[,ind[2,x]]
 names(W)<-rownames(Da)
@@ -22,5 +22,4 @@ dd[lower.tri(dd)] <-  unlist(dd2)
 dd[upper.tri(dd)] <- t(dd)[upper.tri(dd)]
 rownames(dd)<-colnames(D2)
 colnames(dd)<-colnames(D2)
-return(dd)
-}
+return(dd)}

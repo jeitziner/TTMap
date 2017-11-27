@@ -1,7 +1,7 @@
 pca.hda <- function (mat, j) 
-{
-td <- function(vec) {
-ifelse(length(vec) > 1.5, y <- diag(vec), y <- as.matrix(vec))
+{td <- function(vec) {
+ifelse(length(vec) > 1.5, y <- diag(vec),
+y <- as.matrix(vec))
 return(y)}
 pn <- function(vec) {
 vn <- vec

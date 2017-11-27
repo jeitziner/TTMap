@@ -7,5 +7,4 @@ for(j in 1:dim(dd)[2]){
 dd[i,j]<-cor.test(ttmap_part2$Dc.Dmat[select,i],
 ttmap_part2$Dc.Dmat[select,j],
 alternative="greater")$p.value}}
-return(dd)	
-}
+return(dd)}

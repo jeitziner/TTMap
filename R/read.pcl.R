@@ -1,5 +1,6 @@
 read.pcl <-
-function(filename,na.type = "",Nrows= -1,Comment.char="",...) {
+function(filename,na.type = "",Nrows= -1,
+Comment.char="",...) {
 x.df <- read.table(paste(filename,
 "pcl",sep="."),header=TRUE,sep="\t",
 quote="\"",na.strings=na.type,skip=0,

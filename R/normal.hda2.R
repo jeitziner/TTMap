@@ -1,5 +1,5 @@
 normal.hda2 <-
-function(Dmat,Nmodel,new.cnames = "Norm") {	
+function(Dmat,Nmodel,new.cnames = "Norm") {
 alpha <- function(Da,N) {
 Da2 <- ifelse(N[,1]<=Da,Da,N[,1])
 Da2 <-  ifelse(Da2<=N[,2],Da2,N[,2])
@@ -7,7 +7,7 @@ if(dim(as.matrix(Nmodel))[2]==1){
 Da2 <- as.matrix(Da2)
 rownames(Da2)<-rownames(N)
 }
-return(Da2)}	
+return(Da2)}
 if(dim(as.matrix(Nmodel))[2]==1){ 
 N <- cbind(as.data.frame(Nmodel),as.data.frame(Nmodel))
 rownames(N)<-names(Nmodel)
