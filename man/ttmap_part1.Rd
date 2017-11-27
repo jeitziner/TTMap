@@ -138,10 +138,10 @@ paste("diff",c(1:C0),sep=""))
 colnames(dis) <- c(paste("B1",c(1:B1),sep=""),
 paste("B2",c(1:B2),sep=""))
 rownames(dis)<-c(paste("norm",
-c(1:(D0-C0)),sep=""),paste("diff",c(1:C0),sep=""))	
+c(1:(D0-C0)),sep=""),paste("diff",c(1:C0),sep=""))
 junk <- TTMap::make_matrices(cbind(norm1,dis),
 col_ctrl = colnames(norm1),col_test = colnames(dis),
 NAME=rownames(norm1),CLID=rownames(norm1))
 TTMAP_part1prime <-TTMap::ttmap_part1(normal.pcl = junk$CTRL,
 tumor.pcl = junk$TEST, normalname = "Hi", dataname = "Hello",
- org.directory = getwd(),e=E,P=Pw,B=Bw);}
+org.directory = getwd(),e=E,P=Pw,B=Bw);}
