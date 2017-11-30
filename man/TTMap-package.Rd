@@ -27,4 +27,4 @@ R. Jeitziner, TTMap, 2017
 \seealso{
 rgl, colorRamps
 }
-\examples{ttmap_part4}
+\examples{#to be found in ttmap_sgn_genes}

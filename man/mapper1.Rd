@@ -28,7 +28,7 @@ linkage algorithme and a two-tier cover.
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part3}
+ttmap_part2_gtlmap}
 \examples{
 #example 
 d <- matrix(c(0,0.1,0.2,0.1,0,0.15,0.2,0.15,0),nrow=3)

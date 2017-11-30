@@ -15,20 +15,20 @@ correlation distance, p-value of correlation test distance and
 euclidean distance.
 }
 \usage{
-generate_single_cell_complete_mismatch(ttmap_part2, 
+generate_single_cell_complete_mismatch(ttmap_part1_hda, 
 select, alpha = 1)
-generate_single_cell_mismatch_with_parameter(ttmap_part2,
+generate_single_cell_mismatch_with_parameter(ttmap_part1_hda,
 select, alpha = 1)
-generate_correlation(ttmap_part2, select)
-generate_euclidean(ttmap_part2, select)
-generate_mismatch_distance(ttmap_part2, select, alpha = 1)
-generate_p_val_correlation(ttmap_part2, select)
+generate_correlation(ttmap_part1_hda, select)
+generate_euclidean(ttmap_part1_hda, select)
+generate_mismatch_distance(ttmap_part1_hda, select, alpha = 1)
+generate_p_val_correlation(ttmap_part1_hda, select)
 }
 \arguments{
-\item{ttmap_part2}{
-an object given back by ttmap_part2}
+\item{ttmap_part1_hda}{
+an object given back by ttmap_part1_hda}
 \item{select}{
-A sublist of rownames of ttmap_part2$Dc.Dmat
+A sublist of rownames of ttmap_part1_hda$Dc.Dmat
 }
 \item{alpha}{
 A real number corresponding to a cutoff
@@ -49,14 +49,14 @@ Distance matrix
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part3}
+ttmap_part2_gtlmap}
 \examples{
-ttmap_part2 <- list()
-ttmap_part2$Dc.Dmat <- matrix(c(-1,2,0,-4,5,6),nrow=2)
-rownames(ttmap_part2$Dc.Dmat) <- c("Gene1","Gene2")
-colnames(ttmap_part2$Dc.Dmat) <- c("A","B","C")
-dd <- TTMap:::generate_mismatch_distance(ttmap_part2,select = 
-rownames(ttmap_part2$Dc.Dmat))
-dd <- TTMap:::generate_euclidean(ttmap_part2,select = 
-rownames(ttmap_part2$Dc.Dmat))
+ttmap_part1_hda <- list()
+ttmap_part1_hda$Dc.Dmat <- matrix(c(-1,2,0,-4,5,6),nrow=2)
+rownames(ttmap_part1_hda$Dc.Dmat) <- c("Gene1","Gene2")
+colnames(ttmap_part1_hda$Dc.Dmat) <- c("A","B","C")
+dd <- TTMap:::generate_mismatch_distance(ttmap_part1_hda,select = 
+rownames(ttmap_part1_hda$Dc.Dmat))
+dd <- TTMap:::generate_euclidean(ttmap_part1_hda,select = 
+rownames(ttmap_part1_hda$Dc.Dmat))
 }

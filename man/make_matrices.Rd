@@ -1,7 +1,8 @@
 \name{make_matrices}
 \alias{make_matrices}
+\alias{SumExp2pcl}
 \title{
-Prepares the matrices for ttmap_part1
+Prepares the matrices for ttmap_part1_ctrl_adj
 }
 \description{
 make_matrices generates the control and the test matrice in the 
@@ -10,6 +11,8 @@ right format
 \usage{
 make_matrices(mat,col_ctrl,col_test,NAME,CLID,GWEIGHT = 
 rep(1,dim(mat)[1]),EWEIGHT=0 )
+SumExp2pcl(nki,col_ctrl,col_test,
+NAME,CLID,GWEIGHT = rep(1,dim(nki)[1]),EWEIGHT=0)
 }
 \arguments{
 \item{mat}{the matrix of gene expressions}
@@ -20,19 +23,23 @@ samples}
 \item{CLID}{Identities of genes,e.g. ENSMUSG00000000001}
 \item{GWEIGHT}{the weight for each gene}
 \item{EWEIGHT}{the weight for each experiment}
+\item{nki}{a SummarizedExperiment object}
 }
 \details{
 make_matrices generates the test matrix and the control matrix in
-the format accepted by ttmap_part1
+the format accepted by ttmap_part1_ctrl_adj from a matrix object
+SumExp2pcl generates the test matrix and the control matrix in
+the format accepted by ttmap_part1_ctrl_adj from a 
+SummarizedExperiment object
 }
 \value{
 \item{junk}{A list containing $CTRL and $TEST the matrices to impute 
-in ttmap_part1}
+in ttmap_part1_ctrl_adj}
 }
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part1,ttmap_part2,ttmap_part3,ttmap_part4}
+ttmap_part1_ctrl_adj,ttmap_part1_hda,ttmap_part2_gtlmap,ttmap_sgn_genes}
 \examples{
 ##--
 ##--
@@ -84,4 +91,8 @@ c(1:(D0-C0)),sep=""),paste("diff",c(1:C0),sep=""))
 junk <- TTMap::make_matrices(cbind(norm1,dis),
 col_ctrl = colnames(norm1),
 col_test = colnames(dis),NAME=rownames(norm1),CLID=rownames(norm1))
+###other example using SummarizedExperiment
+data(nki)
+junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
+rownames(nki),rownames(nki))
 }
