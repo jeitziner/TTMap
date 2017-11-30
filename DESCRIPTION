@@ -9,5 +9,5 @@ Description: TTMap is a clustering method that groups together samples with the 
 License: GPL-2
 Suggests: BiocStyle
 Depends: rgl, colorRamps, breastCancerNKI
-Imports: grDevices,graphics,stats,utils, S4Vectors, SummarizedExperiment
+Imports: grDevices,graphics,stats,utils, methods, SummarizedExperiment
 biocViews: Software, Microarray, DifferentialExpression, MultipleComparison, Clustering, Classification
