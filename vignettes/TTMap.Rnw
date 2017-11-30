@@ -1,4 +1,7 @@
 \documentclass[a4paper,12pt]{article}
+<<style-Sweave, eval=TRUE, echo=FALSE, results=tex>>=
+BiocStyle::latex()
+@
 %\VignetteIndexEntry{Manual for the TTMap library}
 %\VignettePackage{TTmap}
 \usepackage{amsmath}    % need for subequations
@@ -6,7 +9,6 @@
 \usepackage{bm}         %needed for bold greek letters and math symbols
 \usepackage{graphicx}   % need for PS figures
 \usepackage{hyperref}   % use for hypertext links
-\usepackage{natbib}    %number and author-year style referencing
 \begin{document}
 \title{\textbf{\LARGE{Two-Tier Mapper: 
 a user-independent clustering 
@@ -68,50 +70,16 @@ mean is $\Delta
 $ times higher for TA, respectively lower for TB. 
 \begin{scriptsize}
 <<loadLibAndData>>=
-Aa = 6 # number of control samples
-B1 = 3 # number of samples in TA
-B2=3 # number of samples in TB
-C0=100 # number of differentially expressed genes
-D0 = 10000 # number of total genes
-a0 = 4 # average control
-b0=0.1 #variance control
-a1=6 # average TA for the C0 genes
-b1= 0.1 # variance TB for the C0 genes
-a2=2 # average TB for the C0 genes
-b2=0.5 # variance TB for the C0 genes
-### Create the matrices 
-set.seed(12)
-RA<- lapply(1:(D0-C0),function(i) rnorm(Aa, mean = a0, sd = sqrt(b0)))
-RA<-do.call(rbind,RA)
-RB1<- lapply(1:(D0-C0),function(i) rnorm(B1, mean = a0, sd = sqrt(b0)))
-RB1<-do.call(rbind,RB1)
-RB2<- lapply(1:(D0-C0),function(i) rnorm(B2, mean = a0, sd = sqrt(b0)))
-RB2<-do.call(rbind,RB2)
-RA_c<- lapply(1:C0,function(i) rnorm(Aa, mean = a0, sd = sqrt(b0)))
-RA_c<-do.call(rbind,RA_c)
-RB1_c<- lapply(1:C0,function(i) rnorm(B1, mean = a1, sd = sqrt(b1)))
-RB1_c<-do.call(rbind,RB1_c)
-RB2_c<- lapply(1:C0,function(i) rnorm(B2, mean = a2, sd = sqrt(b2)))
-RB2_c<-do.call(rbind,RB2_c)
-norm1 <- rbind(RA,RA_c)
-dis <- cbind(rbind(RB1,RB1_c),rbind(RB2,RB2_c))
-colnames(norm1)<- paste("N",c(1:Aa),sep="")
-rownames(norm1)<-c(paste("norm",c(1:(D0-C0)),sep=""),
-paste("diff",c(1:C0),sep=""))
-colnames(dis) <- 
-c(paste("B1",c(1:B1),sep=""),paste("B2",c(1:B2),sep=""))
-rownames(dis)<-c(paste("norm",
-c(1:(D0-C0)),sep=""),paste("diff",c(1:C0),sep=""))
-junk <- TTMap::make_matrices(cbind(norm1,dis),
-col_ctrl = colnames(norm1),
-col_test = 
-colnames(dis),NAME=rownames(norm1),CLID=rownames(norm1))
+library(breastCancerNKI)
+data(nki)
+junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
+NAME = rownames(nki), CLID =rownames(nki))
 @ 
 \end{scriptsize}
 This function can directly be used on a normalised count table from RNA-
 seq precising what are the columns of the control group (in col\_ctrl) and 
 what are the columns in the test group (in col\_test) .
-\section{TTMap\_part1}
+\section{TTMap\_part1: Adjustement of the control group (ctrl\_adj)}
 The first part of the method checks if the control and the test matrices 
 have the same row-names, and if not the method subselects the common 
 rows. It outputs the files with the common rows subselected (with the 
@@ -137,7 +105,7 @@ outlier values.
 E=1
 Pw=1.1
 Bw=0
-TTMAP_part1prime <-TTMap::ttmap_part1(normal.pcl = junk$CTRL,
+TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(normal.pcl = junk$CTRL,
 tumor.pcl = junk$TEST, 
 normalname = "Hi", dataname = "Hello", org.directory = getwd(),
 e=E,P=Pw,B=Bw);
@@ -167,10 +135,11 @@ gene.}
 \label{fig_mean_vs_var}
 \end{figure}
 \end{center}
-\section{TTMap\_part2}
-The second part of the HDA step consists of calculating deviation 
-components. This is enables the calculation in the third function of the 
-shape of deviation. One parameter k is determining if all the vectors of the 
+\section{TTMap\_part1: Hyperrectangle deviation assessement (HDA)}
+This part consists in calculating deviation 
+components from a hyperrectangle. This enables the calculation in 
+the third function (ttmap\_part2\_gtlmap) of the 
+shape of deviation. One parameter k is given by if all the vectors of the 
 control group should be kept or if only the the top k-dimensional principal 
 component approximation of the control matrix should be kept using the 
 singular value decomposition (as in \cite{Monica}). The default is to keep 
@@ -178,10 +147,10 @@ all
 the vectors.
 \begin{scriptsize}
 <<part2>>=
-TTMAP_part2 <- TTMap::ttmap_part2(x = 
+TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = 
 TTMAP_part1prime,k=dim(TTMAP_part1prime$Normal.mat)[2],
 dataname = "Hello", normalname = "Hi");
-head(TTMAP_part2$Dc.Dmat)
+head(TTMAP_part1_hda$Dc.Dmat)
 @
 \end{scriptsize}
 The outputs of this step are the following. 
@@ -191,7 +160,7 @@ The outputs of this step are the following.
 different than the number of columns in the corrected matrix.
 \item The deviation component of each test sample is written in 
 \textit{Hello.Tdis.pcl}. An example of the deviation component is found in 
-the previous script by writing \textit{head(TTMAP\_part2\$Dc.Dmat)}
+the previous script by writing \textit{head(TTMAP\_part1\_hda\$Dc.Dmat)}
 \item The normal component of each test sample is written in 
 \textit{Hello.Tnorm.pcl}.
 \end{itemize}
@@ -199,7 +168,7 @@ The two values of this function are the deviation component matrix and
 the 
 overall deviation (calculated by summing in absolute values the deviation 
 components).
-\section{TTMap\_part3}
+\section{TTMap\_part2: Global-to-local Mapper (gtlmap)}
 The third part corresponds to the Global-to-local Mapper part. One starts 
 with an annotation file of our samples, in order to annotate the obtained 
 clusters. In this example here we just copied several times the column 
@@ -212,12 +181,13 @@ in order to decide what is
 a considered as noise. Any other distance matrix can be computed here 
 and 
 used for the next step. Then, we calculate and output the clusters using 
-\textit{ttmap\_part3}, which needs as inputs the values of 
-\textit{ttmap\_part1, ttmap\_part2.} 
+\textit{ttmap\_part2\_gtlmap}, which needs as inputs the values of 
+\textit{ttmap\_part1\_ctrl\_adj, ttmap\_part1\_hda.} 
 The default parameter uses all the genes to 
 calculate the overall deviation, but if a subset should be selected (only 
 one 
-pathway for example), it can be imputed here. TTMap\_part3 then 
+pathway for example), it can be imputed here. 
+ttmap\_part2\_gtlmap then 
 calculates using \textit{calcul\_e} a parameter of closeness using the 
 data, 
 in order to know what distance is "close" enough to clusters samples 
@@ -238,18 +208,18 @@ annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep=".")
 ,paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
 annot <- cbind(annot,annot)
 rownames(annot)<-annot[,1]
-dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part2,
-select=rownames(TTMAP_part2$Dc.Dmat),alpha = ALPHA)
-de1 <- 
-TTMap::ttmap_part3(TTMAP_part2,TTMAP_part2$m,
-select=rownames(TTMAP_part2$Dc.Dmat),
+dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part1_hda,
+select=rownames(TTMAP_part1_hda$Dc.Dmat),alpha = ALPHA)
+TTMAP_part2_gtlmap <- 
+TTMap::ttmap_part2_gtlmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
+select=rownames(TTMAP_part1_hda$Dc.Dmat),
 annot,e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), 
 filename="TEST",
 n=1,dd=dd5_sgn_only)
 rgl.postscript("test.pdf","pdf")
 @
 \end{scriptsize}
-\section{TTMap\_part4}
+\section{TTMap\_sgn\_genes}
 This last function analyses the different clusters for significant features. It 
 outputs a file per level 
 (one for overall, called all, one for the lower quartile, 
@@ -265,7 +235,8 @@ for the deviation component,
 while the others deviate in the same shape.
 \begin{scriptsize}
 <<part4>>=
-TTMap:::ttmap_part4(de1, TTMAP_part2, TTMAP_part1prime, 
+TTMap:::ttmap_sgn_genes(TTMAP_part2_gtlmap, 
+TTMAP_part1_hda, TTMAP_part1prime, 
 annot, n = 2, a = ALPHA,
 filename = "TEST2", annot = TTMAP_part1prime$tag.pcl, col = "NAME",
 path = getwd(), Relaxed = 0)
@@ -285,6 +256,5 @@ structure of the dataset. The output is a visual interpretation
 of the data 
 given by a colored graph that is easy to interpret, which describes the 
 shape of the data according to the chosen distance. \\
-\bibliographystyle{unsrtnat}
 \bibliography{biblio2}
 \end{document}
