@@ -79,7 +79,7 @@ NAME = rownames(nki), CLID =rownames(nki))
 This function can directly be used on a normalised count table from RNA-
 seq precising what are the columns of the control group (in col\_ctrl) and 
 what are the columns in the test group (in col\_test) .
-\section{TTMap\_part1: Adjustement of the control group (ctrl\_adj)}
+\section{TTMap part1: Adjustement of the control group (ctrl\_adj)}
 The first part of the method checks if the control and the test matrices 
 have the same row-names, and if not the method subselects the common 
 rows. It outputs the files with the common rows subselected (with the 
@@ -135,7 +135,7 @@ gene.}
 \label{fig_mean_vs_var}
 \end{figure}
 \end{center}
-\section{TTMap\_part1: Hyperrectangle deviation assessement (HDA)}
+\section{TTMap part1: Hyperrectangle deviation assessement (hda)}
 This part consists in calculating deviation 
 components from a hyperrectangle. This enables the calculation in 
 the third function (ttmap\_part2\_gtlmap) of the 
@@ -168,7 +168,7 @@ The two values of this function are the deviation component matrix and
 the 
 overall deviation (calculated by summing in absolute values the deviation 
 components).
-\section{TTMap\_part2: Global-to-local Mapper (gtlmap)}
+\section{TTMap part2: Global-to-local Mapper (gtlmap)}
 The third part corresponds to the Global-to-local Mapper part. One starts 
 with an annotation file of our samples, in order to annotate the obtained 
 clusters. In this example here we just copied several times the column 
@@ -219,7 +219,7 @@ n=1,dd=dd5_sgn_only)
 rgl.postscript("test.pdf","pdf")
 @
 \end{scriptsize}
-\section{TTMap\_sgn\_genes}
+\section{TTMap: Finding the significant genes (sgn\_genes)}
 This last function analyses the different clusters for significant features. It 
 outputs a file per level 
 (one for overall, called all, one for the lower quartile, 
