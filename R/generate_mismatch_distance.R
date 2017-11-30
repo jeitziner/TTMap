@@ -1,9 +1,9 @@
 generate_mismatch_distance <-
-function(ttmap_part2,select,alpha=1){
-D2 <- ttmap_part2$Dc.Dmat[select,]
+function(ttmap_part1_hda,select,alpha=1){
+D2 <- ttmap_part1_hda$Dc.Dmat[select,]
 Da <- sign(D2)
 dd <- matrix(rep(0,(dim(Da)[2])^2),nrow=dim(Da)[2])
-ind <- combn(ncol(ttmap_part2$Dc.Dmat[select,]),2)
+ind <- combn(ncol(ttmap_part1_hda$Dc.Dmat[select,]),2)
 dd2<- lapply(as.list(1:ncol(ind)),function(x){
 W <-Da[,ind[1,x]]-Da[,ind[2,x]]
 names(W)<-rownames(Da)
@@ -20,7 +20,7 @@ W2 <- abs(D2[,ind[2,x]])
 names(W2)<-rownames(D2)
 select3 <- names(W2[W2>alpha])
 s <- s + length(intersect(select1,union(select2,select3)))
-s/(dim(ttmap_part2$Dc.Dmat[select,])[1])
+s/(dim(ttmap_part1_hda$Dc.Dmat[select,])[1])
 })
 dd[lower.tri(dd)] <-  unlist(dd2)
 dd[upper.tri(dd)] <- t(dd)[upper.tri(dd)]

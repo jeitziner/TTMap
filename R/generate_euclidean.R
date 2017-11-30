@@ -1,6 +1,6 @@
 generate_euclidean <-
-function(ttmap_part2,select){
-dd <- dist(t(ttmap_part2$Dc.Dmat[select,]),
+function(ttmap_part1_hda,select){
+dd <- dist(t(ttmap_part1_hda$Dc.Dmat[select,]),
 method="euclidean")
 dd <- as.matrix(dd)
 if(sum(is.na(dd))!=0){

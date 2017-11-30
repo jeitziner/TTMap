@@ -1,10 +1,10 @@
 generate_single_cell_mismatch_with_parameter <-
-function(ttmap_part2,select,alpha=1){
-D2 <- ttmap_part2$Dc.Dmat[select,]
+function(ttmap_part1_hda,select,alpha=1){
+D2 <- ttmap_part1_hda$Dc.Dmat[select,]
 Da <- sign(D2)
 dd <- matrix(rep(0,
 (dim(Da)[2])^2),nrow=dim(Da)[2])
-ind <- combn(ncol(ttmap_part2$Dc.Dmat[select,]),2)
+ind <- combn(ncol(ttmap_part1_hda$Dc.Dmat[select,]),2)
 dd2<- lapply(as.list(1:ncol(ind)),function(x){
 W2 <- abs(D2[,ind[1,x]])
 W3 <-  abs(D2[,ind[2,x]])
