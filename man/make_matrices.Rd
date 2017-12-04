@@ -92,6 +92,7 @@ junk <- TTMap::make_matrices(cbind(norm1,dis),
 col_ctrl = colnames(norm1),
 col_test = colnames(dis),NAME=rownames(norm1),CLID=rownames(norm1))
 ###other example using SummarizedExperiment
+library(breastCancerNKI)
 data(nki)
 junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
 rownames(nki),rownames(nki))

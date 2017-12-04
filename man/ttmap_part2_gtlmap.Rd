@@ -1,10 +1,5 @@
 \name{ttmap_part2_gtlmap}
 \alias{ttmap_part2_gtlmap}
-\alias{create_links}
-\alias{create_colors}
-\alias{create_places}
-\alias{cutoff_low}
-\alias{annot_right}
 \title{
 Visualisation of the clustering
 }
@@ -18,11 +13,6 @@ select = row.names(ttmap_part1_hda$Dc.Dmat),
 ddd, e, filename = "TEST", n = 3, ad = 0, bd = 0, piq = 1, 
 dd = generate_mismatch_distance(ttmap_part1_hda = ttmap_part1_hda, 
 select = select), mean_value_m1 = "N", ni = 2)
-create_links(q, q1, f, f1, m, d, l)
-create_colors(q, muc, size)
-create_places(size)
-cutoff_low(low_map, para = 1, text = "low")
-annot_right(p_high, p, l, d_high, d_mid2, d_mid1, d_low, m)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -66,42 +56,6 @@ samples) }
 \item{ni}{
 The column to consider to annotate the samples (is put into 
 parenthesis) for the description file}
-\item{q}{
-clusters,i.e. a list of lists in each list i there is the names of 
-the sample in cluster i }
-\item{q1}{
-the clusters in another layer}
-\item{f}{
-the place of the clusters in q}
-\item{f1}{
-the place of the clusters in q1 }
-\item{m}{
-the space in direction x between the different layers}
-\item{d}{
-the space in direction y between the layers}
-\item{l}{
-the space in direction z between the layers}
-\item{size}{
-the size of the different clusters}
-\item{low_map}{
-a submatrix of the distance matrix}
-\item{para}{
-parameter used to determine what small clusters are, see piq,bd }
-\item{text}{
-a text describing in which layer the clusters are}
-\item{p_high}{
-place where to put the annotation}
-\item{p}{
-place where to put the annotation}
-\item{d_high}{
-place where to put the annotation}
-\item{d_mid2}{
-place where to put the annotation}
-\item{d_mid1}{
-place where to put the annotation}
-\item{d_low}{
-place where to put the annotation}
-\item{muc}{is equal to m1}
 }
 \value{
 \item{all}{the clusters in the overall group}
@@ -119,6 +73,7 @@ Rachel Jeitziner}
 ttmap_part1_ctrl_adj,ttmap_part1_hda,ttmap_sgn_genes}
 \examples{
 ##--
+library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
 junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,

@@ -59,6 +59,7 @@ annotation
 Rachel Jeitziner}
 \examples{
 ##--
+library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
 junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,

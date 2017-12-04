@@ -1,7 +1,5 @@
 \name{ttmap_part1_hda}
 \alias{ttmap_part1_hda}
-\alias{normal_hda2}
-\alias{deviation_hda2}
 \title{
 Calculation of deviation components
 }
@@ -14,8 +12,6 @@ sample and deviation_hda2 which calculates the deviation component.
 \usage{
 ttmap_part1_hda(x, k = dim(x$Normal.mat)[2], dataname, 
 normalname,Org.directory=getwd())
-normal_hda2(Dmat, Nmodel, new.cnames = "Norm")
-deviation_hda2(Dmat, Nc.Dmat, new.cnames = "Dis")
 }
 \arguments{
 \item{x}{
@@ -28,14 +24,6 @@ the name of the project}
 A name for the corrected control files}
 \item{Org.directory}{
 where the outputs should be saved}
-\item{Dmat}{
-Test samples in a matrix}
-\item{Nmodel}{
-Normal samples in a matrix}
-\item{Nc.Dmat}{
-Output of normal_hda2}
-\item{new.cnames}{
-New names to give to the matrix created}
 }
 \details{
 The function performs the Hyperrectangle deviation 
@@ -61,6 +49,7 @@ ttmap_part1_ctrl_adj,ttmap_part2_gtlmap,ttmap_sgn_genes}
 \examples{
 ##a full example can be found in ttmap_sgn_genes
 ##--
+library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
 junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,

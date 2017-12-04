@@ -1,7 +1,5 @@
 \name{ttmap_part1_ctrl_adj}
 \alias{ttmap_part1_ctrl_adj}
-\alias{meshRows_norm_hda}
-\alias{meshRows_hda}
 \title{
 Calculates a corrected control group, discovers outliers in it.
 }
@@ -13,8 +11,6 @@ removes them
 \usage{
 ttmap_part1_ctrl_adj(normal.pcl, tumor.pcl, normalname, dataname, 
 org.directory = "", A = 1, e = 0, meth = 0, P = 1.1, B = 0)
-meshRows_norm_hda(df1, df2)
-meshRows_hda(df1, df2)
 }
 \arguments{
 \item{normal.pcl}{
@@ -45,19 +41,11 @@ removed, by default all are kept}
 \item{B}{
 Batch vector a vector for normal and test samples with a same 
 number corresponding to a same batch}
-\item{df1}{
-matrix 1}
-\item{df2}{
-matrix 2}
 }
 \details{
 ttmap_part1_ctrl_adj calculates a 
 corrected control group, discovers 
 outliers in it.
-meshRows_norm_hda will select only common features of df1 and df2 
-and removes the tags
-meshRows_hda will select only common features of df1 and df2 when 
-df1 and df2 are matrices without tags
 }
 \value{
 Several files are created
@@ -95,6 +83,7 @@ Rachel Jeitziner}
 ttmap_part1_hda,ttmap_part2_gtlmap,ttmap_sgn_genes}
 \examples{
 ##--
+library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
 junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,

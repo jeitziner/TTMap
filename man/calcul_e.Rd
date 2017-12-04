@@ -37,6 +37,7 @@ ttmap_part2_gtlmap,ttmap_sgn_genes,generate_mismatch_distance}
 ## See full example ttmap_sgn_genes
 ##--
 ##--
+library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
 junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
