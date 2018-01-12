@@ -77,13 +77,13 @@ RB2_c<-do.call(rbind,RB2_c)
 norm1 <- rbind(RA,RA_c)
 dis <- cbind(rbind(RB1,RB1_c),rbind(RB2,RB2_c))
 colnames(norm1)<- paste("N",seq_len(Aa),sep="")
-rownames(norm1)<-c(paste("norm",seq_len(D0-C0)),sep=""),
+rownames(norm1)<-c(paste("norm",seq_len(D0-C0),sep=""),
 paste("diff",seq_len(C0),sep=""))
 colnames(dis) <- c(paste("B1",seq_len(B1),sep=""),
 paste("B2",seq_len(B2),sep=""))
 rownames(dis)<-c(paste("norm",
 seq_len(D0-C0),sep=""),paste("diff",seq_len(C0),sep=""))
-junk <- TTMap::make_matrices(cbind(norm1,dis),
+the_experiment <- TTMap::make_matrices(cbind(norm1,dis),
 col_ctrl = colnames(norm1),
 col_test = colnames(dis),NAME=rownames(norm1),CLID=rownames(norm1))
 ###other example using SummarizedExperiment
