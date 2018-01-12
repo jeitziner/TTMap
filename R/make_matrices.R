@@ -1,7 +1,8 @@
 setGeneric("make_matrices",function(mat,col_ctrl,col_test,
-NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0)standardGeneric("make_matrices"))
+NAME,CLID,GWEIGHT = rep(1,
+dim(mat)[1]),EWEIGHT=0)standardGeneric("make_matrices"))
 setMethod("make_matrices",signature(mat="matrix"),
- function(mat,col_ctrl,col_test,
+function(mat,col_ctrl,col_test,
 NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){
 experiment <- list()
 experiment$CTRL <- as.data.frame(mat[,col_ctrl])
@@ -30,7 +31,8 @@ experiment$TEST[1,1] <- "EWEIGHT"
 colnames(experiment$TEST)[1:2] <- c("CLID","NAME")
 return(experiment)
 })
-setMethod("make_matrices",signature(mat="data.frame"), function(mat,col_ctrl,col_test,
+setMethod("make_matrices",signature(mat="data.frame"), 
+function(mat,col_ctrl,col_test,
 NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){
 experiment <- list()
 experiment$CTRL <- mat[,col_ctrl]
@@ -61,7 +63,8 @@ return(experiment)
 })
 setMethod("make_matrices",signature(mat="ExpressionSet"),
 function(mat,col_ctrl,col_test,
-NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){mat <- as(mat,"RangedSummarizedExperiment")
+NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){mat <- 
+    as(mat,"RangedSummarizedExperiment")
 f <- (SummarizedExperiment::assay(mat))
 f <- lapply(1:dim(f)[1],function(x){ w <- unlist(f[x,]); 
     w[is.na(w)==TRUE] <- median(w,na.rm=TRUE);return(w)})
