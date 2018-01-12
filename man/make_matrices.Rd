@@ -56,39 +56,40 @@ Bw=0
 RA <- matrix(rep(0,Aa*D0),nrow=D0)
 RB1<- matrix(rep(0,B1*D0),nrow=D0)
 RB2 <- matrix(rep(0,B2*D0),nrow=D0)
-RA<- lapply(1:(D0-C0),function(i) rnorm(Aa, 
+RA<- lapply(seq_len(D0-C0),function(i) rnorm(Aa, 
 mean = a0, sd = sqrt(b0)))
 RA<-do.call(rbind,RA)
-RB1<- lapply(1:(D0-C0),function(i) rnorm(B1, 
+RB1<- lapply(seq_len(D0-C0),function(i) rnorm(B1, 
 mean = a0, sd = sqrt(b0)))
 RB1<-do.call(rbind,RB1)
-RB2<- lapply(1:(D0-C0),function(i) rnorm(B2, 
+RB2<- lapply(seq_len(D0-C0),function(i) rnorm(B2, 
 mean = a0, sd = sqrt(b0)))
 RB2<-do.call(rbind,RB2)
-RA_c<- lapply(1:C0,function(i) rnorm(Aa, 
+RA_c<- lapply(seq_len(C0),function(i) rnorm(Aa, 
 mean = a0, sd = sqrt(b0)))
 RA_c<-do.call(rbind,RA_c)
-RB1_c<- lapply(1:C0,function(i) rnorm(B1, 
+RB1_c<- lapply(seq_len(C0),function(i) rnorm(B1, 
 mean = a1, sd = sqrt(b1)))
 RB1_c<-do.call(rbind,RB1_c)
-RB2_c<- lapply(1:C0,function(i) rnorm(B2, 
+RB2_c<- lapply(seq_len(C0),function(i) rnorm(B2, 
 mean = a2, sd = sqrt(b2)))
 RB2_c<-do.call(rbind,RB2_c)
 norm1 <- rbind(RA,RA_c)
 dis <- cbind(rbind(RB1,RB1_c),rbind(RB2,RB2_c))
-colnames(norm1)<- paste("N",c(1:Aa),sep="")
-rownames(norm1)<-c(paste("norm",c(1:(D0-C0)),sep=""),
-paste("diff",c(1:C0),sep=""))
-colnames(dis) <- c(paste("B1",c(1:B1),sep=""),
-paste("B2",c(1:B2),sep=""))
+colnames(norm1)<- paste("N",seq_len(Aa),sep="")
+rownames(norm1)<-c(paste("norm",seq_len(D0-C0)),sep=""),
+paste("diff",seq_len(C0),sep=""))
+colnames(dis) <- c(paste("B1",seq_len(B1),sep=""),
+paste("B2",seq_len(B2),sep=""))
 rownames(dis)<-c(paste("norm",
-c(1:(D0-C0)),sep=""),paste("diff",c(1:C0),sep=""))
+seq_len(D0-C0),sep=""),paste("diff",seq_len(C0),sep=""))
 junk <- TTMap::make_matrices(cbind(norm1,dis),
 col_ctrl = colnames(norm1),
 col_test = colnames(dis),NAME=rownames(norm1),CLID=rownames(norm1))
 ###other example using SummarizedExperiment
 library(breastCancerNKI)
 data(nki)
-the_experiment <- TTMap::make_matrices(nki,1:10,50:60,
+the_experiment <- TTMap::make_matrices(nki
+,seq_len(10),seq_len(10)+40,
 rownames(nki),rownames(nki))
 }

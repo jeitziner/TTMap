@@ -86,7 +86,8 @@ ttmap_part1_hda,ttmap_part2_gtlmap,ttmap_sgn_genes}
 library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
-the_experiment <- TTMap::make_matrices(nki,1:10,50:60,
+the_experiment <- TTMap::make_matrices(nki
+,seq_len(10),seq_len(10)+40,
 rownames(nki),rownames(nki))
 TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(
 normal.pcl = the_experiment$CTRL,

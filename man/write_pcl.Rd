@@ -73,8 +73,8 @@ d <- d[,c(4,5,6,1,2,3)]
 d <- rbind(c(NA,NA,NA,1,1,1),d)
 rownames(d)[1]<-"EWEIGHT"
 d[1,1]<-"EWEIGHT"
-tag <- d[,c(1:3)]
-mat <- d[-1,c(4:6)]
+tag <- d[,seq_len(3)]
+mat <- d[-1,seq_len(3)+3]
 to_be_saved <- TTMap:::mat2pcl(mat,tag)
 setwd(tempdir())
 TTMap::write_pcl(to_be_saved,"tempfile()",getwd())

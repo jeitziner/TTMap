@@ -40,7 +40,8 @@ ttmap_part2_gtlmap,ttmap_sgn_genes,generate_mismatch_distance}
 library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
-the_experiment <- TTMap::make_matrices(nki,1:10,50:60,
+the_experiment <- TTMap::make_matrices(nki
+,seq_len(10),seq_len(10)+40,
 rownames(nki),rownames(nki))
 TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(
 normal.pcl = the_experiment$CTRL,
@@ -53,8 +54,8 @@ TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = TTMAP_part1prime,
 k = Kprime,dataname = "Effect_of_cancer",
 normalname = "The_healthy_controls");
 annot <- c(paste(colnames(
-the_experiment$TEST[,-c(1:3)]),"Dis",sep="."),
-paste(colnames(the_experiment$CTRL[,-c(1:3)]),"Dis",sep="."))
+the_experiment$TEST[,-seq_len(3)]),"Dis",sep="."),
+paste(colnames(the_experiment$CTRL[,-seq_len(3)]),"Dis",sep="."))
 annot <- cbind(annot,annot)
 rownames(annot)<-annot[,1]
 dd5_sgn_only <-TTMap::generate_mismatch_distance(TTMAP_part1_hda,
