@@ -5,7 +5,7 @@ Da <- sign(D2)
 dd <- matrix(rep(0,
 (dim(Da)[2])^2),nrow=dim(Da)[2])
 ind <- combn(ncol(ttmap_part1_hda$Dc.Dmat[select,]),2)
-dd2 <- lapply(as.list(1:ncol(ind)),function(x){
+dd2 <- lapply(as.list(seq_len(ncol(ind))),function(x){
     W2 <- abs(D2[,ind[1,x]])
     W3 <-  abs(D2[,ind[2,x]])
     names(W2) <- rownames(D2)

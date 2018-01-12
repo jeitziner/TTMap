@@ -16,7 +16,7 @@ rownames(experiment$CTRL)[1] <- "EWEIGHT"
 experiment$CTRL <- as.data.frame(experiment$CTRL)
 experiment$CTRL[,1] <- as.character(experiment$CTRL[,1])
 experiment$CTRL[1,1] <- "EWEIGHT"
-colnames(experiment$CTRL)[1:2] <- c("CLID","NAME")
+colnames(experiment$CTRL)[c(1,2)] <- c("CLID","NAME")
 experiment$TEST <- as.data.frame(mat[,col_test])
 experiment$TEST <- cbind(CLID,NAME,GWEIGHT,experiment$TEST)
 experiment$TEST <- as.data.frame(experiment$TEST)
@@ -28,7 +28,7 @@ rownames(experiment$TEST)[1] <- "EWEIGHT"
 experiment$TEST <- as.data.frame(experiment$TEST)
 experiment$TEST[,1] <- as.character(experiment$TEST[,1])
 experiment$TEST[1,1] <- "EWEIGHT"
-colnames(experiment$TEST)[1:2] <- c("CLID","NAME")
+colnames(experiment$TEST)[c(1,2)] <- c("CLID","NAME")
 return(experiment)
 })
 setMethod("make_matrices",signature(mat="data.frame"), 
@@ -46,7 +46,7 @@ rownames(experiment$CTRL)[1] <- "EWEIGHT"
 experiment$CTRL <- as.data.frame(experiment$CTRL)
 experiment$CTRL[,1] <- as.character(experiment$CTRL[,1])
 experiment$CTRL[1,1] <- "EWEIGHT"
-colnames(experiment$CTRL)[1:2] <- c("CLID","NAME")
+colnames(experiment$CTRL)[c(1,2)] <- c("CLID","NAME")
 experiment$TEST <- as.data.frame(mat[,col_test])
 experiment$TEST <- cbind(CLID,NAME,GWEIGHT,experiment$TEST)
 experiment$TEST <- as.data.frame(experiment$TEST)
@@ -58,7 +58,7 @@ rownames(experiment$TEST)[1] <- "EWEIGHT"
 experiment$TEST <- as.data.frame(experiment$TEST)
 experiment$TEST[,1] <- as.character(experiment$TEST[,1])
 experiment$TEST[1,1] <- "EWEIGHT"
-colnames(experiment$TEST)[1:2] <- c("CLID","NAME")
+colnames(experiment$TEST)[c(1,2)] <- c("CLID","NAME")
 return(experiment)
 })
 setMethod("make_matrices",signature(mat="ExpressionSet"),
@@ -66,7 +66,7 @@ function(mat,col_ctrl,col_test,
 NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){mat <- 
     as(mat,"RangedSummarizedExperiment")
 f <- (SummarizedExperiment::assay(mat))
-f <- lapply(1:dim(f)[1],function(x){ w <- unlist(f[x,]); 
+f <- lapply(seq_len(dim(f)[1]),function(x){ w <- unlist(f[x,]); 
     w[is.na(w)==TRUE] <- median(w,na.rm=TRUE);return(w)})
 f <- matrix(unlist(f),ncol=length(colnames(mat)))
 rownames(f) <- rownames(mat)
@@ -84,7 +84,7 @@ rownames(experiment$CTRL)[1] <- "EWEIGHT"
 experiment$CTRL <- as.data.frame(experiment$CTRL)
 experiment$CTRL[,1] <- as.character(experiment$CTRL[,1])
 experiment$CTRL[1,1] <- "EWEIGHT"
-colnames(experiment$CTRL)[1:2] <- c("CLID","NAME")
+colnames(experiment$CTRL)[c(1,2)] <- c("CLID","NAME")
 experiment$TEST <- as.data.frame(mat[,col_test])
 experiment$TEST <- cbind(CLID,NAME,GWEIGHT,experiment$TEST)
 experiment$TEST <- as.data.frame(experiment$TEST)
@@ -96,7 +96,7 @@ rownames(experiment$TEST)[1] <- "EWEIGHT"
 experiment$TEST <- as.data.frame(experiment$TEST)
 experiment$TEST[,1] <- as.character(experiment$TEST[,1])
 experiment$TEST[1,1] <- "EWEIGHT"
-colnames(experiment$TEST)[1:2] <- c("CLID","NAME")
+colnames(experiment$TEST)[c(1,2)] <- c("CLID","NAME")
 return(experiment)
 })
 setMethod("make_matrices",signature(mat="SummarizedExperiment"),
@@ -104,7 +104,7 @@ function(mat,col_ctrl,col_test,
 NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){
     mat <- as(mat,"RangedSummarizedExperiment")
 f <- (SummarizedExperiment::assay(mat))
-f <- lapply(1:dim(f)[1],function(x){ w <- unlist(f[x,]); 
+f <- lapply(seq_len(dim(f)[1]),function(x){ w <- unlist(f[x,]); 
     w[is.na(w)==TRUE] <- median(w,na.rm=TRUE);return(w)})
 f <- matrix(unlist(f),ncol=length(colnames(mat)))
 rownames(f) <- rownames(mat)
@@ -122,7 +122,7 @@ rownames(experiment$CTRL)[1] <- "EWEIGHT"
 experiment$CTRL <- as.data.frame(experiment$CTRL)
 experiment$CTRL[,1] <- as.character(experiment$CTRL[,1])
 experiment$CTRL[1,1] <- "EWEIGHT"
-colnames(experiment$CTRL)[1:2] <- c("CLID","NAME")
+colnames(experiment$CTRL)[c(1,2)] <- c("CLID","NAME")
 experiment$TEST <- as.data.frame(mat[,col_test])
 experiment$TEST <- cbind(CLID,NAME,GWEIGHT,experiment$TEST)
 experiment$TEST <- as.data.frame(experiment$TEST)
@@ -134,6 +134,6 @@ rownames(experiment$TEST)[1] <- "EWEIGHT"
 experiment$TEST <- as.data.frame(experiment$TEST)
 experiment$TEST[,1] <- as.character(experiment$TEST[,1])
 experiment$TEST[1,1] <- "EWEIGHT"
-colnames(experiment$TEST)[1:2] <- c("CLID","NAME")
+colnames(experiment$TEST)[c(1,2)] <- c("CLID","NAME")
 return(experiment)
 })

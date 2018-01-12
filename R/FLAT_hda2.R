@@ -5,7 +5,7 @@ if(dim(mat)[2]==1){
     d <- list(m=0,n=0,mat = mat,na_numbers=0)
 }
 else{
-    bigindx <- rbind(1: ncol(mat));  
+    bigindx <- rbind(seq_len(ncol(mat)));  
     colnames(bigindx) <- colnames(mat);
     matt <- apply(bigindx,2,function(j){
         if(method_mean_or_median==1){

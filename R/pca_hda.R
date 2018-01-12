@@ -5,7 +5,7 @@ pca_hda <- function (mat, j)
     return(y)}
 pn <- function(vec) {
     vn <- vec
-    vn[-(1:j)] <- rep(0, length(vec) - j)
+    vn[-(seq_len(j))] <- rep(0, length(vec) - j)
     return(vn)}
 mat.svd <- svd(mat)
 U.mat <- mat.svd$u

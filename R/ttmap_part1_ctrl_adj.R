@@ -28,21 +28,21 @@ if(nrow(tumor.pcl)!=nrow(normal.pcl)){
 }
 record$ngenes.common <- nrow(Normal.pcl) - 1;
 rm(norm.tum.list);
-tag.pcl <- Disease.pcl[(1:3)];
-U <- lapply(1: length(unique(B)),function(i){
+tag.pcl <- Disease.pcl[(seq_len(3))];
+U <- lapply(seq_len(length(unique(B))),function(i){
     intersect(names(B[B[]==(i-1)]),colnames(Normal.pcl))
 })
-U2 <- lapply(1: length(unique(B)),function(i){
+U2 <- lapply(seq_len(length(unique(B))),function(i){
     intersect(names(B[B[]==(i-1)]),colnames(Disease.pcl))
 })
 mylist <- list()
-mylist <- lapply(1:length(unique(B)),function(i){
-    Normal.mat <- as.matrix(Normal.pcl[,-c(1:3)][-1,U[[i]]]);
+mylist <- lapply(seq_len(length(unique(B))),function(i){
+    Normal.mat <- as.matrix(Normal.pcl[,-seq_len(3)][-1,U[[i]]]);
     rownames(Normal.mat) <- rownames(Normal.pcl[-1,])
-    E <- unlist(lapply(1:dim(Normal.mat)[1],function(i){
+    E <- unlist(lapply(seq_len(dim(Normal.mat)[1]),function(i){
         mean(Normal.mat[i,][Normal.mat[i,]>0])}))
     E[is.na(E)==TRUE] <- 0
-    V <- unlist(lapply(1:dim(Normal.mat)[1],function(i){
+    V <- unlist(lapply(seq_len(dim(Normal.mat)[1]),function(i){
         var(Normal.mat[i,][Normal.mat[i,]>0])}))
     V[is.na(V)==TRUE] <- 0
     ymin <- min(V)
@@ -72,10 +72,10 @@ mylist <- lapply(1:length(unique(B)),function(i){
     flat.Nmat <- FLAT_hda2(Normal.mat, 
     el = e,metho = meth,p=P,method_mean_or_median = METHO);
     head(flat.Nmat$mat)
-    E <- unlist(lapply(1:dim(flat.Nmat$mat)[1],function(i){
+    E <- unlist(lapply(seq_len(dim(flat.Nmat$mat)[1]),function(i){
         mean(flat.Nmat$mat[i,][flat.Nmat$mat[i,]>0])}))
     E[is.na(E)==TRUE] <- 0
-    V <- unlist(lapply(1:dim(flat.Nmat$mat)[1],function(i){
+    V <- unlist(lapply(seq_len(dim(flat.Nmat$mat)[1]),function(i){
         var(flat.Nmat$mat[i,][flat.Nmat$mat[i,]>0])}))
     V[is.na(V)==TRUE] <- 0
     pdf(paste(dataname,"mean_vs_variance_after_correction.pdf",
@@ -113,7 +113,7 @@ if(length(unique(B))!=0){
     flat.Nmat$mat <- t(apply(flat,1,as.numeric))
     colnames(flat.Nmat$mat) <- denom}
 end_out <- list(e= e, tag.pcl = tag.pcl,
-Normal.mat = Normal.pcl[-1,-c(1:3)],
-Disease.mat = Disease.pcl[-1,-c(1:3)],
+Normal.mat = Normal.pcl[-1,-seq_len(3)],
+Disease.mat = Disease.pcl[-1,-seq_len(3)],
 flat.Nmat = flat.Nmat,record = record,B=B,U1=U,U2=U2);
 return(end_out)}

@@ -10,7 +10,7 @@ sep="\t",quote = FALSE, row.names = TRUE,col.names=NA)
 minespace <- 50
 beg <- ls()
 annot <- function(q,n=n) {
-    q <- lapply(1:length(q),function(i){
+    q <- lapply(seq_len(length(q)),function(i){
     ddd[q[[i]],n]
     })
     return(q)
@@ -55,7 +55,7 @@ else{q_all <- c()}}
 else{
     q_all <- apply(all,1,grep,pattern=1)
     q_all <- as.list(q_all)
-    q_all <- lapply(1:length(q_all),function(i){
+    q_all <- lapply(seq_len(length(q_all)),function(i){
     colnames(as.matrix(dd))[q_all[[i]]]
     })
 }
@@ -103,7 +103,7 @@ else{q_low <- c()}}
 else{
     q_low <- apply(low_map,1,grep,pattern=1)
     q_low <- as.list(q_low)
-    q_low <- lapply(1:length(q_low), function(i){
+    q_low <- lapply(seq_len(length(q_low)), function(i){
     colnames(as.matrix(dd)[names(low),names(low)])[
     as.vector(q_low[[i]])]
     })
@@ -119,7 +119,7 @@ else{q_high <- c()}}
 else{
     q_high <- apply(high_map,1,grep,pattern=1)
     q_high <- as.list(q_high)
-    q_high <- lapply( 1:length(q_high),function(i){
+    q_high <- lapply(seq_len(length(q_high)),function(i){
     colnames(as.matrix(dd)[names(high),names(high)])[
     as.vector(q_high[[i]])]
     })
@@ -162,7 +162,7 @@ else{
     du <- max(as.matrix(unlist(size_all))) + 
     max(as.matrix(unlist(size_low))) + minespace
     d_low <- du
-    lans <- lapply(1:length(p_low$s),function(i){
+    lans <- lapply(seq_len(length(p_low$s)),function(i){
     spheres3d(p_low$f[i],du,
     0,radius=p_low$s[i],color=rgb((p_low$r)$col[[i]][1],
     (p_low$r)$col[[i]][2],(p_low$r)$col[[i]][3],alpha=1))
@@ -241,7 +241,7 @@ else{
     du <- du+max(as.matrix(unlist(size_high)))
     d_high <- du
     l <- 30
-    lans <- lapply(1:length(size_high),function(i){
+    lans <- lapply(seq_len(length(size_high)),function(i){
         spheres3d(m+p_high$f[i],du,l,
         radius=p_high$s[i],color=rgb((p_high$r)$col[[i]][1],
         (p_high$r)$col[[i]][2],(p_high$r)$col[[i]][3],alpha=1))
@@ -258,7 +258,7 @@ else{
 }
 annot_right(p_high,p,l,d_high,d_mid2,d_mid1,d_low,m)
 u <- min(-minespace,-max(as.matrix(unlist(size_all)))-10)
-lans <- lapply(1:100,function(i){
+lans <- lapply(seq_len(100),function(i){
     segments3d(c((((i-1)/100)*(max(m+max(p_high$f),
     max(p$f)))),((i/100)*(max(m+max(p_high$f),
     max(p$f))))),c(u,u),c(l,l),
@@ -276,7 +276,7 @@ else{
 }
 #### descriptions files
 e <- list()
-if(length(p$q1_all)!=0){for(i in 1: length(size_all)){
+if(length(p$q1_all)!=0){for(i in seq_len(length(size_all))){
         e_1 <- paste(p$q1_all[[i]][1],
         paste(ddd[p$q1_all[[i]][1],ni],")"),sep=" (")
         if(length(p$q1_all[[i]])>1){
@@ -288,7 +288,7 @@ if(length(p$q1_all)!=0){for(i in 1: length(size_all)){
         e[[i]] <- paste(i, e_1, sep = ":" )
 }}
 d <- length(size_all)
-if(length(p_low$q1_all)!=0){for(i in 1: length(size_low)){
+if(length(p_low$q1_all)!=0){for(i in seq_len(length(size_low))){
         e_1 <- paste(p_low$q1_all[[i]][1],
         paste(ddd[p_low$q1_all[[i]][1],ni],")"),sep="(")
         if(length(p_low$q1_all[[i]])>1){

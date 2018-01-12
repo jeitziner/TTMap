@@ -40,7 +40,7 @@ function(i){
 })
 s <- max(unlist(sl))
 if(s<=0){
-    sl <- lapply(1:length(as.vector(dd5[upper.tri(dd5)])),
+    sl <- lapply(seq_len(length(as.vector(dd5[upper.tri(dd5)]))),
     function(i){ 
         ele <- as.vector(dd5[upper.tri(dd5)])[i]
 #s <- pnorm(ele*length(m_f), mean = sum(a3,na.rm=TRUE), 

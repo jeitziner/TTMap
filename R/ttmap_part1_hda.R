@@ -44,7 +44,7 @@ Normal.model <- mat2pcl(mat = Normal.model,tag = tag.pcl);
 write_pcl(Normal.model,
 paste(normalname,"NormalModel",sep = ".")); 
 sumabs <- function(vec){y<- abs(vec); z<-sum(y);return(z)}
-m <- apply(Dc.Dpcl[,-(1:3)],2,sumabs)
+m <- apply(Dc.Dpcl[,-(seq_len(3))],2,sumabs)
 end_out <- list(Dc.Dmat = Dc.Dmat,m=m);
 return(end_out)
 };
