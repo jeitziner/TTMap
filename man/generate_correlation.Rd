@@ -55,8 +55,8 @@ ttmap_part1_hda <- list()
 ttmap_part1_hda$Dc.Dmat <- matrix(c(-1,2,0,-4,5,6),nrow=2)
 rownames(ttmap_part1_hda$Dc.Dmat) <- c("Gene1","Gene2")
 colnames(ttmap_part1_hda$Dc.Dmat) <- c("A","B","C")
-dd <- TTMap:::generate_mismatch_distance(ttmap_part1_hda,select = 
+dd <- TTMap::generate_mismatch_distance(ttmap_part1_hda,select = 
 rownames(ttmap_part1_hda$Dc.Dmat))
-dd <- TTMap:::generate_euclidean(ttmap_part1_hda,select = 
+dd <- TTMap::generate_euclidean(ttmap_part1_hda,select = 
 rownames(ttmap_part1_hda$Dc.Dmat))
 }

@@ -10,7 +10,8 @@ files and annotating matrices (mat2pcl)}
 \usage{
 mat2pcl(mat, tag)
 write_pcl(df, dataname, fileaddress = "")
-read_pcl(filename, na.type = "", Nrows = -1, Comment.char = "", ...)
+read_pcl(filename, na.type = "", Nrows = -1, 
+Comment.char = "", ...)
 }\arguments{
 \item{df}{
 PCL object to be saved
@@ -75,6 +76,6 @@ d[1,1]<-"EWEIGHT"
 tag <- d[,c(1:3)]
 mat <- d[-1,c(4:6)]
 to_be_saved <- TTMap:::mat2pcl(mat,tag)
-TTMap:::write_pcl(to_be_saved,"/the_file",getwd())
-d <- TTMap:::read_pcl("the_file",na.type = "",Nrows= -1)
+setwd(tempdir())
+TTMap::write_pcl(to_be_saved,"tempfile()",getwd())
 }

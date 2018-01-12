@@ -76,25 +76,28 @@ ttmap_part1_ctrl_adj,ttmap_part1_hda,ttmap_sgn_genes}
 library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
-junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
+the_experiment <- TTMap::make_matrices(nki,1:10,50:60,
 rownames(nki),rownames(nki))
 TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(
-normal.pcl = junk$CTRL,
-tumor.pcl = junk$TEST, 
-normalname = "Hi", dataname = "Hello", 
+normal.pcl = the_experiment$CTRL,
+tumor.pcl = the_experiment$TEST, 
+normalname = "The_healthy_controls", 
+dataname = "Effect_of_cancer", 
 org.directory = getwd(),e=0,P=1.1,B=0);
 Kprime <- 10;
 TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = TTMAP_part1prime,
-k = Kprime,dataname = "Hello", normalname = "Hi");
-annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep="."),
-paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
+k = Kprime,dataname = "Effect_of_cancer",
+normalname = "The_healthy_controls");
+annot <- c(paste(colnames(
+the_experiment$TEST[,-c(1:3)]),"Dis",sep="."),
+paste(colnames(the_experiment$CTRL[,-c(1:3)]),"Dis",sep="."))
 annot <- cbind(annot,annot)
 rownames(annot)<-annot[,1]
-dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part1_hda,
+dd5_sgn_only <-TTMap::generate_mismatch_distance(TTMAP_part1_hda,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),alpha = ALPHA)
 TTMAP_part2 <-
 TTMap::ttmap_part2_gtlmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),annot,
 e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), 
-filename="TEST",n=1,dd=dd5_sgn_only)
+filename="first_comparison",n=1,dd=dd5_sgn_only)
 }

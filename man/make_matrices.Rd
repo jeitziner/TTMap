@@ -1,6 +1,5 @@
 \name{make_matrices}
 \alias{make_matrices}
-\alias{SumExp2pcl}
 \title{
 Prepares the matrices for ttmap_part1_ctrl_adj
 }
@@ -10,12 +9,10 @@ right format
 }
 \usage{
 make_matrices(mat,col_ctrl,col_test,NAME,CLID,GWEIGHT = 
-rep(1,dim(mat)[1]),EWEIGHT=0 )
-SumExp2pcl(nki,col_ctrl,col_test,
-NAME,CLID,GWEIGHT = rep(1,dim(nki)[1]),EWEIGHT=0)
+rep(1,dim(mat)[1]),EWEIGHT=0)
 }
 \arguments{
-\item{mat}{the matrix of gene expressions}
+\item{mat}{the gene expressions}
 \item{col_ctrl}{the columns in the matrix "mat" of the control 
 samples}
 \item{col_test}{the columns in the matrix "mat" of the test samples}
@@ -23,14 +20,10 @@ samples}
 \item{CLID}{Identities of genes,e.g. ENSMUSG00000000001}
 \item{GWEIGHT}{the weight for each gene}
 \item{EWEIGHT}{the weight for each experiment}
-\item{nki}{a SummarizedExperiment object}
 }
 \details{
 make_matrices generates the test matrix and the control matrix in
 the format accepted by ttmap_part1_ctrl_adj from a matrix object
-SumExp2pcl generates the test matrix and the control matrix in
-the format accepted by ttmap_part1_ctrl_adj from a 
-SummarizedExperiment object
 }
 \value{
 \item{junk}{A list containing $CTRL and $TEST the matrices to impute 
@@ -94,6 +87,6 @@ col_test = colnames(dis),NAME=rownames(norm1),CLID=rownames(norm1))
 ###other example using SummarizedExperiment
 library(breastCancerNKI)
 data(nki)
-junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
+the_experiment <- TTMap::make_matrices(nki,1:10,50:60,
 rownames(nki),rownames(nki))
 }

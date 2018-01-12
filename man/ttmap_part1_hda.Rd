@@ -52,14 +52,16 @@ ttmap_part1_ctrl_adj,ttmap_part2_gtlmap,ttmap_sgn_genes}
 library(breastCancerNKI)
 data(nki)
 ALPHA <- 1
-junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
+the_experiment <- TTMap::make_matrices(nki,1:10,50:60,
 rownames(nki),rownames(nki))
 TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(
-normal.pcl = junk$CTRL,
-tumor.pcl = junk$TEST, 
-normalname = "Hi", dataname = "Hello", 
+normal.pcl = the_experiment$CTRL,
+tumor.pcl = the_experiment$TEST, 
+normalname = "The_healthy_controls", 
+dataname = "Effect_of_cancer", 
 org.directory = getwd(),e=0,P=1.1,B=0);
 Kprime <- 10;
 TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = TTMAP_part1prime,
-k = Kprime,dataname = "Hello", normalname = "Hi");
+k = Kprime,dataname = "Effect_of_cancer",
+normalname = "The_healthy_controls");
 }
