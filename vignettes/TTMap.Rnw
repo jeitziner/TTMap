@@ -56,14 +56,22 @@ the user.
 \begin{figure*}[h]
 \begin{center}
 \includegraphics[height= 17.5cm]{Figure1new_test_small.pdf}
-\caption{ Schematic overview of TTMap. The inputs (green) are given by two gene expression matrices,
-the control ($\mathsf{N}$) and the test group ($\mathsf{T}$), rows represent genes and columns 
-samples. In Part 1, TTMap adjusts the control group for outlier values ($\bar{N}_*$), feature by feature. 
-It calculates deviation from this corrected control group for individual samples in the test group ($Dc.T_*
-$). In Part 2, TTMap computes a similarity measure, the mismatch distance (represented as a heatmap) 
-using the deviation components. The Mapper \cite{Mapper} algorithm is used with a two-tier cover to 
-generate a visual representation of the clustering creating a network of global clusters (Overall) and 
-local clusters (1st, 2nd, 3rd, 4th quartile of a filter function). It takes as inputs the mismatch distance and 
+\caption{ Schematic overview of TTMap. The inputs (green) 
+are given by two gene expression matrices,
+the control ($\mathsf{N}$) and the test group ($\mathsf{T}$), 
+rows represent genes and columns 
+samples. In Part 1, TTMap adjusts the control 
+group for outlier values ($\bar{N}_*$), feature by feature. 
+It calculates deviation from this corrected control 
+group for individual samples in the test group ($Dc.T_*
+$). In Part 2, TTMap computes a similarity 
+measure, the mismatch distance (represented as a heatmap) 
+using the deviation components. 
+The Mapper \cite{Mapper} algorithm is used with a two-tier cover to 
+generate a visual representation of 
+the clustering creating a network of global clusters (Overall) and 
+local clusters (1st, 2nd, 3rd, 4th quartile 
+of a filter function). It takes as inputs the mismatch distance and 
 the deviation components.}
 \end{center}
 \end{figure*}
@@ -161,10 +169,12 @@ head(TTMAP_part1_hda$Dc.Dmat)
 The outputs of this step are the following. 
 \begin{itemize}
 \item The corrected control matrix, calculated at the first step is given in 
-\textit{The\_healthy\_controls.NormalModel.pcl}, with a possible trimming of columns if $k$ is 
+\textit{The\_healthy\_controls.NormalModel.pcl}, with a possible trimming 
+of columns if $k$ is 
 different than the number of columns in the corrected matrix.
 \item The deviation component of each test sample is written in 
-\textit{The\_effect\_of\_cancer.Tdis.pcl}. An example of the deviation component is found in 
+\textit{The\_effect\_of\_cancer.Tdis.pcl}. An example of the deviation 
+component is found in 
 the previous script by writing \textit{head(TTMAP\_part1\_hda\$Dc.Dmat)}
 \item The normal component of each test sample is written in 
 \textit{The\_effect\_of\_cancer.Tnorm.pcl}.
@@ -231,7 +241,8 @@ outputs a file per level
 called low, one for the second quartile, called mid1, the third, mid2, and 
 the 
 higher quartile, called high). In each of them one file per cluster is given, 
-with the list of significant genes linked to the cluster. Relaxed is a parameter permitting 
+with the list of significant genes linked to the cluster. Relaxed is a 
+parameter permitting 
 to 
 select as a match one sample that would be 0 
 for the deviation component, 
