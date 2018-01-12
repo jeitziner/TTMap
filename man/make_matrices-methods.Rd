@@ -12,8 +12,8 @@ and the test (output $TEST) matrice in the
 right format for \code{ttmap_part1_ctrl_adj}}
 \section{Methods}{
 \describe{
-    \item{\code{signature(mat="data.frame")}}{ Method make_matrice 
-    	for \code{data.frame} object.}
+    \item{\code{signature(mat="data.frame")}}{Method make_matrice 
+    for \code{data.frame} object.}
     \item{\code{signature(mat="matrix")}}{Method make_matrice 
     for \code{matrix} object.}
     \item{\code{signature(mat="SummarizedExperiment")}}{

@@ -12,21 +12,23 @@ make_matrices(mat,col_ctrl,col_test,NAME,CLID,GWEIGHT =
 rep(1,dim(mat)[1]),EWEIGHT=0)
 }
 \arguments{
-\item{mat}{the gene expressions}
-\item{col_ctrl}{the columns in the matrix "mat" of the control 
-samples}
-\item{col_test}{the columns in the matrix "mat" of the test samples}
-\item{NAME}{Name of genes,or annotation, e.g. WNT4}
-\item{CLID}{Identities of genes,e.g. ENSMUSG00000000001}
-\item{GWEIGHT}{the weight for each gene}
-\item{EWEIGHT}{the weight for each experiment}
+    \item{mat}{the gene expressions}
+    \item{col_ctrl}{the columns in the matrix "mat" of the control 
+    samples}
+    \item{col_test}{the columns in the matrix "mat" of the test
+    samples}
+    \item{NAME}{Name of genes,or annotation, e.g. WNT4}
+    \item{CLID}{Identities of genes,e.g. ENSMUSG00000000001}
+    \item{GWEIGHT}{the weight for each gene}
+    \item{EWEIGHT}{the weight for each experiment}
 }
 \details{
 make_matrices generates the test matrix and the control matrix in
 the format accepted by ttmap_part1_ctrl_adj from a matrix object
 }
 \value{
-\item{junk}{A list containing $CTRL and $TEST the matrices to impute 
+\item{junk}{A list containing $CTRL and $TEST the matrices 
+to impute 
 in ttmap_part1_ctrl_adj}
 }
 \author{
