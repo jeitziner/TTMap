@@ -48,7 +48,7 @@ normal.pcl = the_experiment$CTRL,
 tumor.pcl = the_experiment$TEST, 
 normalname = "The_healthy_controls", 
 dataname = "Effect_of_cancer", 
-org.directory = getwd(),e=0,P=1.1,B=0);
+org.directory = tempdir(),e=0,P=1.1,B=0);
 Kprime <- 10;
 TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = TTMAP_part1prime,
 k = Kprime,dataname = "Effect_of_cancer",

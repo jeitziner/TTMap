@@ -76,6 +76,5 @@ d[1,1]<-"EWEIGHT"
 tag <- d[,seq_len(3)]
 mat <- d[-1,seq_len(3)+3]
 to_be_saved <- TTMap:::mat2pcl(mat,tag)
-setwd(tempdir())
 TTMap::write_pcl(to_be_saved,"tempfile()",getwd())
 }
