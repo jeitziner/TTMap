@@ -5,32 +5,32 @@ u <- meshRows_hda(x$tag.pcl, x$flat.Nmat$mat)
 tag.pcl <- u[[1]]
 tag.pcl <- as.data.frame(rbind(1,tag.pcl)); 
 rownames(tag.pcl)[[1]] <- "EWEIGHT"
-s<- meshRows_hda(x$Normal.mat,x$flat.Nmat$mat)
+s <- meshRows_hda(x$Normal.mat,x$flat.Nmat$mat)
 t <- meshRows_hda(s[[1]], x$Disease.mat)
 Normal.mat <- s[[1]];
 Disease.mat <- t[[2]];
 flat.Nmat <- s[[2]];
 rm(s,t,u)
 B <- x$B
-U1<-x$U1
-U2<-x$U2
+U1 <- x$U1
+U2 <- x$U2
 rm(x);
 if(k == dim(Normal.mat)[2]){
-Normal.model <- flat.Nmat
+    Normal.model <- flat.Nmat
 }
 else{
-Normal.model <- pca_hda(mat = flat.Nmat,j = k); 
-print("K!=dim..")}
-Nc.Dmat<- lapply(1:length(unique(B)),function(i){
-normal_hda2(Dmat = Disease.mat[,U2[[i]]],
-Nmodel = Normal.model[,U1[[i]]],
-new.cnames=paste(U2[[i]],"Norm",sep=".")); 
+    Normal.model <- pca_hda(mat = flat.Nmat,j = k); 
+    print("K!=dim..")}
+Nc.Dmat <- lapply(seq_len(length(unique(B))),function(i){
+    normal_hda2(Dmat = Disease.mat[,U2[[i]]],
+    Nmodel = Normal.model[,U1[[i]]],
+    new.cnames=paste(U2[[i]],"Norm",sep=".")); 
 })
 ###
 #Dc.Dmat <- do.call(cbind,Dc.Dmat)
 Nc.Dmat <- do.call(cbind,Nc.Dmat)
-rownames(Nc.Dmat)<-rownames(Normal.mat)
-Dc.Dmat<-
+rownames(Nc.Dmat) <- rownames(Normal.mat)
+Dc.Dmat <-
 deviation_hda2(Dmat = Disease.mat,Nc.Dmat,
 new.cnames=paste(unlist(U2),"Dis",sep="."));
 rownames(Dc.Dmat)<-rownames(Normal.mat)
@@ -45,6 +45,6 @@ write_pcl(Normal.model,
 paste(normalname,"NormalModel",sep = ".")); 
 sumabs <- function(vec){y<- abs(vec); z<-sum(y);return(z)}
 m <- apply(Dc.Dpcl[,-(1:3)],2,sumabs)
-junk <- list(Dc.Dmat = Dc.Dmat,m=m);
-return(junk)
+end_out <- list(Dc.Dmat = Dc.Dmat,m=m);
+return(end_out)
 };
