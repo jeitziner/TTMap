@@ -53,11 +53,17 @@ provided.
 The functions and methods presented on this \textit{vignette} provide
 explanation on how to use TTMap, by default and what can be changed by 
 the user. 
+\begin{figure*}[h]
+\begin{center}
+\includegraphics[height= 17.5cm]{Figure1new_test_small.pdf}
+\caption{ Schematic overview of TTMap. The inputs (green) are given by two gene expression matrices, the control ($\mathsf{N}$) and the test group ($\mathsf{T}$), rows represent genes and columns samples. In Part 1, TTMap adjusts the control group for outlier values ($\bar{N}_*$), feature by feature. It calculates deviation from this corrected control group for individual samples in the test group ($Dc.T_*$). In Part 2, TTMap computes a similarity measure, the mismatch distance (represented as a heatmap) using the deviation components. The Mapper \cite{Mapper} algorithm is used with a two-tier cover to generate a visual representation of the clustering creating a network of global clusters (Overall) and local clusters (1st, 2nd, 3rd, 4th quartile of a filter function). It takes as inputs the mismatch distance and the deviation components.}
+\end{center}
+\end{figure*}
 \section{Prepare the data}
 \label{sec:intro}
 Upload the file(s) to compare in R. Use \emph{make\_matrices} to create 
 the needed files for the first function of TTMap since it generates the 
-control and the test matrice in the right format. As an example, we 
+control and the test matrix in the right format. As an example, we 
 generate two random files.  
 For that we generate control samples  $C_1, \dots C_6$ and
 test samples 
@@ -72,7 +78,7 @@ $ times higher for TA, respectively lower for TB.
 <<loadLibAndData>>=
 library(breastCancerNKI)
 data(nki)
-junk <- TTMap:::SumExp2pcl(nki,1:10,50:60,
+experiment <- TTMap::make_matrices(nki,1:10,50:60,
 NAME = rownames(nki), CLID =rownames(nki))
 @ 
 \end{scriptsize}
@@ -105,10 +111,10 @@ outlier values.
 E=1
 Pw=1.1
 Bw=0
-TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(normal.pcl = junk$CTRL,
-tumor.pcl = junk$TEST, 
-normalname = "Hi", dataname = "Hello", org.directory = getwd(),
-e=E,P=Pw,B=Bw);
+TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(normal.pcl = experiment$CTRL,
+tumor.pcl = experiment$TEST, 
+normalname = "The_healthy_controls", dataname = "The_effect_of_cancer", 
+org.directory = getwd(), e=E,P=Pw,B=Bw);
 @
 \end{scriptsize}
 This outputs: 
@@ -128,7 +134,7 @@ A possible output after this first step is shown in figure
 \ref{fig_mean_vs_var}
 \begin{center}
 \begin{figure}
-\includegraphics[scale=14]{Hello_mean_vs_variance.pdf}
+\includegraphics[scale=14]{The_effect_of_cancer_mean_vs_variance.pdf}
 \caption{\texttt{barplotSignifSignatures}: Plot of mean against variance 
 per 
 gene.}
@@ -149,20 +155,20 @@ the vectors.
 <<part2>>=
 TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = 
 TTMAP_part1prime,k=dim(TTMAP_part1prime$Normal.mat)[2],
-dataname = "Hello", normalname = "Hi");
+dataname = "The_effect_of_cancer", normalname = "The_healthy_controls");
 head(TTMAP_part1_hda$Dc.Dmat)
 @
 \end{scriptsize}
 The outputs of this step are the following. 
 \begin{itemize}
 \item The corrected control matrix, calculated at the first step is given in 
-\textit{Hi.NormalModel.pcl}, with a possible trimming of columns if $k$ is 
+\textit{The\_healthy\_controls.NormalModel.pcl}, with a possible trimming of columns if $k$ is 
 different than the number of columns in the corrected matrix.
 \item The deviation component of each test sample is written in 
-\textit{Hello.Tdis.pcl}. An example of the deviation component is found in 
+\textit{The\_effect\_of\_cancer.Tdis.pcl}. An example of the deviation component is found in 
 the previous script by writing \textit{head(TTMAP\_part1\_hda\$Dc.Dmat)}
 \item The normal component of each test sample is written in 
-\textit{Hello.Tnorm.pcl}.
+\textit{The\_effect\_of\_cancer.Tnorm.pcl}.
 \end{itemize}
 The two values of this function are the deviation component matrix and 
 the 
@@ -204,8 +210,8 @@ has been adjusted to what one wants to see one can save it using the
 <<part3>>=
 library(rgl)
 ALPHA <- 1
-annot <- c(paste(colnames(junk$TEST[,-c(1:3)]),"Dis",sep=".")
-,paste(colnames(junk$CTRL[,-c(1:3)]),"Dis",sep="."))
+annot <- c(paste(colnames(experiment$TEST[,-c(1:3)]),"Dis",sep=".")
+,paste(colnames(experiment$CTRL[,-c(1:3)]),"Dis",sep="."))
 annot <- cbind(annot,annot)
 rownames(annot)<-annot[,1]
 dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part1_hda,
@@ -214,9 +220,9 @@ TTMAP_part2_gtlmap <-
 TTMap::ttmap_part2_gtlmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),
 annot,e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), 
-filename="TEST",
+filename="first_comparison",
 n=1,dd=dd5_sgn_only)
-rgl.postscript("test.pdf","pdf")
+rgl.postscript("first_output.pdf","pdf")
 @
 \end{scriptsize}
 \section{TTMap: Finding the significant genes (sgn\_genes)}
@@ -238,7 +244,7 @@ while the others deviate in the same shape.
 TTMap:::ttmap_sgn_genes(TTMAP_part2_gtlmap, 
 TTMAP_part1_hda, TTMAP_part1prime, 
 annot, n = 2, a = ALPHA,
-filename = "TEST2", annot = TTMAP_part1prime$tag.pcl, col = "NAME",
+filename = "first_trial", annot = TTMAP_part1prime$tag.pcl, col = "NAME",
 path = getwd(), Relaxed = 0)
 @
 \end{scriptsize}
