@@ -19,5 +19,4 @@ importFrom("graphics", "abline", "hist", "legend", "plot")
 importFrom("stats", "as.dist", "cor", "cor.test", "dist", "median",
 "pnorm", "ppois", "quantile", "sd", "var")
 importFrom("SummarizedExperiment","assays")
-importFrom("S4Vectors","endoapply")
 importFrom("utils", "combn", "head", "read.table", "write.table")
