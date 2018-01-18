@@ -13,7 +13,7 @@ colnames(tt1$Normal.mat))
 }
 \arguments{
 \item{dd5}{
-distance matrix as created by \code{\link[TTMap]{generate_mismatch_distance}}}
+distance matrix as created by \code{generate_mismatch_distance}}
 \item{pvalcutoff}{
 cutoff of 0.05 percent (default) or less}
 \item{tt1}{

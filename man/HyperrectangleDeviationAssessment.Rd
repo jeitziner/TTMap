@@ -8,9 +8,9 @@ Calculation of deviation components
 calculates the 
 hyperrectangle deviation
 assessment (HDA) that calculates the deviation components using 
-\code{\link[TTMap]{normal_hda2}} which calculates the normal component 
+\code{normal_hda2} which calculates the normal component 
 of the test 
-sample and \code{\link[TTMap]{deviation_hda2}}
+sample and \code{deviation_hda2}
 which calculates the deviation component.
 }
 \usage{

@@ -62,7 +62,7 @@ should have this information}
 \author{
 Rachel Jeitziner}
 \seealso{
-\code{\link[TTMap]{ttmap_part1_ctrl_adj}}}
+\code{\link[TTMap]{ControlAdjustment}}}
 \examples{
 d <- matrix(c(1,2,3,4,5,6),nrow=2)
 d <- as.data.frame(d)

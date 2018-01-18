@@ -5,11 +5,11 @@
 \alias{make_matrices,ExpressionSet-method}
 \alias{make_matrices,matrix-method}
 \alias{make_matrices,SummarizedExperiment-method}
-\title{ Prepares the matrices for \code{\link[TTMap]{ttmap_part1_ctrl_adj}}}
+\title{ Prepares the matrices for \code{\link[TTMap]{ControlAdjustment}}}
 \description{
 make_matrices generates the control (output $CTRL) 
 and the test (output $TEST) matrice in the 
-right format for \code{\link[TTMap]{ttmap_part1_ctrl_adj}}}
+right format for \code{\link[TTMap]{ControlAdjustment}}}
 \section{Methods}{
 \describe{
     \item{\code{signature(mat="data.frame")}}{Method make_matrice 
