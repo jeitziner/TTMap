@@ -18,11 +18,11 @@ ttmap_sgn_genes_inter(q, ttmap_part1_hda, alpha = 0)
 }
 \arguments{
 \item{ttmap_part2_gtlmap}{
-output of ttmap_part2_gtlmap}
+output of ttmap}
 \item{ttmap_part1_hda}{
-output of ttmap_part1_hda}
+output of HyperrectangleDeviationAssessment}
 \item{ttmap_part1_ctrl_adj}{
-output of ttmap_part1_ctrl_adj}
+output of ControlAdjustment}
 \item{c}{annotation file of the samples
 }
 \item{n}{
@@ -65,28 +65,29 @@ ALPHA <- 1
 the_experiment <- TTMap::make_matrices(nki
 ,seq_len(10),seq_len(10)+40,
 rownames(nki),rownames(nki))
-TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(
+TTMAP_part1prime <-TTMap::ControlAdjustment(
 normal.pcl = the_experiment$CTRL,
 tumor.pcl = the_experiment$TEST, 
 normalname = "The_healthy_controls", 
 dataname = "Effect_of_cancer", 
 org.directory = tempdir(),e=0,P=1.1,B=0);
 Kprime <- 10;
-TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = TTMAP_part1prime,
-k = Kprime,dataname = "Effect_of_cancer", 
+TTMAP_part1_hda <- TTMap::HyperrectangleDeviationAssessment(x = TTMAP_part1prime,
+k = Kprime,dataname = "Effect_of_cancer",
 normalname = "The_healthy_controls");
 annot <- c(paste(colnames(
-the_experiment$TEST[,-seq_len(3)]),"Dis",sep="."),
-paste(colnames(the_experiment$CTRL[,-c(seq_len(3))]),"Dis",sep="."))
+the_experiment$TEST[,-(seq_len(3))]),"Dis",sep="."),
+paste(colnames(the_experiment$CTRL[,-seq_len(3)]),"Dis",sep="."))
 annot <- cbind(annot,annot)
 rownames(annot)<-annot[,1]
 dd5_sgn_only <-TTMap::generate_mismatch_distance(TTMAP_part1_hda,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),alpha = ALPHA)
 TTMAP_part2 <-
-TTMap::ttmap_part2_gtlmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
+TTMap::ttmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),annot,
 e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), 
 filename="first_comparison",n=1,dd=dd5_sgn_only)
+
 TTMap::ttmap_sgn_genes(TTMAP_part2, TTMAP_part1_hda, 
 TTMAP_part1prime, annot,
 n = 2, a = 1, filename = "first_list_of_genes",

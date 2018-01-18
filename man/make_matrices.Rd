@@ -1,7 +1,7 @@
 \name{make_matrices}
 \alias{make_matrices}
 \title{
-Prepares the matrices for ttmap_part1_ctrl_adj
+Prepares the matrices for ControlAdjustment
 }
 \description{
 make_matrices generates the control and the test matrice in the 
@@ -12,7 +12,8 @@ make_matrices(mat,col_ctrl,col_test,NAME,CLID,GWEIGHT =
 rep(1,dim(mat)[1]),EWEIGHT=0)
 }
 \arguments{
-    \item{mat}{the gene expressions}
+    \item{mat}{the gene expressions can be matrix, data.frame,
+    SummarizedExperiment,ExpressionSet format}
     \item{col_ctrl}{the columns in the matrix "mat" of the control 
     samples}
     \item{col_test}{the columns in the matrix "mat" of the test
@@ -34,7 +35,8 @@ in ttmap_part1_ctrl_adj}
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part1_ctrl_adj,ttmap_part1_hda,ttmap_part2_gtlmap,ttmap_sgn_genes}
+ttmap_part1_ctrl_adj,ttmap_part1_hda,ttmap_part2_gtlmap,ttmap_sgn_genes,
+SummarizedExperiment}
 \examples{
 ##--
 ##--

@@ -26,7 +26,7 @@ generate_p_val_correlation(ttmap_part1_hda, select)
 }
 \arguments{
 \item{ttmap_part1_hda}{
-an object given back by ttmap_part1_hda}
+an object given back by HyperrectangleDeviationAssessment}
 \item{select}{
 A sublist of rownames of ttmap_part1_hda$Dc.Dmat
 }
