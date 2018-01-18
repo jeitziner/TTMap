@@ -4,7 +4,8 @@
 Calculation of deviation components
 }
 \description{
-HyperrectangleDeviationAssessment function calculates the hyperrectangle deviation
+HyperrectangleDeviationAssessment function calculates the 
+hyperrectangle deviation
 assessment (HDA) that calculates the deviation components using 
 normal_hda2 which calculates the normal component of the test 
 sample and deviation_hda2 which calculates the deviation component.
@@ -62,7 +63,8 @@ normalname = "The_healthy_controls",
 dataname = "Effect_of_cancer", 
 org.directory = tempdir(),e=0,P=1.1,B=0);
 Kprime <- 10;
-TTMAP_part1_hda <- TTMap::HyperrectangleDeviationAssessment(x = TTMAP_part1prime,
+TTMAP_part1_hda <- TTMap::HyperrectangleDeviationAssessment(x = 
+TTMAP_part1prime,
 k = Kprime,dataname = "Effect_of_cancer",
 normalname = "The_healthy_controls");
 }

@@ -50,7 +50,8 @@ normalname = "The_healthy_controls",
 dataname = "Effect_of_cancer", 
 org.directory = tempdir(),e=0,P=1.1,B=0);
 Kprime <- 10;
-TTMAP_part1_hda <- TTMap::HyperrectangleDeviationAssessment(x = TTMAP_part1prime,
+TTMAP_part1_hda <- TTMap::HyperrectangleDeviationAssessment(x = 
+TTMAP_part1prime,
 k = Kprime,dataname = "Effect_of_cancer",
 normalname = "The_healthy_controls");
 annot <- c(paste(colnames(
