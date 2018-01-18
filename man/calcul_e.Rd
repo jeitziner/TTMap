@@ -34,7 +34,7 @@ Rachel Jeitziner}
 \code{\link[TTMap]{ControlAdjustment}},
 \code{\link[TTMap]{HyperrectangleDeviationAssessment}},
 \code{\link[TTMap]{ttmap_sgn_genes}},
-\code{\link[TTMap]{generate_mismatch_distance}}}
+\code{generate_mismatch_distance}}
 \examples{
 ## See full example ttmap_sgn_genes
 ##--
