@@ -4,7 +4,7 @@
 Calculates a corrected control group, discovers outliers in it.
 }
 \description{
-ControlAdjustment function 
+\code{\link[TTMap]{ControlAdjustment}} function 
 finds outliers in the control group and 
 removes them
 }
@@ -15,10 +15,10 @@ org.directory = "", A = 1, e = 0, meth = 0, P = 1.1, B = 0)
 \arguments{
 \item{normal.pcl}{
 the control matrix with annotation as obtained by $CTRL from 
-make_matrices }
+\code{\link[TTMap]{make_matrices}}}
 \item{tumor.pcl}{
 the disease/test data matrix with annotation as obtained by $TEST 
-from make_matrices} 
+from \code{\link[TTMap]{make_matrices}}} 
 \item{normalname}{
 A name for the corrected control files}
 \item{dataname}{
@@ -43,7 +43,7 @@ Batch vector a vector for normal and test samples with a same
 number corresponding to a same batch}
 }
 \details{
-ControlAdjustment calculates a 
+\code{\link[TTMap]{ControlAdjustment}} calculates a 
 corrected control group, discovers 
 outliers in it.
 }
@@ -80,7 +80,10 @@ Disease.mat and Normal.mat}
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part1_hda,ttmap_part2_gtlmap,ttmap_sgn_genes}
+\code{\link[TTMap]{HyperrectangleDeviationAssessment}},\code{
+\link[TTMap]{ttmap}}
+\code{
+\link[TTMap]{ttmap_sgn_genes}}}
 \examples{
 ##--
 library(breastCancerNKI)

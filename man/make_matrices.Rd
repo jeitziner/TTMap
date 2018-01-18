@@ -1,10 +1,11 @@
 \name{make_matrices}
 \alias{make_matrices}
 \title{
-Prepares the matrices for ControlAdjustment
+Prepares the matrices for \code{\link[TTMap]{ControlAdjustment}}
 }
 \description{
-make_matrices generates the control and the test matrice in the 
+\code{\link[TTMap]{make_matrices}} generates the control 
+and the test matrice in the 
 right format
 }
 \usage{
@@ -13,7 +14,8 @@ rep(1,dim(mat)[1]),EWEIGHT=0)
 }
 \arguments{
     \item{mat}{the gene expressions can be matrix, data.frame,
-    SummarizedExperiment,ExpressionSet format}
+    \code{\link[SummarizedExperiment]{SummarizedExperiment}},
+    	ExpressionSet format}
     \item{col_ctrl}{the columns in the matrix "mat" of the control 
     samples}
     \item{col_test}{the columns in the matrix "mat" of the test
@@ -24,19 +26,23 @@ rep(1,dim(mat)[1]),EWEIGHT=0)
     \item{EWEIGHT}{the weight for each experiment}
 }
 \details{
-make_matrices generates the test matrix and the control matrix in
-the format accepted by ttmap_part1_ctrl_adj from a matrix object
+\code{\link[TTMap]{make_matrices}} generates the test matrix 
+and the control matrix in
+the format accepted by \code{\link[TTMap]{ControlAdjustment}} 
+from a matrix object
 }
 \value{
 \item{junk}{A list containing $CTRL and $TEST the matrices 
 to impute 
-in ttmap_part1_ctrl_adj}
+in \code{\link[TTMap]{ControlAdjustment}}}
 }
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part1_ctrl_adj,ttmap_part1_hda,ttmap_part2_gtlmap,ttmap_sgn_genes,
-SummarizedExperiment}
+\code{\link[TTMap]{ControlAdjustment}},
+\code{\link[TTMap]{HyperrectangleDeviationAssessment}},
+\code{\link[TTMap]{ttmap_sgn_genes}},
+\code{\link[SummarizedExperiment]{SummarizedExperiment}}}
 \examples{
 ##--
 ##--

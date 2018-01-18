@@ -4,11 +4,14 @@
 Calculation of deviation components
 }
 \description{
-HyperrectangleDeviationAssessment function calculates the 
+\code{\link[TTMap]{HyperrectangleDeviationAssessment}} function 
+calculates the 
 hyperrectangle deviation
 assessment (HDA) that calculates the deviation components using 
-normal_hda2 which calculates the normal component of the test 
-sample and deviation_hda2 which calculates the deviation component.
+\code{\link[TTMap]{normal_hda2}} which calculates the normal component 
+of the test 
+sample and \code{\link[TTMap]{deviation_hda2}}
+which calculates the deviation component.
 }
 \usage{
 HyperrectangleDeviationAssessment(x, k = dim(x$Normal.mat)[2], dataname, 
@@ -16,7 +19,7 @@ normalname,Org.directory=getwd())
 }
 \arguments{
 \item{x}{
-output object given back by ControlAdjustment, list}
+output object given back by \code{\link[TTMap]{ControlAdjustment}}, list}
 \item{k}{
 A factor if not all the lines in the control group should be kept}
 \item{dataname}{
@@ -46,7 +49,9 @@ group}
 \author{
 Rachel Jeitziner}
 \seealso{
-ControlAdjustment,HyperrectangleDeviationAssessment,ttmap_sgn_genes}
+\code{\link[TTMap]{ControlAdjustment}},
+\code{\link[TTMap]{HyperrectangleDeviationAssessment}},
+\code{\link[TTMap]{ttmap_sgn_genes}}}
 \examples{
 ##a full example can be found in ttmap_sgn_genes
 ##--

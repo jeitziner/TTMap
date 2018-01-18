@@ -5,7 +5,8 @@
 \title{
 Reading, writing and annotation files}
 \description{
-Reading (read_pcl), writing (write_pcl) 
+Reading (\code{\link[TTMap]{read_pcl}}), 
+writing (\code{\link[TTMap]{write_pcl}}) 
 files and annotating matrices (mat2pcl)}
 \usage{
 mat2pcl(mat, tag)
@@ -61,7 +62,7 @@ should have this information}
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part1_ctrl_adj}
+\code{\link[TTMap]{ttmap_part1_ctrl_adj}}}
 \examples{
 d <- matrix(c(1,2,3,4,5,6),nrow=2)
 d <- as.data.frame(d)

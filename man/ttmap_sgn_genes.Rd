@@ -6,7 +6,7 @@
 Gives a list of associated genes per cluster
 }
 \description{
-ttmap_sgn_genes function
+\code{\link[TTMap]{ttmap_sgn_genes}} function
 }
 \usage{
 ttmap_sgn_genes(ttmap_part2_gtlmap, ttmap_part1_hda,
@@ -18,11 +18,11 @@ ttmap_sgn_genes_inter(q, ttmap_part1_hda, alpha = 0)
 }
 \arguments{
 \item{ttmap_part2_gtlmap}{
-output of ttmap}
+output of \code{\link[TTMap]{ttmap}}}
 \item{ttmap_part1_hda}{
-output of HyperrectangleDeviationAssessment}
+output of \code{\link[TTMap]{HyperrectangleDeviationAssessment}}}
 \item{ttmap_part1_ctrl_adj}{
-output of ControlAdjustment}
+output of \code{\link[TTMap]{ControlAdjustment}}}
 \item{c}{annotation file of the samples
 }
 \item{n}{

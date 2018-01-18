@@ -13,11 +13,11 @@ colnames(tt1$Normal.mat))
 }
 \arguments{
 \item{dd5}{
-distance matrix as created by generate_mismatch_distance}
+distance matrix as created by \code{\link[TTMap]{generate_mismatch_distance}}}
 \item{pvalcutoff}{
 cutoff of 0.05 percent (default) or less}
 \item{tt1}{
-output of ControlAdjustment}
+output of \code{\link[TTMap]{ControlAdjustment}}}
 \item{alpha}{
 a cutoff value for the FC between the group of control and the 
 disease group}
@@ -31,8 +31,10 @@ relatedness with dd5}
 \author{
 Rachel Jeitziner}
 \seealso{
-ControlAdjustment,HyperrectangleDeviationAssessment,ttmap_sgn_genes,
-generate_mismatch_distance}
+\code{\link[TTMap]{ControlAdjustment}},
+\code{\link[TTMap]{HyperrectangleDeviationAssessment}},
+\code{\link[TTMap]{ttmap_sgn_genes}},
+\code{\link[TTMap]{generate_mismatch_distance}}}
 \examples{
 ## See full example ttmap_sgn_genes
 ##--

@@ -26,7 +26,8 @@ generate_p_val_correlation(ttmap_part1_hda, select)
 }
 \arguments{
 \item{ttmap_part1_hda}{
-an object given back by HyperrectangleDeviationAssessment}
+an object given back by \code{\link[TTMap]{
+HyperrectangleDeviationAssessment}}}
 \item{select}{
 A sublist of rownames of ttmap_part1_hda$Dc.Dmat
 }
@@ -49,7 +50,7 @@ Distance matrix
 \author{
 Rachel Jeitziner}
 \seealso{
-ttmap_part2_gtlmap}
+\code{\link[TTMap]{ttmap}}}
 \examples{
 ttmap_part1_hda <- list()
 ttmap_part1_hda$Dc.Dmat <- matrix(c(-1,2,0,-4,5,6),nrow=2)

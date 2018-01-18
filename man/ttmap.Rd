@@ -17,7 +17,7 @@ select = select), mean_value_m1 = "N", ni = 2)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{ttmap_part1_hda}{
-list output of HyperrectangleDeviationAssessment}
+list output of \code{\link[TTMap]{HyperrectangleDeviationAssessment}}}
 \item{m1}{
 either a user imputed vector whose names are the names of the 
 samples with addition of .Dis. or by default it is the amount of 
@@ -70,7 +70,9 @@ image of the clusters in the different layers.}
 \author{
 Rachel Jeitziner}
 \seealso{
-ControlAdjustment,HyperrectangleDeviationAssessment,ttmap_sgn_genes}
+\code{\link[TTMap]{ControlAdjustment}},
+\code{\link[TTMap]{HyperrectangleDeviationAssessment}},
+\code{\link[TTMap]{ttmap_sgn_genes}}}
 \examples{
 ##--
 library(breastCancerNKI)
