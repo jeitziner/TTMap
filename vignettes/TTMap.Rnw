@@ -118,7 +118,7 @@ outlier values.
 E=1
 Pw=1.1
 Bw=0
-TTMAP_part1prime <-TTMap::ttmap_part1_ctrl_adj(normal.pcl = experiment$CTRL,
+TTMAP_part1prime <-TTMap::ControlAdjustment(normal.pcl = experiment$CTRL,
 tumor.pcl = experiment$TEST, 
 normalname = "The_healthy_controls", dataname = "The_effect_of_cancer", 
 org.directory = getwd(), e=E,P=Pw,B=Bw);
@@ -160,7 +160,7 @@ all
 the vectors.
 \begin{scriptsize}
 <<part2>>=
-TTMAP_part1_hda <- TTMap::ttmap_part1_hda(x = 
+TTMAP_part1_hda <- TTMap::HyperrectangleDeviationAssessment(x = 
 TTMAP_part1prime,k=dim(TTMAP_part1prime$Normal.mat)[2],
 dataname = "The_effect_of_cancer", normalname = "The_healthy_controls");
 head(TTMAP_part1_hda$Dc.Dmat)
@@ -226,7 +226,7 @@ rownames(annot)<-annot[,1]
 dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part1_hda,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),alpha = ALPHA)
 TTMAP_part2_gtlmap <- 
-TTMap::ttmap_part2_gtlmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
+TTMap::ttmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),
 annot,e= TTMap::calcul_e(dd5_sgn_only,0.95,TTMAP_part1prime,1), 
 filename="first_comparison",
