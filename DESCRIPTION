@@ -1,7 +1,7 @@
 Package: TTMap
 Type: Package
 Title: Two-Tier Mapper: a clustering tool based on topological data analysis 
-Version: 0.99.25
+Version: 0.99.26
 Date: 2017-07-12
 Author: Rachel Jeitziner
 Maintainer: Rachel Jeitziner <rachel.jeitziner@epfl.ch>
