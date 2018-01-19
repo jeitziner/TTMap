@@ -13,7 +13,8 @@ colnames(tt1$Normal.mat))
 }
 \arguments{
 \item{dd5}{
-distance matrix as created by \code{generate_mismatch_distance}}
+distance matrix as created by \code{generate_mismatch_distance}
+}
 \item{pvalcutoff}{
 cutoff of 0.05 percent (default) or less}
 \item{tt1}{
@@ -34,7 +35,8 @@ Rachel Jeitziner}
 \code{\link[TTMap]{ControlAdjustment}},
 \code{\link[TTMap]{HyperrectangleDeviationAssessment}},
 \code{\link[TTMap]{ttmap_sgn_genes}},
-\code{generate_mismatch_distance}}
+\code{\link{generate_mismatch_distance}}
+}
 \examples{
 ## See full example ttmap_sgn_genes
 ##--

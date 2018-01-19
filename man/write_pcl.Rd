@@ -5,7 +5,7 @@
 \title{
 Reading, writing and annotation files}
 \description{
-Reading (\code{read_pcl}), 
+Reading (\code{\link{read_pcl}}), 
 writing (\code{\link[TTMap]{write_pcl}}) 
 files and annotating matrices (mat2pcl)}
 \usage{

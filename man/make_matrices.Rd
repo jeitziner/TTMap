@@ -13,9 +13,9 @@ make_matrices(mat,col_ctrl,col_test,NAME,CLID,GWEIGHT =
 rep(1,dim(mat)[1]),EWEIGHT=0)
 }
 \arguments{
-    \item{mat}{the gene expressions can be matrix, data.frame,
-    \code{\link[SummarizedExperiment]{SummarizedExperiment}},
-    	ExpressionSet format}
+    \item{mat}{the gene expressions can be \bold{matrix}, \bold{data.frame},
+    \code{\link[SummarizedExperiment]{SummarizedExperiment0}},
+    \code{\link[Biobase]{ExpressionSet}} format} 
     \item{col_ctrl}{the columns in the matrix "mat" of the control 
     samples}
     \item{col_test}{the columns in the matrix "mat" of the test
@@ -42,7 +42,7 @@ Rachel Jeitziner}
 \code{\link[TTMap]{ControlAdjustment}},
 \code{\link[TTMap]{HyperrectangleDeviationAssessment}},
 \code{\link[TTMap]{ttmap_sgn_genes}},
-\code{\link[SummarizedExperiment]{SummarizedExperiment}}}
+\code{\link[SummarizedExperiment]{SummarizedExperiment0}}}
 \examples{
 ##--
 ##--
