@@ -14,8 +14,10 @@ rep(1,dim(mat)[1]),EWEIGHT=0)
 }
 \arguments{
     \item{mat}{the gene expressions can be \bold{matrix}, \bold{data.frame},
-   \code{"\link[=RangedSummarizedExperiment-class]{RangedSummarizedExperiment}"},
-    \code{\link[Biobase]{ExpressionSet}} format} 
+    \code{"\link[=RangedSummarizedExperiment-class]{
+    RangedSummarizedExperiment}"},
+    \code{"\link[=ExpressionSet-class]{
+    ExpressionSet}"} format} 
     \item{col_ctrl}{the columns in the matrix "mat" of the control 
     samples}
     \item{col_test}{the columns in the matrix "mat" of the test
@@ -42,7 +44,8 @@ Rachel Jeitziner}
 \code{\link[TTMap]{ControlAdjustment}},
 \code{\link[TTMap]{HyperrectangleDeviationAssessment}},
 \code{\link[TTMap]{ttmap_sgn_genes}},
-\code{\link[SummarizedExperiment]{RangedSummarizedExperiment}}}
+\code{"\link[=RangedSummarizedExperiment-class]{
+    RangedSummarizedExperiment}"}}
 \examples{
 ##--
 ##--
