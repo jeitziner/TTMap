@@ -14,7 +14,7 @@ rep(1,dim(mat)[1]),EWEIGHT=0)
 }
 \arguments{
     \item{mat}{the gene expressions can be \bold{matrix}, \bold{data.frame},
-    \code{\link[SummarizedExperiment]{SummarizedExperiment0}},
+    \code{\link[SummarizedExperiment]{RangedSummarizedExperiment}},
     \code{\link[Biobase]{ExpressionSet}} format} 
     \item{col_ctrl}{the columns in the matrix "mat" of the control 
     samples}
