@@ -21,5 +21,5 @@ importFrom("stats", "as.dist", "cor", "cor.test", "dist", "median",
 importFrom("SummarizedExperiment","assays")
 importFrom("methods", "as")
 importFrom("utils", "combn", "head", "read.table", "write.table")
-importClassesFrom("SummarizedExperiment")
-importClassesFrom("Biobase")
+importClassesFrom("SummarizedExperiment","RankedSummarizedExperiment")
+importClassesFrom("Biobase","ExpressionSet")
