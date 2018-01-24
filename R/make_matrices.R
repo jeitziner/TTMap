@@ -140,7 +140,6 @@ return(experiment)
 setMethod("make_matrices",signature(mat="RangedSummarizedExperiment"),
 function(mat,col_ctrl,col_test,
 NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){
-   # mat <- as(mat,"RangedSummarizedExperiment")
 f <- (SummarizedExperiment::assay(mat))
 f <- lapply(seq_len(dim(f)[1]),function(x){ w <- unlist(f[x,]); 
     w[is.na(w)==TRUE] <- median(w,na.rm=TRUE);return(w)})
