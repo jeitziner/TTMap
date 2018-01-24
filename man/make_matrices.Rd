@@ -17,7 +17,7 @@ rep(1,dim(mat)[1]),EWEIGHT=0)
     \code{"\link[=RangedSummarizedExperiment-class]{
     RangedSummarizedExperiment}"},
     \code{"\link[=ExpressionSet-class]{
-    ExpressionSet}"} format} 
+    ExpressionSet}"} format}
     \item{col_ctrl}{the columns in the matrix "mat" of the control 
     samples}
     \item{col_test}{the columns in the matrix "mat" of the test
@@ -45,7 +45,8 @@ Rachel Jeitziner}
 \code{\link[TTMap]{HyperrectangleDeviationAssessment}},
 \code{\link[TTMap]{ttmap_sgn_genes}},
 \code{"\link[=RangedSummarizedExperiment-class]{
-    RangedSummarizedExperiment}"}}
+    RangedSummarizedExperiment}"}
+}
 \examples{
 ##--
 ##--
