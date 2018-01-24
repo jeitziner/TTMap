@@ -137,7 +137,6 @@ experiment$TEST[1,1] <- "EWEIGHT"
 colnames(experiment$TEST)[c(1,2)] <- c("CLID","NAME")
 return(experiment)
 })
-
 setMethod("make_matrices",signature(mat="RangedSummarizedExperiment"),
 function(mat,col_ctrl,col_test,
 NAME,CLID,GWEIGHT = rep(1,dim(mat)[1]),EWEIGHT=0){
