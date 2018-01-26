@@ -317,7 +317,7 @@ mean_value_m1 = "N", ni = 2){
         }
     }   
     d <- length(size_all) + length(size_low) + 1
-      e[[d+1]]<- "The second quartile"
+    e[[d+1]]<- "The second quartile"
     if(length(p_mid1$q1_all) != 0){
         for(i in seq_len(length(size_mid1))){
             e_1 <- paste(p_mid1$q1_all[[i]][1],
@@ -334,7 +334,7 @@ mean_value_m1 = "N", ni = 2){
         }
     }  
     d <- length(size_all) + length(size_low) + length(size_mid1) + 2
-       e[[d + 1]]<- "The third quartile"
+    e[[d + 1]]<- "The third quartile"
     if(length(p_mid2$q1_all) != 0){
         for(i in seq_len(length(size_mid2))){
             e_1 <- paste(p_mid2$q1_all[[i]][1],
