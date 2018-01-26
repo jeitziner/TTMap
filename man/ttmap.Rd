@@ -14,7 +14,7 @@
     dd = generate_mismatch_distance(ttmap_part1_hda = ttmap_part1_hda, 
     select = select), mean_value_m1 = "N", ni = 2)
 }
-     %- maybe also 'usage' for other objects documented here.
+    %- maybe also 'usage' for other objects documented here.
 \arguments{
     \item{ttmap_part1_hda}{
     list output of \code{\link[TTMap]{hyperrectangle_deviation_assessment}}}
