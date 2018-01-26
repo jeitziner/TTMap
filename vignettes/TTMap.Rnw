@@ -80,13 +80,13 @@ the deviation components.}
 Upload the file(s) to compare in R. Use \emph{make\_matrices} to create 
 the needed files for the first function of TTMap since it generates the 
 control and the test matrix in the right format. As an example, we 
-use the NKI breast cancer data set. 
+use the airway data set available at Bioconductor. 
 \begin{scriptsize}
 <<loadLibAndData>>=
-library(breastCancerNKI)
-data(nki)
-experiment <- TTMap::make_matrices(nki,seq_len(10),seq_len(10)+40,
-NAME = rownames(nki), CLID =rownames(nki))
+library(airway)
+data(airway)
+experiment <- TTMap::make_matrices(airway,seq_len(4),seq_len(4)+4,
+NAME = rownames(airway), CLID =rownames(airway))
 @ 
 \end{scriptsize}
 This function can directly be used on a normalised count table from RNA-
@@ -118,7 +118,7 @@ outlier values.
 E=1
 Pw=1.1
 Bw=0
-TTMAP_part1prime <-TTMap::ControlAdjustment(normal.pcl = experiment$CTRL,
+TTMAP_part1prime <-TTMap::control_adjustment(normal.pcl = experiment$CTRL,
 tumor.pcl = experiment$TEST, 
 normalname = "The_healthy_controls", dataname = "The_effect_of_cancer", 
 org.directory = getwd(), e=E,P=Pw,B=Bw);
@@ -160,7 +160,7 @@ all
 the vectors.
 \begin{scriptsize}
 <<part2>>=
-TTMAP_part1_hda <- TTMap::HyperrectangleDeviationAssessment(x = 
+TTMAP_part1_hda <- TTMap::hyperrectangle_deviation_assessment(x = 
 TTMAP_part1prime,k=dim(TTMAP_part1prime$Normal.mat)[2],
 dataname = "The_effect_of_cancer", normalname = "The_healthy_controls");
 head(TTMAP_part1_hda$Dc.Dmat)
