@@ -55,7 +55,7 @@ explanation on how to use TTMap, by default and what can be changed by
 the user. 
 \begin{figure*}[h]
 \begin{center}
-\includegraphics[height= 17.5cm]{Figure1new_test_small.pdf}
+\includegraphics[height= 17.5cm]{Figure1new_test_small.png}
 \caption{ Schematic overview of TTMap. The inputs (green) 
 are given by two gene expression matrices,
 the control ($\mathsf{N}$) and the test group ($\mathsf{T}$), 
