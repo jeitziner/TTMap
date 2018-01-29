@@ -223,7 +223,7 @@ annot <- c(paste(colnames(experiment$TEST[,-seq_len(3)]),"Dis",sep=".")
 ,paste(colnames(experiment$CTRL[,-seq_len(3)]),"Dis",sep="."))
 annot <- cbind(annot,annot)
 rownames(annot)<-annot[,1]
-dd5_sgn_only <-TTMap:::generate_mismatch_distance(TTMAP_part1_hda,
+dd5_sgn_only <-TTMap::generate_mismatch_distance(TTMAP_part1_hda,
 select=rownames(TTMAP_part1_hda$Dc.Dmat),alpha = ALPHA)
 TTMAP_part2_gtlmap <- 
 TTMap::ttmap(TTMAP_part1_hda,TTMAP_part1_hda$m,
@@ -249,7 +249,7 @@ for the deviation component,
 while the others deviate in the same shape.
 \begin{scriptsize}
 <<part4>>=
-TTMap:::ttmap_sgn_genes(TTMAP_part2_gtlmap, 
+TTMap::ttmap_sgn_genes(TTMAP_part2_gtlmap, 
 TTMAP_part1_hda, TTMAP_part1prime, 
 annot, n = 2, a = ALPHA,
 filename = "first_trial", annot = TTMAP_part1prime$tag.pcl, col = "NAME",
