@@ -105,6 +105,8 @@
     ###other example using SummarizedExperiment
     library(airway)
     data(airway)
+    airway <- airway[rowSums(assay(airway))>80,]
+    assay(airway) <- log(assay(airway)+1,2)
     the_experiment <- TTMap::make_matrices(airway, 
     seq_len(4), seq_len(4) + 4,
     rownames(airway), rownames(airway))
