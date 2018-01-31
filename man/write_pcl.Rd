@@ -73,6 +73,8 @@
 \examples{
     library(airway)
     data(airway)
+    airway <- airway[rowSums(assay(airway))>80,]
+    assay(airway) <- log(assay(airway)+1,2)
     ALPHA <- 1
     to_be_saved <- TTMap::make_matrices(airway,
     seq_len(4), seq_len(4) + 4,
