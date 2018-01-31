@@ -13,11 +13,13 @@ function(Dmat, Nmodel, new.cnames = "Norm") {
         rownames(N) <- names(Nmodel)
     }
     else{
+        options(warn=-1)
         Nmodel[Nmodel == 0] <- NA
         min <- apply(Nmodel, 1, min, na.rm = TRUE)
         max <- apply(Nmodel, 1, max, na.rm = TRUE)
         min[min == Inf] <- 0
         max[max == -Inf] <- 0
+        options(warn=0)
         N <- cbind(min,max)}
     mat <- alpha(as.matrix(Dmat), N);
     colnames(mat) <- new.cnames;
