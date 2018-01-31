@@ -64,6 +64,5 @@
     dd5_sgn_only <-TTMap::generate_mismatch_distance(
     TTMAP_part1_hda,
     select=rownames(TTMAP_part1_hda$Dc.Dmat), alpha = ALPHA)
-    TTMAP_part2 <-
     e <- TTMap::calcul_e(dd5_sgn_only, 0.95, TTMAP_part1prime, 1)
 }
