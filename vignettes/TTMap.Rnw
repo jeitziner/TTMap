@@ -77,7 +77,8 @@ the deviation components.}
 \end{figure*}
 \section{Prepare the data}
 \label{sec:intro}
-Upload the file(s) to compare in R. Use \emph{make\_matrices} to create 
+Upload the file(s) to compare in R. Log transform and subselect them.
+Use \emph{make\_matrices} to create 
 the needed files for the first function of TTMap since it generates the 
 control and the test matrix in the right format. As an example, we 
 use the airway data set available at Bioconductor. 
@@ -85,6 +86,8 @@ use the airway data set available at Bioconductor.
 <<loadLibAndData>>=
 library(airway)
 data(airway)
+airway <- airway[rowSums(assay(airway))>80,]
+assay(airway) <- log(assay(airway)+1,2)
 experiment <- TTMap::make_matrices(airway,seq_len(4),seq_len(4)+4,
 NAME = rownames(airway), CLID =rownames(airway))
 @ 
