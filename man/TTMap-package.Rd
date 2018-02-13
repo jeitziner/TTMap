@@ -23,7 +23,7 @@
     Maintainer: Rachel Jeitziner <rachel.jeitziner@epfl.ch>
 }
 \references{
-    R. Jeitziner, TTMap, 2018, DOI:arXic:1801.01841
+    R. Jeitziner et al., TTMap, 2018, DOI:arXiv:1801.01841
 }
 \keyword{TTMap}
 \seealso{
