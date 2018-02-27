@@ -10,7 +10,7 @@ BiocStyle::latex()
 \usepackage{graphicx}   % need for PS figures
 \usepackage{hyperref}   % use for hypertext links
 \begin{document}
-\title{\textbf{\LARGE{Two-Tier Mapper: 
+\title[Two-Tier Mapper]{\textbf{\LARGE{Two-Tier Mapper: 
 a user-independent clustering 
 method 
 for global gene expression analysis 
