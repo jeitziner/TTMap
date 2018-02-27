@@ -313,7 +313,7 @@ mean_value_m1 = "N", ni = 2){
                     paste(ddd[p_low$q1_all[[i]][j], ni], ")"), sep="(")
                 }
             }
-            e[[i + d + 1]] <- paste(i + d + 1, e_1, sep = ":" )
+            e[[i + d + 1]] <- paste(i + d, e_1, sep = ":" )
         }
     }   
     d <- length(size_all) + length(size_low) + 1
@@ -330,7 +330,7 @@ mean_value_m1 = "N", ni = 2){
                 sep="(")
                 }
             }
-            e[[i + d + 1]]<- paste(i + d + 1, e_1, sep = ":" )
+            e[[i + d + 1]]<- paste(i + d, e_1, sep = ":" )
         }
     }  
     d <- length(size_all) + length(size_low) + length(size_mid1) + 2
@@ -348,7 +348,7 @@ mean_value_m1 = "N", ni = 2){
                 sep = "(")
                 }
             }
-            e[[i + d + 1]]<-paste(i + d + 1, e_1, sep = ":" )
+            e[[i + d + 1]]<-paste(i + d, e_1, sep = ":" )
         }
     }
     d <- length(size_all) + length(size_low) +
@@ -367,7 +367,7 @@ mean_value_m1 = "N", ni = 2){
                 sep = "(")
                 }
             }
-            e[[i + d + 1]]<-paste(i + d + 1, e_1, sep = ":" )
+            e[[i + d + 1]]<-paste(i + d, e_1, sep = ":" )
         }
     }
     write.table(e, file=paste(filename,

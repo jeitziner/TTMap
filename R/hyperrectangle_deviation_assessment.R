@@ -9,7 +9,7 @@ dataname, normalname, Org.directory = getwd())
     t <- meshRows_hda(s[[1]], x$Disease.mat)
     Normal.mat <- s[[1]];
     Disease.mat <- t[[2]];
-    flat.Nmat <- s[[2]];
+    flat.Nmat <- s[[2]][rownames(Disease.mat),];#this was changed
     rm(s, t, u)
     B <- x$B
     U1 <- x$U1
@@ -31,8 +31,8 @@ dataname, normalname, Org.directory = getwd())
     Nc.Dmat <- do.call(cbind, Nc.Dmat)
     rownames(Nc.Dmat) <- rownames(Normal.mat)
     Dc.Dmat <-
-    deviation_hda2(Dmat = Disease.mat, Nc.Dmat,
-    new.cnames = paste(unlist(U2), "Dis", sep = "."));
+    deviation_hda2(Dmat = Disease.mat[,unlist(U2)], Nc.Dmat,
+    new.cnames = paste(unlist(U2), "Dis", sep = ".")); ##this was changed
     rownames(Dc.Dmat) <- rownames(Normal.mat)
     ####  store all these: 
     setwd(Org.directory)
